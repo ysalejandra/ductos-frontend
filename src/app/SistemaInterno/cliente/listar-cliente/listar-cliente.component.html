@@ -1,0 +1,46 @@
+<section class="content">
+    <!--Aqui van las migas de pan, pero creo que no las necesitaremos-->
+    <br>
+    <h3 id="subtitulo">Listar Cliente </h3>
+    <div class="card mb-3 text-center">
+      <div class="card-body text-primary">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Email</th>
+                <th scope="col">Teléfono de contacto</th>
+               <!--
+                <th style="text-align: left"><button class="btn btn-success" type="button"
+                    (click)="abrirModal()">Añadir</button></th>-->
+              </tr>
+            </thead>
+            <tbody *ngIf="clientesCargados">
+              <tr *ngFor="let item of clientes">
+                <th>{{item.idCliente}}</th>
+                <td>{{item.nombreCliente}}</td>
+                <td>{{item.apellidoPaterno}}</td>
+                <td>{{item.apellidoMaterno}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.telefono}}</td>
+                <td><!--
+                  <div class="btn-toolbar">
+                    <button class="btn btn-warning" type="button" id="botones"
+                      (click)="abrirModalEditar(item)">Editar</button>
+                    <button class="btn btn-danger" type="button" (click)="borrarCliente(item)"
+                      id="botones">Eliminar</button>
+                  </div>-->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button type="button" class="btn btn-primary">Primary</button>
