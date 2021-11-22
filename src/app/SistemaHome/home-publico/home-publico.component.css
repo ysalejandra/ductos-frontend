@@ -1,0 +1,39 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    color: black;
+}
+#imagen{
+    padding-right: 120px;
+    padding-left: 120px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+#card{
+    padding-right: 3%;
+    padding-left: 6%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    
+}
+
+/*Para que el footer quede abajo*/
+html {
+    min-height: 100%;
+    position: absolute;
+  }
+  body {
+    margin: 0;
+    margin-bottom: 40px;
+  }
+  footer {
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}

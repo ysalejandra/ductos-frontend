@@ -17,6 +17,10 @@ import { ListarProductoComponent } from './SistemaInterno/producto/listar-produc
 import { AddInformeComponent } from './SistemaInterno/informe/add-informe/add-informe.component';
 import { HomeInternoComponent } from './SistemaInterno/homeInterno/home-interno/home-interno.component';
 import { ContactanosComponent } from './SistemaHome/contactanos/contactanos.component';
+import { RouterModule } from '@angular/router';
+import { QuienesSomosComponent } from './SistemaHome/quienes-somos/quienes-somos.component';
+import { TrabajosComponent } from './SistemaHome/trabajos/trabajos.component';
+import { EstadoPedidoComponent } from './SistemaHome/estado-pedido/estado-pedido.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,16 @@ import { ContactanosComponent } from './SistemaHome/contactanos/contactanos.comp
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path: 'home', component: HomePublicoComponent},
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {path: 'quienes-somos', component: QuienesSomosComponent},
+      {path: 'contactanos', component: ContactanosComponent},
+      {path: 'trabajos', component: TrabajosComponent},
+      {path: 'estado-pedido', component: EstadoPedidoComponent}
+
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
