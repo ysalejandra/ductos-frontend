@@ -18,6 +18,21 @@
     
 }
 
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+#centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 1px 1px 10px #000000;
+  color: #ffffff;
+}
+
 /*Para que el footer quede abajo*/
 html {
     min-height: 100%;
