@@ -23,6 +23,7 @@ import { TrabajosComponent } from './SistemaHome/trabajos/trabajos.component';
 import { EstadoPedidoComponent } from './SistemaHome/estado-pedido/estado-pedido.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './SistemaHome/login/login.component';
 
 
 
@@ -43,6 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddInformeComponent,
     HomeInternoComponent,
     ContactanosComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {path: 'quienes-somos', component: QuienesSomosComponent},
       {path: 'contactanos', component: ContactanosComponent},
       {path: 'trabajos', component: TrabajosComponent},
-      {path: 'estado-pedido', component: EstadoPedidoComponent}
+      {path: 'estado-pedido', component: EstadoPedidoComponent},
+      {path: 'login',component: LoginComponent}
 
     ])
   ],
