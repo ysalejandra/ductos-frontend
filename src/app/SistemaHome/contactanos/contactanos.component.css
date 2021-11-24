@@ -1,19 +1,129 @@
-/*Para que el footer quede abajo*/
-html {
-    min-height: 100%;
-    position: absolute;
-  }
-  body {
-    margin: 0;
-    margin-bottom: 40px;
-  }
-  footer {
-    background-color: black;
-    position: absolute;
-    bottom: 0;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+body{
     width: 100%;
-    height: 40px;
-    color: white;
-    padding-top: 8px;
-    padding-bottom: 10px;
+    height: 100%;
+    font-family: 'Roboto';
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    font-family: 'Roboto', 'Roboto'; 
+    height: 800px;
+    background-image: url("C:\DuctosOrtizSpa\Frontend\src\assets\fondos1.png"); 
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center center;
+    font-size: 16px;
+  }
+
+  html, body{
+    margin:0;
+    padding:0;
+  }
+
+/*
+ * Card component
+ */
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    margin-top: 50px;
+    margin-left: 15%;
+    margin-right: 15%;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    opacity: 0.92;
+    padding: 42px 40px;
+    border-radius: 8px;
 }
+
+.form-signin input[type=text],
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    border-color: rgb(104, 145, 162);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+    /*background-color: #4d90fe; */
+    background-color: rgb(104, 145, 162);
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: rgb(12, 97, 33);
+}
+
+
+/*Barra de navegacion*/
+		
+#menu{
+    background-color: #000;
+opacity: 0.8;
+
+}
+
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu ul li{
+    display: inline-block;
+}
+
+#menu ul li a{
+    color: white;
+    display: block;
+    padding: 20px 20px;
+    text-decoration: none;
+}
+
+#menu ul li a:hover{
+    background-color: #FC0000
+}
+
+.item-r{
+    float: right;
+}
+
+.card-container.card {
+  max-width: 850px;
+  padding: 50px 50px;
+  padding-top: 50px;
+  font-weight: bold;
+
+}
+

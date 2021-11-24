@@ -21,6 +21,11 @@ import { RouterModule } from '@angular/router';
 import { QuienesSomosComponent } from './SistemaHome/quienes-somos/quienes-somos.component';
 import { TrabajosComponent } from './SistemaHome/trabajos/trabajos.component';
 import { EstadoPedidoComponent } from './SistemaHome/estado-pedido/estado-pedido.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './SistemaHome/login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -38,19 +43,23 @@ import { EstadoPedidoComponent } from './SistemaHome/estado-pedido/estado-pedido
     ListarProductoComponent,
     AddInformeComponent,
     HomeInternoComponent,
-    ContactanosComponent
+    ContactanosComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
+    CarouselModule,
     RouterModule.forRoot([
       {path: 'home', component: HomePublicoComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'quienes-somos', component: QuienesSomosComponent},
       {path: 'contactanos', component: ContactanosComponent},
       {path: 'trabajos', component: TrabajosComponent},
-      {path: 'estado-pedido', component: EstadoPedidoComponent}
+      {path: 'estado-pedido', component: EstadoPedidoComponent},
+      {path: 'login',component: LoginComponent}
 
     ])
   ],
