@@ -2187,10 +2187,17 @@ progress {
   color: #6c757d;
 }
 
+#pedido{
+  padding-left: 28%;
+  padding-right: 28%;
+  padding-bottom: 4%;
+} 
+
+
 .form-control {
   display: block;
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: 0.575rem 0.95rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -3032,13 +3039,13 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #ffc800;
-  border-color: #ffc800;
+  background-color: #cf0000;
+  border-color: #cf0000;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #d9aa00;
-  border-color: #cca000;
+  background-color: #e98d8d;
+  border-color: #c77f7f;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
@@ -3284,14 +3291,14 @@ textarea.form-control-lg {
 }
 .btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
   color: #fff;
-  background-color: #ffc800;
+  background-color: #ff1100;
   border-color: #ffc800;
 }
 .btn-check:checked + .btn-outline-primary:focus, .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus {
   box-shadow: 0 0 0 0.25rem rgba(255, 200, 0, 0.5);
 }
 .btn-outline-primary:disabled, .btn-outline-primary.disabled {
-  color: #ffc800;
+  color: #ff1100;
   background-color: transparent;
 }
 
@@ -3944,7 +3951,7 @@ textarea.form-control-lg {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #ffc800;
+  color: #ff0000;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -3954,7 +3961,7 @@ textarea.form-control-lg {
   }
 }
 .nav-link:hover, .nav-link:focus {
-  color: #cca000;
+  color: #ff0000;
 }
 .nav-link.disabled {
   color: #6c757d;
@@ -4001,7 +4008,7 @@ textarea.form-control-lg {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #ffc800;
+  background-color: #ff0000;
 }
 
 .nav-fill > .nav-link,
@@ -11368,7 +11375,8 @@ p {
   letter-spacing: 0.0625em;
 }
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #ffc800;
+  color: #cf0000;
+  font-weight: bold; 
 }
 
 @media (min-width: 992px) {
@@ -11411,7 +11419,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("assets/img/header-bg.jpg");
+  background-image: url("assets/img/fondos.png");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -11465,7 +11473,7 @@ header.masthead .masthead-heading {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(255, 200, 0, 0.9);
+  background: #cf0000;
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -11476,7 +11484,7 @@ header.masthead .masthead-heading {
   color: white;
 }
 #portfolio .portfolio-item .portfolio-link:hover .portfolio-hover {
-  opacity: 1;
+  opacity: 0.5;
 }
 #portfolio .portfolio-item .portfolio-caption {
   padding: 1.5rem;
@@ -11591,7 +11599,7 @@ header.masthead .masthead-heading {
   color: white;
   border: 7px solid #e9ecef;
   border-radius: 100%;
-  background-color: #ffc800;
+  background-color: #cf0000;
 }
 .timeline > li .timeline-image h4, .timeline > li .timeline-image .h4 {
   font-size: 10px;
@@ -11772,6 +11780,63 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-weight: 700;
   color: #ced4da;
 }
+
+/*COTIZACION*/
+
+section#cotizacion {
+  background-color: #FFF8F8 ;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+section#cotizacion .section-heading {
+  color: black;
+}
+section#cotizacion form#cotizacionForm .form-group {
+  margin-bottom: 1.5rem;
+}
+section#cotizacion form#cotizacionForm .form-group input,
+section#cotizacion form#cotizacionForm .form-group textarea {
+  padding: 1.25rem;
+}
+section#cotizacion form#cotizacionForm .form-group input.form-control {
+  height: auto;
+}
+section#cotizacion form#cotizacionForm  .form-group-textarea {
+  height: 100%;
+}
+section#cotizacion form#cotizacionForm  .form-group-textarea textarea {
+  height: 100%;
+  min-height: 10rem;
+}
+section#cotizacion form#cotizacionForm  p.help-block {
+  margin: 0;
+}
+section#cotizacion form#cotizacionForm  .form-control:focus {
+  border-color: #ffc800;
+  box-shadow: none;
+}
+section#cotizacion form#cotizacionForm  ::-webkit-input-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+section#cotizacion form#cotizacionForm  :-moz-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+section#cotizacion form#cotizacionForm  ::-moz-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+section#cotizacion form#cotizacionForm  :-ms-input-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+
+
 
 .footer {
   text-align: center;

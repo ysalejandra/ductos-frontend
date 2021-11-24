@@ -1,6 +1,5 @@
 import { Component, SystemJsNgModuleLoader } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Cliente } from './models/ICliente';
 
 @Component({
   selector: 'app-root',
