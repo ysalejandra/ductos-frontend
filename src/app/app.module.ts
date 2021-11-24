@@ -21,7 +21,6 @@ import { RouterModule } from '@angular/router';
 import { QuienesSomosComponent } from './SistemaHome/quienes-somos/quienes-somos.component';
 import { TrabajosComponent } from './SistemaHome/trabajos/trabajos.component';
 import { EstadoPedidoComponent } from './SistemaHome/estado-pedido/estado-pedido.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './SistemaHome/login/login.component';
 
@@ -51,7 +50,6 @@ import { LoginComponent } from './SistemaHome/login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CarouselModule,
     RouterModule.forRoot([
       {path: 'home', component: HomePublicoComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
