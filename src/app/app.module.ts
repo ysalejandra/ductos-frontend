@@ -40,6 +40,7 @@ import { HomeComponent } from './SistemaPublico/@components/home/home.component'
     FooterModule,
     NgbModule,
     RouterModule.forRoot([
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeComponent},
       {path: 'sidebar', component : SidebarComponent},
       {path: 'interno', component: HomeInternoComponent}
