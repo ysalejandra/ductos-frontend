@@ -13,10 +13,17 @@ import { ContactoModule } from './SistemaPublico/@components/contacto/contacto.m
 import { CotizacionModule } from './SistemaPublico/@components/cotizacion/cotizacion.module';
 import { FooterModule } from './SistemaPublico/@components/footer/footer.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarComponent } from './SistemaInterno/@components/sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
+import { HomeInternoComponent } from './SistemaInterno/@components/home-interno/home-interno.component';
+import { HomeComponent } from './SistemaPublico/@components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SidebarComponent,
+    HomeInternoComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContactoModule,
     CotizacionModule,
     FooterModule,
-    NgbModule
+    NgbModule,
+    RouterModule.forRoot([
+      {path: 'home', component: HomeComponent},
+      {path: 'sidebar', component : SidebarComponent},
+      {path: 'interno', component: HomeInternoComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
