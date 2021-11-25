@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidoComponent implements OnInit {
 
+  mostrar: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  mostrarInfo(){
+    this.mostrar = true;
   }
 
 }

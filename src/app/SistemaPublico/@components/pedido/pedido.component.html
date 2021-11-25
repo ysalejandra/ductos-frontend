@@ -3,13 +3,13 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Revisa tu pedido</h2>
-            <div class="form-group" id="pedido">
+            <div class="form-group" #pedido id="pedido">
                 <label for="exampleInputEmail1" class="text-muted">Ingresa el código de tu pedido</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ejemplo: DFTG2816">
-                <br><button type="submit" class="btn btn-primary">Revisar</button>
+                <br><button (click)="mostrarInfo()" type="submit" value="Abono" class="btn btn-primary">Revisar</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="mostrar == true">
             <div class="col-lg-4">
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="assets/img/pedido/recibido.png" alt="..." />
