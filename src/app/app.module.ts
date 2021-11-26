@@ -17,6 +17,9 @@ import { SidebarComponent } from './SistemaInterno/@components/sidebar/sidebar.c
 import { RouterModule } from '@angular/router';
 import { HomeInternoComponent } from './SistemaInterno/@components/home-interno/home-interno.component';
 import { HomeComponent } from './SistemaPublico/@components/home/home.component';
+import { AgregarClienteComponent } from './SistemaInterno/@components/Cliente/agregar-cliente/agregar-cliente.component';
+import { ClienteService } from './SistemaInterno/@services/cliente.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { HomeComponent } from './SistemaPublico/@components/home/home.component'
     SidebarComponent,
     HomeInternoComponent,
     HomeComponent,
+    AgregarClienteComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,14 +43,17 @@ import { HomeComponent } from './SistemaPublico/@components/home/home.component'
     CotizacionModule,
     FooterModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeComponent},
       {path: 'sidebar', component : SidebarComponent},
-      {path: 'interno', component: HomeInternoComponent}
+      {path: 'interno', component: HomeInternoComponent},
+      {path: 'clientes/agregar', component : AgregarClienteComponent}
     ])
   ],
-  providers: [],
+  providers: [ ClienteService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

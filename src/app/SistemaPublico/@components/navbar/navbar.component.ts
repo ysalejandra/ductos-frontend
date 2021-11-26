@@ -11,5 +11,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  goTo(location: string): void {
+    
+    window.location.hash = ''; 
+    window.location.hash = location;
+}
 
 }
