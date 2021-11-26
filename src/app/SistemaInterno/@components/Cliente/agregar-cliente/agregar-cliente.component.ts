@@ -21,7 +21,7 @@ export class AgregarClienteComponent implements OnInit {
       email: ["", Validators.required],
       telefono: ["", Validators.required]
     });
-    this.cliente = new Cliente("", "", "", "", "");
+    this.cliente = new Cliente(0, "", "", "", "", "");
   }
 
   ngOnInit(): void {

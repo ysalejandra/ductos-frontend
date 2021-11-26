@@ -20,6 +20,8 @@ import { HomeComponent } from './SistemaPublico/@components/home/home.component'
 import { AgregarClienteComponent } from './SistemaInterno/@components/Cliente/agregar-cliente/agregar-cliente.component';
 import { ClienteService } from './SistemaInterno/@services/cliente.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListarClientesComponent } from './SistemaInterno/@components/Cliente/listar-clientes/listar-clientes.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeInternoComponent,
     HomeComponent,
     AgregarClienteComponent,
+    ListarClientesComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,12 +48,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     RouterModule.forRoot([
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeComponent},
       {path: 'sidebar', component : SidebarComponent},
       {path: 'interno', component: HomeInternoComponent},
-      {path: 'clientes/agregar', component : AgregarClienteComponent}
+      {path: 'clientes/agregar', component : AgregarClienteComponent},
+      {path: 'clientes', component: ListarClientesComponent}
     ])
   ],
   providers: [ ClienteService ],

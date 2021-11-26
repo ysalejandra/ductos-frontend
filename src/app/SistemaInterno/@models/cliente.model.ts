@@ -1,4 +1,5 @@
 export interface ClienteInterface {
+    idCliente: number;
     nombre: string;
     apellidoPaterno: string;
     apellidoMaterno: string;
@@ -8,7 +9,8 @@ export interface ClienteInterface {
 }
 
 export class Cliente implements ClienteInterface {
-    constructor(public nombre:string, public apellidoPaterno:string, public apellidoMaterno:string, public email:string, public telefono:string) {
+    constructor(public idCliente: number, public nombre:string, public apellidoPaterno:string, public apellidoMaterno:string, public email:string, public telefono:string) {
+        this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;

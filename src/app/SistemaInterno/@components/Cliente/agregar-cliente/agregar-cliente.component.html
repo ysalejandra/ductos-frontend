@@ -1,5 +1,10 @@
 
-<div
+<div class="wrapper">
+<app-sidebar></app-sidebar>
+
+<!-- Page Content -->
+<div id="page-content">
+    <div
     role="dialog">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -14,11 +19,6 @@
             </div>
 
             <form [formGroup]='clienteForm'>
-                <!--Modal Header-->
-                <div class="modal-header">
-                    <h3 class="modal-title">Agregar Cliente</h3>
-                    <!--<button (click)="ocultarModal()" type="button" class="close" data-dismiss="modal">&times;</button>!-->
-                </div>
 
                 <!--Modal Body-->
                 <div class="modal-body">
@@ -82,4 +82,9 @@
             </form>
         </div>
     </div>
+</div>
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
 </div>
