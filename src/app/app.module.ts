@@ -20,6 +20,7 @@ import { HomeComponent } from './SistemaPublico/@components/home/home.component'
 import { AgregarClienteComponent } from './SistemaInterno/@components/Cliente/agregar-cliente/agregar-cliente.component';
 import { ClienteService } from './SistemaInterno/@services/cliente.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CotizacionComponent } from './SistemaPublico/@components/cotizacion/cotizacion.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeInternoComponent,
     HomeComponent,
     AgregarClienteComponent,
+    CotizacionComponent
   ],
   imports: [
     BrowserModule,
