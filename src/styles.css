@@ -11792,12 +11792,14 @@ section#contact {
   background-color: #F8F9FA;
   background-repeat: no-repeat;
   background-position: center;
+
 }
 section#contact .section-heading {
   color: black;
 }
 section#contact form#contactForm .form-group {
   margin-bottom: 1.5rem;
+  font-size: 20px;
 }
 section#contact form#contactForm .form-group input,
 section#contact form#contactForm .form-group textarea {
@@ -11847,3 +11849,5 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

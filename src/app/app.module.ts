@@ -19,9 +19,10 @@ import { HomeInternoComponent } from './SistemaInterno/@components/home-interno/
 import { HomeComponent } from './SistemaPublico/@components/home/home.component';
 import { AgregarClienteComponent } from './SistemaInterno/@components/Cliente/agregar-cliente/agregar-cliente.component';
 import { ClienteService } from './SistemaInterno/@services/cliente.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ListarClientesComponent } from './SistemaInterno/@components/Cliente/listar-clientes/listar-clientes.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CotizacionComponent } from './SistemaPublico/@components/cotizacion/cotizacion.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HomeComponent,
     AgregarClienteComponent,
     ListarClientesComponent,
+    CotizacionComponent
   ],
   imports: [
     BrowserModule,
