@@ -19,11 +19,18 @@ import { HomeInternoComponent } from './SistemaInterno/@components/home-interno/
 import { HomeComponent } from './SistemaPublico/@components/home/home.component';
 import { AgregarClienteComponent } from './SistemaInterno/@components/Cliente/agregar-cliente/agregar-cliente.component';
 import { ClienteService } from './SistemaInterno/@services/cliente.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ListarClientesComponent } from './SistemaInterno/@components/Cliente/listar-clientes/listar-clientes.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CotizacionComponent } from './SistemaPublico/@components/cotizacion/cotizacion.component';
 import { EditarClienteComponent } from './SistemaInterno/@components/Cliente/editar-cliente/editar-cliente.component';
+import { LoginComponent } from './SistemaInterno/@components/login/login.component';
+import { FormsModule } from '@angular/forms'
+import { SharedModule } from './SistemaInterno/@components/shared/shared.module';
+import { AgregarProductoComponent } from './SistemaInterno/@components/producto/agregar-producto/agregar-producto.component';
+import { EditarProductoComponent } from './SistemaInterno/@components/producto/editar-producto/editar-producto.component';
+import { ListarProductoComponent } from './SistemaInterno/@components/producto/listar-producto/listar-producto.component';
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +41,11 @@ import { EditarClienteComponent } from './SistemaInterno/@components/Cliente/edi
     AgregarClienteComponent,
     ListarClientesComponent,
     CotizacionComponent,
-    EditarClienteComponent
+    EditarClienteComponent,
+    LoginComponent,
+    AgregarProductoComponent,
+    EditarProductoComponent,
+    ListarProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -51,16 +62,20 @@ import { EditarClienteComponent } from './SistemaInterno/@components/Cliente/edi
     FooterModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
+    SharedModule,
     RouterModule.forRoot([
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeComponent},
       {path: 'sidebar', component : SidebarComponent},
       {path: 'interno', component: HomeInternoComponent},
-      {path: 'clientes/agregar', component : AgregarClienteComponent},
-      {path: 'clientes', component: ListarClientesComponent},
-      {path: 'clientes/editar/:idCliente', component: EditarClienteComponent}
+      {path: 'entrar', component: LoginComponent},
+      {path: 'interno/clientes/agregar', component: AgregarClienteComponent},
+      {path: 'interno/clientes', component: ListarClientesComponent},
+      {path: 'interno/clientes/editar', component: EditarClienteComponent},
+      {path: 'interno/productos/agregar', component: AgregarProductoComponent},
+      {path: 'interno/productos', component: ListarProductoComponent},
+      {path: 'interno/productos/editar', component: EditarProductoComponent},
     ])
   ],
   providers: [ ClienteService ],

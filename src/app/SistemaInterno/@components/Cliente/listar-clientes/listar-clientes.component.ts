@@ -3,12 +3,18 @@ import { Router } from '@angular/router';
 import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 
+
+
+
 @Component({
   selector: 'app-listar-clientes',
   templateUrl: './listar-clientes.component.html',
   styleUrls: ['./listar-clientes.component.css']
 })
 export class ListarClientesComponent implements OnInit {
+  
+  displayedColumns: string[] = ['nombre', 'apellido paterno', 'apellido materno', 'correo'];
+
 
   clientesCargados:boolean= false;
   clientes: Cliente[] = [];
@@ -26,6 +32,7 @@ export class ListarClientesComponent implements OnInit {
       this.clientes = res;
       console.log(this.clientes);
       this.clientesCargados = true;
+
     })
   }
 

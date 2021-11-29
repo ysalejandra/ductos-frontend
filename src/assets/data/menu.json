@@ -1,0 +1,14 @@
+[   
+    {
+        "nombre":  "agregarCliente",
+        "redirect": "interno/clientes/agregar"
+    },
+    {
+        "nombre":  "listarCliente",
+        "redirect": "interno/clientes"
+    },
+    {
+        "nombre":  "editarCliente",
+        "redirect": "interno/clientes/editar"
+    }
+]

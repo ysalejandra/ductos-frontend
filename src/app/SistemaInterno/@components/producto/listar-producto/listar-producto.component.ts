@@ -1,0 +1,57 @@
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Producto } from 'src/app/SistemaInterno/@models/producto.model';
+import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
+import { ProductoService } from 'src/app/SistemaInterno/@services/producto.service';
+
+
+@Component({
+  selector: 'app-listar-producto',
+  templateUrl: './listar-producto.component.html',
+  styleUrls: ['./listar-producto.component.css']
+})
+export class ListarProductoComponent implements OnInit {
+
+  listProducto: Producto[] | undefined;
+  dataSourse: any;
+  displayedColumns: string[] = ['idDetalle', 'nombre', 'descripcion', 'categoria','cantidad', 'valor', 'acciones'];
+
+  productosCargados:boolean= false;
+  productos: Producto[] = [];
+  p: number = 1;
+
+  dataSource: any;
+
+  constructor(public productoService: ProductoService, public clienteService: ClienteService) { }
+
+  ngOnInit(): void {
+    this.getProductos();
+  }
+
+  getProductos() {
+    this.productoService.getProductos().subscribe( (res : Producto[]) => {
+      this.productos = res;
+      this.listProducto = res;
+      console.log(this.productos);
+      this.productosCargados = true;
+      this.dataSourse = this.listProducto;
+      const dataSource = new MatTableDataSource(this.listProducto);
+
+    })
+  }
+
+  eliminarProducto(id: number){
+    console.log(id);
+    this.productoService.borrarProducto(id).subscribe ( (res: any) => {
+      console.log(res);
+    });
+
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+}

@@ -7,12 +7,14 @@ import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
+
 @Component({
   selector: 'app-agregar-cliente',
   templateUrl: './agregar-cliente.component.html',
   styleUrls: ['./agregar-cliente.component.css']
 })
 export class AgregarClienteComponent implements OnInit {
+
 
   clienteForm : FormGroup;
   cliente : Cliente;
