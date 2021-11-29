@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [],
@@ -37,7 +38,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatTooltipModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatToolbarModule
   ],
   exports: [
     MatFormFieldModule,
@@ -52,6 +54,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSidenavModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatToolbarModule,
     MatSortModule,
     MatIconModule]
 })
