@@ -1,0 +1,51 @@
+<div class="body">
+    <div class="format">
+        <h1 class="ancho">Agregar Trabajador</h1>
+      <form [formGroup]="trabajadorForm" (ngSubmit)="guardar()">
+        <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Rut</mat-label>
+            <input matInput type="text" autocomplete="off" formControlName="rut"/>
+          </mat-form-field>
+          <br />
+        <mat-form-field appearance="fill" class="ancho">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" autocomplete="off" formControlName="nombre"/>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="ancho">
+          <mat-label>Apellido Paterno</mat-label>
+          <input matInput type="text" autocomplete="off" formControlName="apellidoPaterno"/>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput type="text" autocomplete="off" formControlName="apellidoMaterno"/>
+          </mat-form-field>
+          <br />
+        <mat-form-field appearance="fill" class="ancho">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput type="text" autocomplete="off" formControlName="fechaDeNacimiento"/>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Correo</mat-label>
+            <input matInput type="text" autocomplete="off" formControlName="email"/>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" autocomplete="off" formControlName="password"/>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Teléfono</mat-label>
+            <input matInput type="text" autocomplete="off" formControlName="telefono"/>
+          </mat-form-field>
+          <br />
+        <button class="ancho button" mat-raised-button color="primary" type= "submit">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+  

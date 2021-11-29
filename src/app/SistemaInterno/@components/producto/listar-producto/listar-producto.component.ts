@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Producto } from 'src/app/SistemaInterno/@models/producto.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 import { ProductoService } from 'src/app/SistemaInterno/@services/producto.service';
@@ -12,6 +14,8 @@ import { ProductoService } from 'src/app/SistemaInterno/@services/producto.servi
 })
 export class ListarProductoComponent implements OnInit {
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   listProducto: Producto[] | undefined;
   dataSourse: any;
   displayedColumns: string[] = ['idDetalle', 'nombre', 'descripcion', 'categoria','cantidad', 'valor', 'acciones'];
@@ -22,7 +26,8 @@ export class ListarProductoComponent implements OnInit {
 
   dataSource: any;
 
-  constructor(public productoService: ProductoService, public clienteService: ClienteService) { }
+  constructor(public productoService: ProductoService, public clienteService: ClienteService,
+    private router: Router ) { }
 
   ngOnInit(): void {
     this.getProductos();
@@ -48,9 +53,17 @@ export class ListarProductoComponent implements OnInit {
 
   }
 
+  agregar(){
+    this.router.navigate(["/interno/productos/agregar"]);
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 

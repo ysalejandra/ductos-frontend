@@ -29,7 +29,7 @@ export class ObraService {
     return this.http.post('http://localhost:8080/obras', obra);
   }
 
-  deleteObra(){
+  deleteObra(id: number){
 
   }
 }

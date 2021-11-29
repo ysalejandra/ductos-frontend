@@ -29,6 +29,15 @@ import { SharedModule } from './SistemaInterno/@components/shared/shared.module'
 import { AgregarProductoComponent } from './SistemaInterno/@components/producto/agregar-producto/agregar-producto.component';
 import { EditarProductoComponent } from './SistemaInterno/@components/producto/editar-producto/editar-producto.component';
 import { ListarProductoComponent } from './SistemaInterno/@components/producto/listar-producto/listar-producto.component';
+import { AgregarObraComponent } from './SistemaInterno/@components/obra/agregar-obra/agregar-obra.component';
+import { EditarObraComponent } from './SistemaInterno/@components/obra/editar-obra/editar-obra.component';
+import { ListarObraComponent } from './SistemaInterno/@components/obra/listar-obra/listar-obra.component';
+import { AgregarTrabajadorComponent } from './SistemaInterno/@components/trabajador/agregar-trabajador/agregar-trabajador.component';
+import { ListarTrabajadorComponent } from './SistemaInterno/@components/trabajador/listar-trabajador/listar-trabajador.component';
+import { EditarTrabajadorComponent } from './SistemaInterno/@components/trabajador/editar-trabajador/editar-trabajador.component';
+import { AgregarVisitaComponent } from './SistemaInterno/@components/visita/agregar-visita/agregar-visita.component';
+import { EditarVisitaComponent } from './SistemaInterno/@components/visita/editar-visita/editar-visita.component';
+import { ListarVisitaComponent } from './SistemaInterno/@components/visita/listar-visita/listar-visita.component';
 
 
 
@@ -45,7 +54,16 @@ import { ListarProductoComponent } from './SistemaInterno/@components/producto/l
     LoginComponent,
     AgregarProductoComponent,
     EditarProductoComponent,
-    ListarProductoComponent
+    ListarProductoComponent,
+    AgregarObraComponent,
+    EditarObraComponent,
+    ListarObraComponent,
+    AgregarTrabajadorComponent,
+    ListarTrabajadorComponent,
+    EditarTrabajadorComponent,
+    AgregarVisitaComponent,
+    EditarVisitaComponent,
+    ListarVisitaComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +94,15 @@ import { ListarProductoComponent } from './SistemaInterno/@components/producto/l
       {path: 'interno/productos/agregar', component: AgregarProductoComponent},
       {path: 'interno/productos', component: ListarProductoComponent},
       {path: 'interno/productos/editar', component: EditarProductoComponent},
+      {path: 'interno/obras/agregar', component: AgregarObraComponent},
+      {path: 'interno/obras', component: ListarObraComponent},
+      {path: 'interno/obras/editar', component: EditarObraComponent},
+      {path: 'interno/trabajadores/agregar', component: AgregarTrabajadorComponent},
+      {path: 'interno/trabajadores', component: ListarTrabajadorComponent},
+      {path: 'interno/trabajadores/editar', component: EditarTrabajadorComponent},
+      {path: 'interno/visitas/agregar', component: AgregarVisitaComponent},
+      {path: 'interno/visitas', component: ListarVisitaComponent},
+      {path: 'interno/visitas/editar', component: EditarVisitaComponent}
     ])
   ],
   providers: [ ClienteService ],

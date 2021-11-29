@@ -11,8 +11,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
-//Modulos
 import {  ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
@@ -34,7 +35,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatListModule,
     MatTableModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatFormFieldModule,
@@ -47,7 +50,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatListModule,
     MatTableModule,
     MatSidenavModule,
+    MatPaginatorModule,
     MatTooltipModule,
+    MatSortModule,
     MatIconModule]
 })
 export class SharedModule { }
