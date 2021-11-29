@@ -37,6 +37,13 @@
                     </div>
                 </div>
             </div>
+
+            <div *ngIf="ocultar">
+                <div class="alert alert-sucess" role="alert">
+                    ¡Se ha enviado la cotización correctamente!
+                </div>
+            </div>
+
             <!-- Submit Button-->
             <div class="text-center">
                 <button class="btn btn-primary btn-xl text-uppercase " id="submitButton" 

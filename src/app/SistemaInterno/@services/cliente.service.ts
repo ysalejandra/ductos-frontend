@@ -9,6 +9,7 @@ import { Cliente } from '../@models/cliente.model';
   providedIn: 'root'
 })
 export class ClienteService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,22 @@ export class ClienteService {
   }
   
   getClientes() : Observable<Cliente[]> {
-    return this.http.get('http://localhost:8080/clientes').pipe(map((res: any) => res.data));
+    return this.http.get('http://localhost:8080/clientes').pipe(map( (res : any) => {
+      console.log(res);
+      return res.map( (cliente : any) => {
+        return <Cliente>{ idCliente:cliente.idCliente, nombre: cliente.nombre, apellidoPaterno : cliente.apellidoPaterno, apellidoMaterno : cliente.apellidoMaterno, email: cliente.email, telefono: cliente.telefono}
+      })
+  }));
+  }
+
+  getClientePorId(id : number): Observable<Cliente> {
+    return this.http.get('http://localhost:8080/clientes/'+ id).pipe(map( (cliente: any) => {
+      return <Cliente>{ idCliente:cliente.idCliente, nombre: cliente.nombre, apellidoPaterno : cliente.apellidoPaterno, apellidoMaterno : cliente.apellidoMaterno, email: cliente.email, telefono: cliente.telefono};
+    })
+    );
+  }
+
+  editCliente(cliente : Cliente) {
+    return this.http.put('http://localhost:8080/clientes', cliente);
   }
 }

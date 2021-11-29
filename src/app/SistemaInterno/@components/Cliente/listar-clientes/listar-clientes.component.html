@@ -1,43 +1,54 @@
-<section class="content">
-    <!--Aqui van las migas de pan, pero creo que no las necesitaremos-->
-    <br>
-    <h3 id="subtitulo"> Gestión de Productos </h3>
-    <div class="card mb-3 text-center">
-      <div class="card-body text-primary">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Email</th>
-                <th scope="col">Telefono</th>
-                <th style="text-align: left"><button class="btn btn-success" type="button"
-                    >Añadir</button></th>
-              </tr>
-            </thead>
-            <tbody *ngIf="clientesCargados">
-              <tr
-                *ngFor="let item of clientes | paginate: {itemsPerPage: 10, currentPage: p, totalItems: clientes.length}" class="align-middle">
-                <td>{{item.idCliente}}</td>
-                <td>{{item.nombre}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.telefono}}</td>
-                <td>
-                  <div class="btn-toolbar">
-                    <button type="button" class="btn btn-primary"  id="botones">Detalle</button>
-                    <button class="btn btn-warning" type="button" id="botones"
-                      >Editar</button>
-                    <button class="btn btn-danger" type="button" 
-                      id="botones">Eliminar</button>
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+  
+  <!-- Page Content -->
+  <div id="page-content">
 
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <section class="content">
+        <!--Aqui van las migas de pan, pero creo que no las necesitaremos-->
+        <br>
+        <h1 id="subtitulo"> Clientes </h1>
+        <div class="card mb-3 text-center">
+          <div class="card-body text-primary">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefono</th>
+                    <th style="text-align: left"><a routerLink="/clientes/agregar" class="btn btn-success"
+                      >Añadir</a></th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="clientesCargados">
+                  <tr
+                    *ngFor="let item of clientes | paginate: {itemsPerPage: 10, currentPage: p, totalItems: clientes.length}" class="align-middle">
+                    <td>{{item.idCliente}}</td>
+                    <td>{{item.nombre + ' ' + item.apellidoPaterno + ' ' + item.apellidoMaterno}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.telefono}}</td>
+                    <td>
+                      <div class="btn-toolbar">
+                        <button type="button" class="btn btn-primary mr-2"  id="botones">Detalle</button>
+                        <a [routerLink]="['editar', item.idCliente]" class="btn btn-warning"
+                      >Editar</a>
+                        <button class="btn btn-danger mr-2" type="button" 
+                          id="botones">Eliminar</button>
+
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
-  </section>
+    <div id="content">
+      <router-outlet></router-outlet>
+  </div>
+</div>

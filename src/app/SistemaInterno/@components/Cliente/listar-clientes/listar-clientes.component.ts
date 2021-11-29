@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 
@@ -12,7 +13,7 @@ export class ListarClientesComponent implements OnInit {
   clientesCargados:boolean= false;
   clientes: Cliente[] = [];
   p: number = 1;
-  constructor(public clienteService: ClienteService) {
+  constructor(public clienteService: ClienteService, private router : Router) {
 
    }
 

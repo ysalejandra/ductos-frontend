@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ListarClientesComponent } from './SistemaInterno/@components/Cliente/listar-clientes/listar-clientes.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CotizacionComponent } from './SistemaPublico/@components/cotizacion/cotizacion.component';
+import { EditarClienteComponent } from './SistemaInterno/@components/Cliente/editar-cliente/editar-cliente.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CotizacionComponent } from './SistemaPublico/@components/cotizacion/cot
     HomeComponent,
     AgregarClienteComponent,
     ListarClientesComponent,
-    CotizacionComponent
+    CotizacionComponent,
+    EditarClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { CotizacionComponent } from './SistemaPublico/@components/cotizacion/cot
       {path: 'sidebar', component : SidebarComponent},
       {path: 'interno', component: HomeInternoComponent},
       {path: 'clientes/agregar', component : AgregarClienteComponent},
-      {path: 'clientes', component: ListarClientesComponent}
+      {path: 'clientes', component: ListarClientesComponent},
+      {path: 'clientes/editar/:idCliente', component: EditarClienteComponent}
     ])
   ],
   providers: [ ClienteService ],

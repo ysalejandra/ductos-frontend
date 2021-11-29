@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+ }
+ 
+ #page-content {
+    width: 100%;
+    padding: 0px;
+    transition: all 0.3s;
+ }
+
+ #clientes {
+    color: #c2c7d0
+ }

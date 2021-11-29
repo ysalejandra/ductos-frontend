@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-agregar-cliente',
@@ -13,7 +16,7 @@ export class AgregarClienteComponent implements OnInit {
 
   clienteForm : FormGroup;
   cliente : Cliente;
-  constructor(fb: FormBuilder, public clienteService: ClienteService) { 
+  constructor(fb: FormBuilder, public clienteService: ClienteService, public dialogo: MatDialog, private router: Router) { 
     this.clienteForm = fb.group({
       nombre: ["", Validators.required],
       apellidoPaterno: ["", Validators.required],
@@ -38,8 +41,30 @@ export class AgregarClienteComponent implements OnInit {
     }
     this.cliente = Object.assign(this.cliente, this.clienteForm.value);
     this.clienteService.addCliente(this.cliente).subscribe( (res:any) => {
-      console.log(res);
+      this.router.navigate(["/clientes"]);
     });
 
+  }
+
+  mostrarDialogo(): void {
+    if (this.clienteForm.invalid) {
+      console.log("Invalid");
+      alert("¡Los campos están vacios!");
+      return;
+    }else{
+      this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Estas seguro que quieres enviar la cotización?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.saveData();
+          alert("Se ha enviado la cotización, con éxito.");
+        } else {
+          alert("No se ha enviado la cotización");
+        }
+      });
+    }
   }
 }

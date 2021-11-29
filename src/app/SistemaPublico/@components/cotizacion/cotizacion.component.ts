@@ -15,6 +15,7 @@ export class CotizacionComponent implements OnInit {
 
   clienteForm : FormGroup;
   cliente : Cliente;
+  ocultar: boolean = false;
   
   constructor(fb: FormBuilder, public clienteService: ClienteService, public dialogo: MatDialog, public enviarEmail: EnviarEmailService) { 
     this.clienteForm = fb.group({
@@ -24,7 +25,7 @@ export class CotizacionComponent implements OnInit {
       email: ["", Validators.required],
       telefono: ["", Validators.required]
     });
-    this.cliente = new Cliente("", "", "", "", "");
+    this.cliente = new Cliente(0, "", "", "", "", "");
   }
 
   ngOnInit(): void {
@@ -45,7 +46,6 @@ export class CotizacionComponent implements OnInit {
   mostrarDialogo(): void {
     if (this.clienteForm.invalid) {
       console.log("Invalid");
-      alert("¡Los campos están vacios!");
       return;
     }else{
       this.dialogo
@@ -56,7 +56,8 @@ export class CotizacionComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.saveData();
-          alert("Se ha enviado la cotización, con éxito.");
+          this.ocultar = true;
+
         } else {
           alert("No se ha enviado la cotización");
         }
