@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Producto } from 'src/app/SistemaInterno/@models/producto.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 import { ProductoService } from 'src/app/SistemaInterno/@services/producto.service';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { ProductoService } from 'src/app/SistemaInterno/@services/producto.servi
 export class ListarProductoComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   listProducto: Producto[] | undefined;
   dataSourse: any;
@@ -24,7 +26,7 @@ export class ListarProductoComponent implements OnInit {
   productos: Producto[] = [];
   p: number = 1;
 
-  dataSource: any;
+  dataSource : any;
 
   constructor(public productoService: ProductoService, public clienteService: ClienteService,
     private router: Router ) { }
@@ -39,9 +41,9 @@ export class ListarProductoComponent implements OnInit {
       this.listProducto = res;
       console.log(this.productos);
       this.productosCargados = true;
-      this.dataSourse = this.listProducto;
-      const dataSource = new MatTableDataSource(this.listProducto);
-
+      this.dataSource = new MatTableDataSource(this.listProducto);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 
