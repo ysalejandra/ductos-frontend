@@ -8,6 +8,7 @@ import { Producto } from '../@models/producto.model';
   providedIn: 'root'
 })
 export class ProductoService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +28,17 @@ export class ProductoService {
 
   borrarProducto(id: number) {
     return this.http.delete('http://localhost:8080/productos/'+id);
+  }
+
+  getProductoPorId(id : number): Observable<Producto> {
+    return this.http.get('http://localhost:8080/productos/'+ id).pipe(map( (producto: any) => {
+      return <Producto>{ idDetalle:producto.idDetalle, nombre: producto.nombre, descripcion : producto.descripcion, categoria : producto.categoria, valor: producto.valor, cantidad: producto.cantidad};
+    })
+    );
+  }
+
+  editProducto(producto : Producto) {
+    return this.http.put('http://localhost:8080/productos/', producto);
   }
 
 }

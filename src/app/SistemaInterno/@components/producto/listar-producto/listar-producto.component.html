@@ -2,13 +2,15 @@
   <span >Productos</span>
 </mat-toolbar>
 
-<mat-form-field appearance="standard">
-  <mat-label>Buscar</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Tubo de estufa" #input>
-</mat-form-field>
- 
-<div class="section"> 
+<div class="section">
+  <br>
   <button mat-button color="primary" routerLink="agregar">Agregar</button>
+  <br>
+  <mat-form-field appearance="standard">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: por visitar" #input>
+</mat-form-field>
+<br>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
     <!--- Note that these columns can be defined in any order.
@@ -54,13 +56,13 @@
     <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element" style="text-align: right;"> 
-            <a class= "pointer" style="color: turquoise;" matTooltip="Ver usuario">
+            <a class= "pointer" style="color: turquoise;" matTooltip="Ver producto">
                 <mat-icon>search</mat-icon>
             </a>
-            <a class= "pointer" style="color: seagreen;" matTooltip="Editar usuario">
+            <a class= "pointer" style="color: seagreen;" matTooltip="Editar producto" [routerLink]="['editar', element.idDetalle]">
                 <mat-icon>edit</mat-icon> 
             </a>
-            <a class= "pointer" style="color:red" (click)="eliminarProducto(element.idDetalle)" matTooltip="Eliminar usuario"> 
+            <a class= "pointer" style="color:red" (click)="eliminarProducto(element.idDetalle)" matTooltip="Eliminar producto"> 
                 <mat-icon>delete</mat-icon>
             </a>
         </td>

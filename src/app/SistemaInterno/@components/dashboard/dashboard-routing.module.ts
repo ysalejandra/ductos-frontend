@@ -5,6 +5,7 @@ import { ListarClientesComponent } from '../Cliente/listar-clientes/listar-clien
 import { AgregarObraComponent } from '../obra/agregar-obra/agregar-obra.component';
 import { ListarObraComponent } from '../obra/listar-obra/listar-obra.component';
 import { AgregarProductoComponent } from '../producto/agregar-producto/agregar-producto.component';
+import { EditarProductoComponent } from '../producto/editar-producto/editar-producto.component';
 import { ListarProductoComponent } from '../producto/listar-producto/listar-producto.component';
 import { AgregarTrabajadorComponent } from '../trabajador/agregar-trabajador/agregar-trabajador.component';
 import { ListarTrabajadorComponent } from '../trabajador/listar-trabajador/listar-trabajador.component';
@@ -25,7 +26,8 @@ const routes: Routes = [
     {path: 'clientes/agregar', component: AgregarClienteComponent},
     {path: 'trabajadores/agregar', component: AgregarTrabajadorComponent},
     {path: 'obras/agregar', component: AgregarObraComponent},
-    {path: 'visitas/agregar', component: AgregarVisitaComponent}
+    {path: 'visitas/agregar', component: AgregarVisitaComponent},
+    {path: 'productos/editar/:idDetalle', component: EditarProductoComponent}
   ]}
 ];
 

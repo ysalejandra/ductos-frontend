@@ -2,13 +2,15 @@
   <span >Clientes</span>
 </mat-toolbar>
 
-<mat-form-field appearance="standard">
-  <mat-label>Buscar</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Rodrigo" #input>
-</mat-form-field>
-
 <div class="section">
-<button mat-button color="primary" (click)="agregar()">Agregar</button>
+  <br>
+  <button mat-button color="primary" (click)="agregar()">Agregar</button>
+  <br>
+  <mat-form-field appearance="standard">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: por visitar" #input>
+</mat-form-field>
+<br>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
     <!--- Note that these columns can be defined in any order.
