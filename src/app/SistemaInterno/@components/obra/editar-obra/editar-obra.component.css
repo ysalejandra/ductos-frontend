@@ -11,3 +11,9 @@
   .nombres{
     font-size: 18px;
   }
+
+  .mat-button.mat-primary {
+    background: #cf0000;
+    color: #fff;
+    font-size: 25px;
+  }

@@ -13,5 +13,16 @@ table {
   
   .mat-form-field {
     font-size: 14px;
-    width: 100%;
+    width: 90%;
   }
+
+.section, mat-form-field {
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+.mat-button.mat-primary {
+  background: #cf0000;
+  color: #fff;
+  font-size: 20px;
+}

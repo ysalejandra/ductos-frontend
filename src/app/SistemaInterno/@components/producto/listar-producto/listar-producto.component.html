@@ -1,16 +1,14 @@
-<mat-toolbar color="secondary">
-  <span>Productos</span>
+<mat-toolbar class = "titulo" color="secondary">
+  <span >Productos</span>
 </mat-toolbar>
 
-
-
 <mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Tubo de estufa" #input>
 </mat-form-field>
-
-<div class="section">
-<button mat-button color="primary" (click)="agregar()">Agregar</button>
+ 
+<div class="section"> 
+  <button mat-button color="primary" (click)="agregar()">Agregar</button>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
     <!--- Note that these columns can be defined in any order.

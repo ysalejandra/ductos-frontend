@@ -1,11 +1,14 @@
-
+<mat-toolbar class = "titulo" color="secondary">
+    <span >Trabajadores</span>
+  </mat-toolbar>
 
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
   
-  <button mat-button color="primary" (click)="agregar()">Agregar</button>
+  <div class="section">
+    <button mat-button color="primary" (click)="agregar()">Agregar</button>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSourse">
       <!--- Note that these columns can be defined in any order.
@@ -68,3 +71,4 @@
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
+</div>

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
-
-
-
 
 @Component({
   selector: 'app-listar-clientes',
@@ -13,27 +13,53 @@ import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service
 })
 export class ListarClientesComponent implements OnInit {
   
-  displayedColumns: string[] = ['nombre', 'apellido paterno', 'apellido materno', 'correo'];
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
+  listCliente: Cliente[] | undefined;
+  dataSourse: any;
+  displayedColumns: string[] = ['idCliente', 'nombre', 'email', 'telefono', 'acciones'];
 
   clientesCargados:boolean= false;
   clientes: Cliente[] = [];
   p: number = 1;
-  constructor(public clienteService: ClienteService, private router : Router) {
 
-   }
+  dataSource : any;
+
+  constructor(public clienteService: ClienteService, private router: Router ) { }
 
   ngOnInit(): void {
-    this.getProductos();
+    this.getClientes();
   }
 
-  getProductos() {
+  getClientes() {
     this.clienteService.getClientes().subscribe( (res : Cliente[]) => {
       this.clientes = res;
+      this.listCliente = res;
       console.log(this.clientes);
       this.clientesCargados = true;
-
+      this.dataSource = new MatTableDataSource(this.listCliente);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
+  }
+
+  eliminarCliente(id: number){
+    /*console.log(id);
+    this.clienteService.borrarCliente(id).subscribe ( (res: any) => {
+      console.log(res);
+    });*/
+
+  }
+
+  agregar(){
+    this.router.navigate(["/interno/clientes/agregar"]);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
