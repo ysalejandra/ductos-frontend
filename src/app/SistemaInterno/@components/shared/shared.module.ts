@@ -22,6 +22,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [],
@@ -56,6 +57,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSidenavModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatToolbarModule,
     MatSortModule,
     MatIconModule,
     MatToolbarModule]
