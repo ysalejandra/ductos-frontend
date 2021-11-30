@@ -15,3 +15,8 @@ table {
     font-size: 14px;
     width: 100%;
   }
+
+.section, mat-form-field {
+  margin-right: 3%;
+  margin-left: 3%;
+}

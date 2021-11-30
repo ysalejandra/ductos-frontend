@@ -14,5 +14,18 @@
     {
         "nombre": "Clientes",
         "redirect": "/dashboard/clientes"
+    },
+    {
+        "nombre": "Obras",
+        "redirect": "/dashboard/obras"
+    },
+    {
+        "nombre": "Trabajadores",
+        "redirect": "/dashboard/trabajadores"
+    },
+    {
+        "nombre": "Visitas",
+        "redirect": "/dashboard/visitas"
     }
+
 ]
