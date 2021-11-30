@@ -35,7 +35,7 @@ export class AgregarProductoComponent implements OnInit {
     }
     this.producto = Object.assign(this.producto, this.productoForm.value);
     this.productoService.addProducto(this.producto).subscribe( (res:any) => {
-    this.router.navigate(["/interno/productos"]);
+    this.router.navigate(["/dashboard/productos"]);
       console.log(res);
     });
 

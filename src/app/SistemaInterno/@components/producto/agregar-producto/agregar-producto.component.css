@@ -3,19 +3,22 @@
     display: flex;
     justify-content: center;
     height: 100%;
-    align-items: center;
 }
 
 .format{
     width: 100%;
-    max-width: 330px;
+    max-width: 500px;
     text-align: center;
 }
 
 .ancho{
-    width: 150%;
+    width: 100%;
 }
 
 .button{
     height: 50px;
+}
+
+.cancel {
+    margin-top: 10px;
 }

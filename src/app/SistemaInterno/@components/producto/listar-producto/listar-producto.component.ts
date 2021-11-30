@@ -50,13 +50,13 @@ export class ListarProductoComponent implements OnInit {
   eliminarProducto(id: number){
     console.log(id);
     this.productoService.borrarProducto(id).subscribe ( (res: any) => {
-      console.log(res);
+      this.ngOnInit();
     });
 
   }
 
   agregar(){
-    this.router.navigate(["/interno/productos/agregar"]);
+    this.router.navigate(["/productos/agregar"]);
   }
 
   applyFilter(event: Event) {
