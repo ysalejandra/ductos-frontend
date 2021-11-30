@@ -1,14 +1,18 @@
 [   
     {
-        "nombre":  "agregarCliente",
-        "redirect": "interno/clientes/agregar"
+        "nombre":  "Dashboard",
+        "redirect": "/dashboard"
     },
     {
-        "nombre":  "listarCliente",
-        "redirect": "interno/clientes"
+        "nombre":  "Pedidos",
+        "redirect": "/dashboard/pedidos"
     },
     {
-        "nombre":  "editarCliente",
-        "redirect": "interno/clientes/editar"
+        "nombre":  "Productos",
+        "redirect": "/dashboard/productos"
+    },
+    {
+        "nombre": "Clientes",
+        "redirect": "/dashboard/clientes"
     }
 ]

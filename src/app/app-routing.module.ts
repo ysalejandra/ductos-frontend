@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './SistemaInterno/@components/login/login.component';
-import { SidebarComponent } from './SistemaInterno/@components/sidebar/sidebar.component';
 import { HomeComponent } from './SistemaPublico/@components/home/home.component';
 
 

@@ -18,6 +18,9 @@ import {  ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatTooltipModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatToolbarModule
   ],
   exports: [
     MatFormFieldModule,
@@ -53,6 +57,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatPaginatorModule,
     MatTooltipModule,
     MatSortModule,
-    MatIconModule]
+    MatIconModule,
+    MatToolbarModule]
 })
 export class SharedModule { }

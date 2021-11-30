@@ -13,7 +13,6 @@ import { ContactoModule } from './SistemaPublico/@components/contacto/contacto.m
 import { CotizacionModule } from './SistemaPublico/@components/cotizacion/cotizacion.module';
 import { FooterModule } from './SistemaPublico/@components/footer/footer.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SidebarComponent } from './SistemaInterno/@components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { HomeInternoComponent } from './SistemaInterno/@components/home-interno/home-interno.component';
 import { HomeComponent } from './SistemaPublico/@components/home/home.component';
@@ -38,13 +37,13 @@ import { EditarTrabajadorComponent } from './SistemaInterno/@components/trabajad
 import { AgregarVisitaComponent } from './SistemaInterno/@components/visita/agregar-visita/agregar-visita.component';
 import { EditarVisitaComponent } from './SistemaInterno/@components/visita/editar-visita/editar-visita.component';
 import { ListarVisitaComponent } from './SistemaInterno/@components/visita/listar-visita/listar-visita.component';
+import { InicioComponent } from './SistemaInterno/@components/dashboard/inicio/inicio.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     HomeInternoComponent,
     HomeComponent,
     AgregarClienteComponent,
@@ -63,7 +62,8 @@ import { ListarVisitaComponent } from './SistemaInterno/@components/visita/lista
     EditarTrabajadorComponent,
     AgregarVisitaComponent,
     EditarVisitaComponent,
-    ListarVisitaComponent
+    ListarVisitaComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +85,6 @@ import { ListarVisitaComponent } from './SistemaInterno/@components/visita/lista
     RouterModule.forRoot([
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeComponent},
-      {path: 'sidebar', component : SidebarComponent},
       {path: 'interno', component: HomeInternoComponent},
       {path: 'entrar', component: LoginComponent},
       {path: 'interno/clientes/agregar', component: AgregarClienteComponent},
@@ -102,7 +101,8 @@ import { ListarVisitaComponent } from './SistemaInterno/@components/visita/lista
       {path: 'interno/trabajadores/editar', component: EditarTrabajadorComponent},
       {path: 'interno/visitas/agregar', component: AgregarVisitaComponent},
       {path: 'interno/visitas', component: ListarVisitaComponent},
-      {path: 'interno/visitas/editar', component: EditarVisitaComponent}
+      {path: 'interno/visitas/editar', component: EditarVisitaComponent},
+      {path: 'dashboard', loadChildren: () => import('./SistemaInterno/@components/dashboard/dashboard.module').then(x => x.DashboardModule)}
     ])
   ],
   providers: [ ClienteService ],

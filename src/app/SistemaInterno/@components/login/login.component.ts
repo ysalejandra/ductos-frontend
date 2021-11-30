@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     setTimeout(() =>{
       //Redireccionamos al home de sistema interno
-      this.router.navigate(['interno'])
+      this.router.navigate(['dashboard'])
     }, 1500);
 
   }
