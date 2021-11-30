@@ -16,7 +16,7 @@ export class ListarTrabajadorComponent implements OnInit {
 
   listTrabajador: Trabajador[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['rut', 'nombre', 'fechaDeNacimiento', 'email','telefono', 'rol', 'acciones'];
+  displayedColumns: string[] = ['rut', 'nombre', 'fechaDeNacimiento', 'email','telefono', 'acciones'];
 
   trabajadoresCargados:boolean= false;
   trabajadores: Trabajador[] = [];

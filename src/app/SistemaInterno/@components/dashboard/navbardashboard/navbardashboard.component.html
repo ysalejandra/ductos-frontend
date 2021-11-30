@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <a href="/home"><img class="logo" src="./assets/img/navbar-logo-ductos.png"></a>
     <span class="example-spacer"></span>
-    <button mat-button *ngFor="let item of menu" [routerLink]="item.redirect">{{item.nombre}}</button>
+    <button class="nombres" mat-button *ngFor="let item of menu" [routerLink]="item.redirect">{{item.nombre}}</button>
 
     <span class="example-spacer"></span>
     <button (click)="salir()" mat-icon-button class="logout-icon" aria-label="Example icon-button with logout icon">
