@@ -27,3 +27,9 @@ table {
   font-size: 20px;
   margin-left: 92.4%;
 }
+
+.mat-toolbar.titulo{
+  justify-content: center;
+  font-size: x-large;
+  color: crimson;
+}
