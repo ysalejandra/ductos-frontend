@@ -1,15 +1,25 @@
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
- }
- 
- #page-content {
-    width: 100%;
-    padding: 0px;
-    transition: all 0.3s;
- }
+.body{
+   background-color: #f5f5f5;
+   display: flex;
+   justify-content: center;
+   height: 100%;
+   align-items: center;
+}
 
- #clientes {
-    color: #c2c7d0
- }
+.format{
+   width: 100%;
+   max-width: 330px;
+   text-align: center;
+}
+
+.ancho{
+   width: 150%;
+}
+
+.button{
+   height: 50px;
+}
+
+.titulo{
+   -webkit-text-stroke-width:thin;
+}

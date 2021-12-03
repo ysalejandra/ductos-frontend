@@ -2,13 +2,14 @@
     background-color: #f5f5f5;
     display: flex;
     justify-content: center;
-    height: 100%;
+    padding-top: 2%;
     align-items: center;
+    height: 100%;
 }
 
 .format{
     width: 100%;
-    max-width: 330px;
+    max-width: 30%;
     text-align: center;
 }
 
@@ -16,6 +17,11 @@
     width: 150%;
 }
 
+
 .button{
     height: 50px;
+}
+
+.titulo{
+    -webkit-text-stroke-width:thin;
 }

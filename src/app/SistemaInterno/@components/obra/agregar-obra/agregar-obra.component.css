@@ -19,3 +19,7 @@
 .button{
     height: 50px;
 }
+
+.titulo{
+    -webkit-text-stroke-width:thin;
+}

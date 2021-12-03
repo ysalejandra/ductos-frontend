@@ -20,7 +20,7 @@ export class ListarProductoComponent implements OnInit {
 
   listProducto: Producto[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['idDetalle', 'nombre', 'descripcion', 'categoria','cantidad', 'valor', 'acciones'];
+  displayedColumns: string[] = ['idDetalle', 'nombre', 'categoria','cantidad', 'valor', 'acciones'];
 
   productosCargados:boolean= false;
   productos: Producto[] = [];

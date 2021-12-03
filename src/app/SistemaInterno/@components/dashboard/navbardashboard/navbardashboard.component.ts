@@ -11,6 +11,7 @@ import { MenuService } from 'src/app/services/menu.service';
 export class NavbardashboardComponent implements OnInit {
 
   menu: Menu[] = [];
+  cargado : boolean = false;
 
   constructor(private menuService : MenuService, private router: Router) { }
 

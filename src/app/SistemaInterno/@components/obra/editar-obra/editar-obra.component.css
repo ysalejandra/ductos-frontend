@@ -1,19 +1,15 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
 
-  .mat-toolbar.mat-primary {
-    background: #cf0000;
-    color: #fff;
-    font-size: 25px;
-  }
+.formulario{
+  padding: 8%;
+}
 
-  .nombres{
-    font-size: 18px;
-  }
 
-  .mat-button.mat-primary {
-    background: #cf0000;
-    color: #fff;
-    font-size: 25px;
-  }
+.ancho{
+  width: 100%;
+}
+
+.button{
+  width: 25%;
+  padding: 1%;
+}
+

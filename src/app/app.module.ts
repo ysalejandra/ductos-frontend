@@ -38,8 +38,8 @@ import { AgregarVisitaComponent } from './SistemaInterno/@components/visita/agre
 import { EditarVisitaComponent } from './SistemaInterno/@components/visita/editar-visita/editar-visita.component';
 import { ListarVisitaComponent } from './SistemaInterno/@components/visita/listar-visita/listar-visita.component';
 import { InicioComponent } from './SistemaInterno/@components/dashboard/inicio/inicio.component';
-
-
+import { CalendarioComponent } from './SistemaInterno/@components/calendario/calendario.component';
+import { DialogoConfirmacionComponent } from './SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,8 @@ import { InicioComponent } from './SistemaInterno/@components/dashboard/inicio/i
     AgregarVisitaComponent,
     EditarVisitaComponent,
     ListarVisitaComponent,
-    InicioComponent
+    InicioComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
@@ -87,21 +88,6 @@ import { InicioComponent } from './SistemaInterno/@components/dashboard/inicio/i
       {path: 'home', component: HomeComponent},
       {path: 'interno', component: HomeInternoComponent},
       {path: 'entrar', component: LoginComponent},
-      {path: 'interno/clientes/agregar', component: AgregarClienteComponent},
-      {path: 'interno/clientes', component: ListarClientesComponent},
-      {path: 'interno/clientes/editar', component: EditarClienteComponent},
-      {path: 'interno/productos/agregar', component: AgregarProductoComponent},
-      {path: 'interno/productos', component: ListarProductoComponent},
-      {path: 'interno/productos/editar', component: EditarProductoComponent},
-      {path: 'interno/obras/agregar', component: AgregarObraComponent},
-      {path: 'interno/obras', component: ListarObraComponent},
-      {path: 'interno/obras/editar', component: EditarObraComponent},
-      {path: 'interno/trabajadores/agregar', component: AgregarTrabajadorComponent},
-      {path: 'interno/trabajadores', component: ListarTrabajadorComponent},
-      {path: 'interno/trabajadores/editar', component: EditarTrabajadorComponent},
-      {path: 'interno/visitas/agregar', component: AgregarVisitaComponent},
-      {path: 'interno/visitas', component: ListarVisitaComponent},
-      {path: 'interno/visitas/editar', component: EditarVisitaComponent},
       {path: 'dashboard', loadChildren: () => import('./SistemaInterno/@components/dashboard/dashboard.module').then(x => x.DashboardModule)}
     ])
   ],

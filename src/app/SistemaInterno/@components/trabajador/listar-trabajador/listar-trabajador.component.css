@@ -1,27 +1,25 @@
 table {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  th{
-    width: 20%;
-    font-size: 16px;
-    color: black;
+  width: 100%;
+  margin-top: 10px;
 }
 
-td{
-  font-size: 15px;
+th,
+td {
+  font-size: medium;
+  /*color: black;*/
 }
-  .pointer{
-      cursor: pointer
-  }
-  
-  .mat-form-field {
-    font-size: 16px;
-    width: 90%;
-  }
 
-.section, mat-form-field {
+.pointer {
+  cursor: pointer;
+}
+
+.mat-form-field {
+  font-size: 16px;
+  width: 90%;
+}
+
+.section,
+mat-form-field {
   margin-right: 3%;
   margin-left: 3%;
 }
@@ -29,11 +27,11 @@ td{
 .mat-button.mat-primary {
   background: #cf0000;
   color: #fff;
-  font-size: 20px;
-  margin-left: 92.4%;
+  font-size: 16px;
+  margin-left: 92%;
 }
 
-.mat-toolbar.titulo{
+.mat-toolbar.titulo {
   justify-content: center;
   font-size: x-large;
   color: crimson;
