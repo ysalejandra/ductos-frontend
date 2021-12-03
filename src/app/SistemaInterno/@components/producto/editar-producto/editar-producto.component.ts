@@ -15,6 +15,7 @@ export class EditarProductoComponent implements OnInit {
 
   productoForm : FormGroup;
   producto: Producto | undefined;
+  
   constructor(fb: FormBuilder, public productoService: ProductoService, private router : Router, private route: ActivatedRoute) { 
     this.productoForm = fb.group({
       idDetalle: [0, Validators.required],

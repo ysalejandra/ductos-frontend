@@ -8,6 +8,9 @@ import { Trabajador } from '../@models/trabajador.model';
   providedIn: 'root'
 })
 export class TrabajadorService {
+  getTrabajadorPorRut(arg0: number): any {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -36,8 +39,8 @@ export class TrabajadorService {
     return this.http.post('http://localhost:8080/trabajadores', trabajador);
   }
 
-  borrarTrabajadores() {
-
+  borrarTrabajadores(rut: String) {
+    return this.http.delete('http://localhost:8080/trabajadores/'+rut);
   }
 
   getTrabajador(rut: String): Observable<Trabajador>  {
@@ -56,5 +59,9 @@ export class TrabajadorService {
       };
     })
     );
+  }
+
+  editTrabajador(trabajador : Trabajador) {
+    return this.http.put('http://localhost:8080/trabajadores/', trabajador);
   }
 }

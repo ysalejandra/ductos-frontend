@@ -47,11 +47,10 @@ export class EditarClienteComponent implements OnInit {
     }
     this.cliente = Object.assign(this.cliente, this.clienteForm.value);
     this.clienteService.editCliente(this.clienteForm.value).subscribe(res => console.log(res));
-    console.log(this.clienteForm.value);
-
+    this.router.navigate(["/dashboard/clientes"]);
   }
 
-  mostrarDialogo(): void {
+  confirmar(): void {
     if (this.clienteForm.invalid) {
       console.log("Invalid");
       alert("¡Los campos están vacios!");
@@ -59,15 +58,15 @@ export class EditarClienteComponent implements OnInit {
     }else{
       this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Estas seguro que quieres enviar la cotización?`
+        data: `¿Estas seguro que quieres elitar el cliente?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.saveData();
-          alert("Se ha enviado la cotización, con éxito.");
+          this.router.navigate(["/dashboard/clientes"]);
         } else {
-          alert("No se ha enviado la cotización");
+          alert("No se ha editado el cliente");
         }
       });
     }

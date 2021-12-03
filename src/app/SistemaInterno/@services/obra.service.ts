@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Obra } from '../@models/obra.model';
 
@@ -24,12 +25,28 @@ export class ObraService {
   }));
   }
 
+  getObraPorId(id : number): Observable<Obra> {
+    return this.http.get('http://localhost:8080/obras/'+ id).pipe(map( (obra: any) => {
+      return <Obra>{ 
+        idObra: obra.idObra,
+          nombre: obra.nombre,
+          direccion: obra.direccion,
+          ciudad: obra.ciudad
+        };
+    })
+    );
+  }
+
   addObra(obra: Obra){
     console.log(obra);
     return this.http.post('http://localhost:8080/obras', obra);
   }
 
   deleteObra(id: number){
+    return this.http.delete('http://localhost:8080/obras/'+id);
+  }
 
+  editObra(obra: Obra) {
+    return this.http.put('http://localhost:8080/obras/', obra);
   }
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Visita } from '../@models/visita.model';
 
@@ -25,12 +26,26 @@ export class VisitaService {
   }));
   }
 
+
+  getVisitaPorId(id : number): Observable<Visita> {
+    return this.http.get('http://localhost:8080/productos/'+ id).pipe(map( (visita: any) => {
+      return <Visita>{ 
+        idVisita: visita.idVisita,
+          fechaVisita: visita.fechaVisita,
+          estadoVisita: visita.estadoVisita,
+          observaciones: visita.observaciones,
+          direccionVisita: visita.direccionVisita
+        };
+    })
+    );
+  }
+
   addVisita(visita: Visita){
     console.log(visita);
     return this.http.post('http://localhost:8080/visitas', visita);
   }
 
-  borrarVisita(){
-
+  borrarVisita(id: number){
+    return this.http.delete('http://localhost:8080/visitas/'+id);
   }
 }

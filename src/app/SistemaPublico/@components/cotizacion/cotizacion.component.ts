@@ -25,7 +25,7 @@ export class CotizacionComponent implements OnInit {
       email: ["", Validators.required],
       telefono: ["", Validators.required]
     });
-    this.cliente = new Cliente(0, "", "", "", "", "");
+    this.cliente = new Cliente(0, "", "", "", "", "",true);
   }
 
   ngOnInit(): void {

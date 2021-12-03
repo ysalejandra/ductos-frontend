@@ -68,7 +68,8 @@
                 <a class="pointer" style="color: #30B8C6;" matTooltip="Ver cliente">
                   <i class="fas fa-eye" style="font-size:28px;"></i>
                 </a>
-                <a class="pointer" style="color: seagreen;" matTooltip="Editar cliente">
+                <a class="pointer" style="color: seagreen;" matTooltip="Editar cliente"
+                [routerLink]="['editar', element.idCliente]">
                   <i class="fas fa-edit" style="font-size:28px; padding-left: 20px;"></i>
                 </a>
                 <a class="pointer" style="color:#ED3A3A" (click)="eliminarCliente(element.idCliente)"

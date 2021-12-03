@@ -37,4 +37,8 @@ export class ClienteService {
   editCliente(cliente : Cliente) {
     return this.http.put('http://localhost:8080/clientes', cliente);
   }
+
+  borrarCliente(id: number) {
+    return this.http.delete('http://localhost:8080/clientes/'+id);
+  }
 }

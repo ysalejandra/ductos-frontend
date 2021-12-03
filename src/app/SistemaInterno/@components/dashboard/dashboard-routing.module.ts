@@ -14,30 +14,32 @@ import { AgregarTrabajadorComponent } from '../trabajador/agregar-trabajador/agr
 import { EditarTrabajadorComponent } from '../trabajador/editar-trabajador/editar-trabajador.component';
 import { ListarTrabajadorComponent } from '../trabajador/listar-trabajador/listar-trabajador.component';
 import { AgregarVisitaComponent } from '../visita/agregar-visita/agregar-visita.component';
+import { EditarVisitaComponent } from '../visita/editar-visita/editar-visita.component';
 import { ListarVisitaComponent } from '../visita/listar-visita/listar-visita.component';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent, children: [
-    {path: '', component: InicioComponent},
-    {path: 'productos', component: ListarProductoComponent},
-    {path: 'clientes', component: ListarClientesComponent},
-    {path: 'trabajadores', component: ListarTrabajadorComponent},
-    {path: 'obras', component: ListarObraComponent},
-    {path: 'visitas', component: ListarVisitaComponent},
-    {path: 'productos/agregar', component: AgregarProductoComponent},
-    {path: 'clientes/agregar', component: AgregarClienteComponent},
-    {path: 'clientes/editar', component: EditarClienteComponent},
-    {path: 'trabajadores/agregar', component: AgregarTrabajadorComponent},
-    {path: 'obras/agregar', component: AgregarObraComponent},
-    {path: 'visitas/agregar', component: AgregarVisitaComponent},
-    {path: 'productos/editar/:idDetalle', component: EditarProductoComponent},
-    {path: 'calendario', component:CalendarioComponent},
-    {path: 'obras/editar', component: EditarObraComponent},
-    {path: 'trabajadores/editar', component: EditarTrabajadorComponent},
-  ]}
+  {
+    path: '', component: DashboardComponent, children: [
+      { path: '', component: InicioComponent },
+      { path: 'productos', component: ListarProductoComponent },
+      { path: 'productos/agregar', component: AgregarProductoComponent },
+      { path: 'productos/editar/:idDetalle', component: EditarProductoComponent },
+      { path: 'clientes', component: ListarClientesComponent },
+      { path: 'clientes/agregar', component: AgregarClienteComponent },
+      { path: 'clientes/editar/:idCliente', component: EditarClienteComponent },
+      { path: 'trabajadores', component: ListarTrabajadorComponent },
+      { path: 'trabajadores/agregar', component: AgregarTrabajadorComponent },
+      { path: 'trabajadores/editar/:rut', component: EditarTrabajadorComponent },
+      { path: 'obras', component: ListarObraComponent },
+      { path: 'obras/agregar', component: AgregarObraComponent },
+      { path: 'obras/editar', component: EditarObraComponent },
+      { path: 'visitas', component: ListarVisitaComponent },
+      { path: 'calendario', component: CalendarioComponent },
+    ]
+  }
 ];
 
 @NgModule({

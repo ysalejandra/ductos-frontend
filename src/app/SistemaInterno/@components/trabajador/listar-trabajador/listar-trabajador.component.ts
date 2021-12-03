@@ -42,11 +42,11 @@ export class ListarTrabajadorComponent implements OnInit {
     })
   }
 
-  eliminarTrabajador(id: number){
-    /*console.log(id);
-    this.trabajadorService.borrarTrabajadores(id).subscribe ( (res: any) => {
-      console.log(res);
-    });*/
+  eliminarTrabajador(rut: string){
+    console.log(rut);
+    this.trabajadorService.borrarTrabajadores(rut).subscribe((res: any) => {
+      this.ngOnInit();
+    });
 
   }
 

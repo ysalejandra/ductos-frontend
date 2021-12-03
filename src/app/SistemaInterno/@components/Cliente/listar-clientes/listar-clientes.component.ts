@@ -46,15 +46,15 @@ export class ListarClientesComponent implements OnInit {
   }
 
   eliminarCliente(id: number){
-    /*console.log(id);
-    this.clienteService.borrarCliente(id).subscribe ( (res: any) => {
-      console.log(res);
-    });*/
+    console.log(id);
+    this.clienteService.borrarCliente(id).subscribe((res: any) => {
+      this.ngOnInit();
+    });
 
   }
 
   agregar(){
-    this.router.navigate(["/interno/clientes/agregar"]);
+    this.router.navigate(["/dashboard/clientes/agregar"]);
   }
 
   applyFilter(event: Event) {

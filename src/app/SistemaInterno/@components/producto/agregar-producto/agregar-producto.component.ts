@@ -45,7 +45,6 @@ export class AgregarProductoComponent implements OnInit {
   }
 
   confirmar(){
-    
       this.dialogo
       .open(DialogoConfirmacionComponent, {
         data: `¿Estas seguro que quieres enviar la cotización?`
@@ -60,8 +59,6 @@ export class AgregarProductoComponent implements OnInit {
           alert("No se ha enviado la cotización");
         }
       });
-    
-
   }
 
 }

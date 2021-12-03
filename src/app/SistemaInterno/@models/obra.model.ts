@@ -3,7 +3,6 @@ export interface ObraInterface {
     nombre: string;
     direccion: string;
     ciudad: string;
-
 }
 
 export class Obra implements ObraInterface {

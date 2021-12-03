@@ -26,7 +26,7 @@ export class AgregarClienteComponent implements OnInit {
       email: ["", Validators.required],
       telefono: ["", Validators.required]
     });
-    this.cliente = new Cliente(0, "", "", "", "", "");
+    this.cliente = new Cliente(0, "", "", "", "", "", true);
   }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class AgregarClienteComponent implements OnInit {
     }
     this.cliente = Object.assign(this.cliente, this.clienteForm.value);
     this.clienteService.addCliente(this.cliente).subscribe( (res:any) => {
-      this.router.navigate(["/clientes"]);
+      this.router.navigate(["/dashboard/clientes"]);
     });
 
   }
@@ -56,15 +56,15 @@ export class AgregarClienteComponent implements OnInit {
     }else{
       this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Estas seguro que quieres enviar la cotización?`
+        data: `¿Estas seguro que quieres agregar el cliente?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.saveData();
-          alert("Se ha enviado la cotización, con éxito.");
+          alert("Se ha agregado el cliente, con éxito.");
         } else {
-          alert("No se ha enviado la cotización");
+          alert("No se ha agregado el cliente");
         }
       });
     }

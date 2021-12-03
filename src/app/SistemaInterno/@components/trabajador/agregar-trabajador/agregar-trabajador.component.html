@@ -1,51 +1,59 @@
 <div class="body">
-    <div class="format">
-        <h1 class="ancho titulo">Agregar Trabajador</h1><br>
-      <form [formGroup]="trabajadorForm" (ngSubmit)="guardar()">
-        <mat-form-field appearance="fill" class="ancho">
-            <mat-label>Rut</mat-label>
-            <input matInput type="text" autocomplete="off" formControlName="rut"/>
-          </mat-form-field>
-          <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Nombre</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="nombre"/>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Apellido Paterno</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="apellidoPaterno"/>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-            <mat-label>Apellido Materno</mat-label>
-            <input matInput type="text" autocomplete="off" formControlName="apellidoMaterno"/>
-          </mat-form-field>
-          <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Fecha de Nacimiento</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="fechaDeNacimiento"/>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-            <mat-label>Correo</mat-label>
-            <input matInput type="text" autocomplete="off" formControlName="email"/>
-          </mat-form-field>
-          <br />
-          <mat-form-field appearance="fill" class="ancho">
-            <mat-label>Contraseña</mat-label>
-            <input matInput type="password" autocomplete="off" formControlName="password"/>
-          </mat-form-field>
-          <br />
-          <mat-form-field appearance="fill" class="ancho">
-            <mat-label>Teléfono</mat-label>
-            <input matInput type="text" autocomplete="off" formControlName="telefono"/>
-          </mat-form-field>
-          <br />
-        <button class="ancho button" mat-raised-button color="primary" type= "submit">
-          Guardar
+  <div class="format">
+    <h1 class="ancho titulo">Agregar Trabajador</h1><br>
+    <form [formGroup]="trabajadorForm">
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Rut</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="rut" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="nombre" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Apellido Paterno</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="apellidoPaterno" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Apellido Materno</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="apellidoMaterno" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="fechaDeNacimiento" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Correo</mat-label>
+        <input matInput  placeholder="trabajador@gmail.com" autocomplete="off" formControlName="email" required/>
+        <mat-error *ngIf="trabajador.email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" autocomplete="off" formControlName="password" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-      </form>
-    </div>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Teléfono</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="telefono" />
+      </mat-form-field>
+      <br />
+      <button class="ancho button" mat-raised-button color="primary" type="submit" (click)="confirmar()">
+        Guardar
+      </button>
+      <div *ngIf="ocultar">
+        <div class="alert alert-sucess" role="alert">
+          ¡Se ha enviado la cotización correctamente!
+        </div>
+      </div>
+    </form>
   </div>
-  
+</div>

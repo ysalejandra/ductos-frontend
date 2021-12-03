@@ -1,9 +1,49 @@
+<mat-toolbar class = "titulo" color="secondary">
+  <span >Productos</span>
+</mat-toolbar>
 
-  <h1>Holaaaa</h1>
-
-  <h1>Holaaaa</h1>
-
-  <h1>Holaaaa</h1>
-  <h1>Holaaaa</h1>
-  <h1>Holaaaa</h1>
-  <h1>Holaaaa</h1>
+<div class="body">
+  <div class="format">
+      <h1 class="ancho">Editar Trabajador</h1>
+    <form [formGroup]="trabajadorForm" (ngSubmit)="saveData()">
+      <input type="hidden" formControlName="rut">
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="nombre"/>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Apellido Paterno</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="apellidoPaterno"/>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Apellido Materno</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="apellidoMaterno"/>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="fechaDeNacimiento"/>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" autocomplete="off" formControlName="email"/>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Teléfono</mat-label>
+        <textarea matInput type="text" autocomplete="off"formControlName="telefono"></textarea>
+      </mat-form-field>
+      <br />
+      <button class="ancho button" mat-raised-button color="primary" type= "submit">
+        Guardar
+      </button>
+      <br>
+      <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/productos">
+        Cancelar
+      </button>
+    </form>
+  </div>
+</div>
