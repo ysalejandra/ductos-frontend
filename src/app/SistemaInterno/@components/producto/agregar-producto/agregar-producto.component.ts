@@ -26,7 +26,7 @@ export class AgregarProductoComponent implements OnInit {
       valor: ["", Validators.required],
       cantidad: ["", Validators.required],
     })
-    this.producto = new Producto(0,'','','',0,0);
+    this.producto = new Producto(0,'','','',0,0,true);
   }
 
   ngOnInit(): void {

@@ -20,23 +20,23 @@ export class ListarProductoComponent implements OnInit {
 
   listProducto: Producto[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['idDetalle', 'nombre', 'categoria','cantidad', 'valor', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'categoria', 'cantidad', 'valor', 'acciones'];
 
-  productosCargados:boolean= false;
+  productosCargados: boolean = false;
   productos: Producto[] = [];
   p: number = 1;
 
-  dataSource : any;
+  dataSource: any;
 
   constructor(public productoService: ProductoService, public clienteService: ClienteService,
-    private router: Router ) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getProductos();
   }
 
   getProductos() {
-    this.productoService.getProductos().subscribe( (res : Producto[]) => {
+    this.productoService.getProductos().subscribe((res: Producto[]) => {
       this.productos = res;
       this.listProducto = res;
       console.log(this.productos);
@@ -47,15 +47,15 @@ export class ListarProductoComponent implements OnInit {
     })
   }
 
-  eliminarProducto(id: number){
+  eliminarProducto(id: number) {
     console.log(id);
-    this.productoService.borrarProducto(id).subscribe ( (res: any) => {
+    this.productoService.borrarProducto(id).subscribe((res: any) => {
       this.ngOnInit();
     });
 
   }
 
-  agregar(){
+  agregar() {
     this.router.navigate(["/productos/agregar"]);
   }
 
