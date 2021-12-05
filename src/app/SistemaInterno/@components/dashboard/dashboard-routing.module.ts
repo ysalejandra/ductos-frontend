@@ -35,8 +35,10 @@ const routes: Routes = [
       { path: 'trabajadores/editar/:rut', component: EditarTrabajadorComponent },
       { path: 'obras', component: ListarObraComponent },
       { path: 'obras/agregar', component: AgregarObraComponent },
-      { path: 'obras/editar', component: EditarObraComponent },
+      { path: 'obras/editar/:idObra', component: EditarObraComponent },
       { path: 'visitas', component: ListarVisitaComponent },
+      { path: 'visitas/agregar', component: AgregarVisitaComponent},
+      { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent},
       { path: 'calendario', component: CalendarioComponent },
     ]
   }

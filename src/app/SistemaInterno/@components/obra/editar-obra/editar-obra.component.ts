@@ -38,7 +38,7 @@ export class EditarObraComponent implements OnInit {
     }
     this.obra = Object.assign(this.obra, this.obraForm.value);
     this.obraService.editObra(this.obraForm.value).subscribe(res => console.log(res));
-    this.router.navigate(["/dashboard/productos"]);
+    this.router.navigate(["/dashboard/obras"]);
   }
 
 }

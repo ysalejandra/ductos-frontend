@@ -43,15 +43,14 @@ export class ListarObraComponent implements OnInit {
   }
 
   eliminarObra(id: number){
-   /* console.log(id);
-    this.obraService.deleteObra(id).subscribe ( (res: any) => {
-      console.log(res);
-    });*/
-
+    console.log(id);
+    this.obraService.borrarObra(id).subscribe((res: any) => {
+      this.ngOnInit();
+    });
   }
 
   agregar(){
-    this.router.navigate(["/interno/obras/agregar"]);
+    this.router.navigate(["/dashboard/obras/agregar"]);
   }
 
   applyFilter(event: Event) {

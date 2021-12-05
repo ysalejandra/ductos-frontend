@@ -42,7 +42,7 @@ export class ObraService {
     return this.http.post('http://localhost:8080/obras', obra);
   }
 
-  deleteObra(id: number){
+  borrarObra(id: number){
     return this.http.delete('http://localhost:8080/obras/'+id);
   }
 

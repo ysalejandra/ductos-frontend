@@ -20,7 +20,7 @@ export class AgregarObraComponent implements OnInit {
       direccion: ["", Validators.required],
       ciudad: ["", Validators.required],
     })
-    this.obra = new Obra(0,'','','');
+    this.obra = new Obra(0,'','','',true);
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class AgregarObraComponent implements OnInit {
     }
     this.obra = Object.assign(this.obra, this.obraForm.value);
     this.obraService.addObra(this.obra).subscribe( (res:any) => {
-    this.router.navigate(["/interno/obras"]);
+    this.router.navigate(["/dashboard/obras"]);
       console.log(res);
     });
 

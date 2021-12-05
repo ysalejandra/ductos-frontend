@@ -28,7 +28,7 @@ export class VisitaService {
 
 
   getVisitaPorId(id : number): Observable<Visita> {
-    return this.http.get('http://localhost:8080/productos/'+ id).pipe(map( (visita: any) => {
+    return this.http.get('http://localhost:8080/visitas/'+ id).pipe(map( (visita: any) => {
       return <Visita>{ 
         idVisita: visita.idVisita,
           fechaVisita: visita.fechaVisita,
@@ -47,5 +47,9 @@ export class VisitaService {
 
   borrarVisita(id: number){
     return this.http.delete('http://localhost:8080/visitas/'+id);
+  }
+
+  editVisita(visita: Visita) {
+    return this.http.put('http://localhost:8080/visitas/', visita);
   }
 }

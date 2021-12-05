@@ -21,7 +21,7 @@ export class AgregarVisitaComponent implements OnInit {
       observaciones: ["", Validators.required],
       direccionVisita: ["", Validators.required],
     })
-    this.visita = new Visita(0,'','','','');
+    this.visita = new Visita(0,'','','','',true);
   }
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class AgregarVisitaComponent implements OnInit {
     this.visita = Object.assign(this.visita, this.visitaForm.value);
     this.visitaService.addVisita(this.visita).subscribe( (res:any) => {
       console.log(res);
-      this.router.navigate(["/interno/visitas"]);
+      this.router.navigate(["/dashboard/visitas"]);
       
     });
 

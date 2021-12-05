@@ -27,10 +27,10 @@ export class ListarVisitaComponent implements OnInit {
   constructor(public visitaService: VisitaService, private router: Router ) { }
 
   ngOnInit(): void {
-    this.getProductos();
+    this.getVisitas();
   }
 
-  getProductos() {
+  getVisitas() {
     this.visitaService.getVisitas().subscribe( (res : Visita[]) => {
       this.visitas = res;
       this.listvisita = res;
@@ -42,11 +42,11 @@ export class ListarVisitaComponent implements OnInit {
     })
   }
 
-  eliminarProducto(id: number){
-    /*console.log(id);
-    this.visitaService.borrarVisita(id).subscribe ( (res: any) => {
-      console.log(res);
-    });*/
+  eliminarVisita(id: number){
+    console.log(id);
+    this.visitaService.borrarVisita(id).subscribe((res: any) => {
+      this.ngOnInit();
+    });
 
   }
 
