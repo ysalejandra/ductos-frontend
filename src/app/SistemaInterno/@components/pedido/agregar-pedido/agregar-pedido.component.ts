@@ -30,7 +30,7 @@ export class AgregarPedidoComponent implements OnInit {
       estadoPedido: ["", Validators.required],
     })
     this.productos = [];
-    this.pedido = new Pedido(0,'','',0,'', '', '', this.productos);
+    this.pedido = new Pedido(0,new Date(),new Date(),0,'', '', '', this.productos);
   }
 
   ngOnInit(): void {

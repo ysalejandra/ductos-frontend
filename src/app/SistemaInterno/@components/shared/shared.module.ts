@@ -20,8 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatOption, MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOption, MatOptionModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
 
 @NgModule({
   declarations: [],
@@ -44,7 +45,9 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatFormFieldModule,
@@ -65,6 +68,11 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatToolbarModule,
     MatSelectModule,
-    MatOptionModule]
+    MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule],
+    providers: [
+      {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+   ],
 })
 export class SharedModule { }

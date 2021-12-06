@@ -2,15 +2,28 @@
     <div class="format">
       <h1 class="ancho titulo">Agregar Pedido</h1><br>
       <form [formGroup]="pedidoForm"   class="formulario">
+
+
         <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Fecha ingreso</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="fechaIngreso" />
-        </mat-form-field>
+            <mat-label>Fecha de ingreso</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaIngreso">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          
         <br />
-        <mat-form-field appearance="fill" class="ancho">
+        <!--<mat-form-field appearance="fill" class="ancho">
           <mat-label>Fecha entrega</mat-label>
           <input matInput type="text" autocomplete="off" formControlName="fechaEntrega" />
-        </mat-form-field>
+        </mat-form-field>-->
+
+        
+        <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Fecha de entrega</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="fechaEntrega">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
         <br />
         <mat-form-field appearance="fill" class="ancho">
           <mat-label>Anotaciones</mat-label>
@@ -19,20 +32,21 @@
         <br />
 
         <mat-form-field appearance="fill" class="ancho">
-            <mat-label>Favorite food</mat-label>
+            <mat-label>Estado del pedido</mat-label>
             <mat-select formControlName="estadoPedido">
-              <mat-option value="ENPROCESO">
-                En proceso
-              </mat-option>
-              <mat-option value="RECIBIDO">
-                En proceso
-              </mat-option>
-              <mat-option value="COTIZACION">
-                En proceso
-              </mat-option>
-              <mat-option value="FINALIZADO">
-                En proceso
-              </mat-option>
+                <mat-option value="RECIBIDO">
+                    Recibido
+                </mat-option>
+                <mat-option value="ENPROCESO">
+                    En proceso
+                </mat-option>
+              
+                <mat-option value="COTIZACION">
+                    Cotización
+                </mat-option>
+                <mat-option value="FINALIZADO">
+                    Finalizado
+                </mat-option>
             </mat-select>
           </mat-form-field>
         <br />
