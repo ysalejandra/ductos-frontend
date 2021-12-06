@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatOption, MatOptionModule } from '@angular/material/core';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -40,7 +42,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatPaginatorModule,
     MatSortModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   exports: [
     MatFormFieldModule,
@@ -59,6 +63,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSortModule,
     MatIconModule,
     MatDialogModule,
-    MatToolbarModule]
+    MatToolbarModule,
+    MatSelectModule,
+    MatOptionModule]
 })
 export class SharedModule { }

@@ -40,6 +40,7 @@ import { ListarVisitaComponent } from './SistemaInterno/@components/visita/lista
 import { InicioComponent } from './SistemaInterno/@components/dashboard/inicio/inicio.component';
 import { CalendarioComponent } from './SistemaInterno/@components/calendario/calendario.component';
 import { DialogoConfirmacionComponent } from './SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
+import { AgregarPedidoComponent } from './SistemaInterno/@components/pedido/agregar-pedido/agregar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { DialogoConfirmacionComponent } from './SistemaPublico/@components/cotiz
     EditarVisitaComponent,
     ListarVisitaComponent,
     InicioComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    AgregarPedidoComponent
   ],
   imports: [
     BrowserModule,

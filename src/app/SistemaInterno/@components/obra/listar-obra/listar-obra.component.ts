@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Obra } from 'src/app/SistemaInterno/@models/obra.model';
@@ -13,10 +14,11 @@ import { ObraService } from 'src/app/SistemaInterno/@services/obra.service';
 export class ListarObraComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   listObra: Obra[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['idObra', 'nombre', 'direccion', 'ciudad','acciones'];
+  displayedColumns: string[] = ['idObra', 'nombreObra', 'direccion', 'ciudad','acciones'];
 
   obrasCargadas:boolean= false;
   obras: Obra[] = [];
@@ -36,8 +38,9 @@ export class ListarObraComponent implements OnInit {
       this.listObra = res;
       console.log(this.obras);
       this.obrasCargadas = true;
-      this.dataSourse = this.listObra;
-      const dataSource = new MatTableDataSource(this.listObra);
+      this.dataSource = new MatTableDataSource(this.listObra);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
     })
   }
@@ -58,9 +61,6 @@ export class ListarObraComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
 
 }

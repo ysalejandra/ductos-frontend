@@ -25,7 +25,7 @@ export class AgregarTrabajadorComponent implements OnInit {
       nombre: ["", Validators.required],
       apellidoPaterno: ["", Validators.required],
       apellidoMaterno: ["", Validators.required],
-      fechaDeNacimiento: ["", Validators.required],
+      fechaNacimiento: ["", Validators.required],
       email: ["", Validators.required],
       password: ["", Validators.required],
       telefono: ["", Validators.required],

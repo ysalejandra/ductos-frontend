@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Trabajador } from 'src/app/SistemaInterno/@models/trabajador.model';
@@ -13,10 +14,11 @@ import { TrabajadorService } from 'src/app/SistemaInterno/@services/trabajador.s
 export class ListarTrabajadorComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   listTrabajador: Trabajador[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['rut', 'nombre', 'fechaDeNacimiento', 'email','telefono', 'acciones'];
+  displayedColumns: string[] = ['rut', 'nombre', 'fechaNacimiento', 'email','telefono', 'acciones'];
 
   trabajadoresCargados:boolean= false;
   trabajadores: Trabajador[] = [];
@@ -36,9 +38,9 @@ export class ListarTrabajadorComponent implements OnInit {
       this.listTrabajador = res;
       console.log(this.trabajadores);
       this.trabajadoresCargados = true;
-      this.dataSourse = this.listTrabajador;
-      const dataSource = new MatTableDataSource(this.listTrabajador);
-
+      this.dataSource = new MatTableDataSource(this.listTrabajador);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 
@@ -57,10 +59,6 @@ export class ListarTrabajadorComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
   }
 
 }
