@@ -43,6 +43,7 @@ import { DialogoConfirmacionComponent } from './SistemaPublico/@components/cotiz
 import { AgregarPedidoComponent } from './SistemaInterno/@components/pedido/agregar-pedido/agregar-pedido.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     NgxPaginationModule,
     SharedModule,
     BrowserAnimationsModule,
+    FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
