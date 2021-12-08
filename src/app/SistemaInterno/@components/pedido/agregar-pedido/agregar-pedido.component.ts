@@ -9,6 +9,8 @@ import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 import { ProductoService } from 'src/app/SistemaInterno/@services/producto.service';
+import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
+import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 
 @Component({
   selector: 'app-agregar-pedido',
@@ -25,14 +27,16 @@ export class AgregarPedidoComponent implements OnInit {
 
   id = 0;
   listaProductos: Producto[] = [];
+  listaClientes: Cliente[] = [];
   
-  constructor(private fb: FormBuilder, public pedidoService: PedidoService, public productoService: ProductoService, private router: Router,
+  constructor(private fb: FormBuilder, public pedidoService: PedidoService, public clienteService: ClienteService, public productoService: ProductoService, private router: Router,
     public dialogo: MatDialog) { 
     this.pedidoForm = this.fb.group({
       fechaIngreso: ["", Validators.required],
       fechaEntrega: ["", Validators.required],
       anotaciones: ["", Validators.required],
       estadoPedido: ["", Validators.required],
+      cliente: [null, Validators.required],
       productos: this.fb.array([])
     })
 
@@ -42,6 +46,9 @@ export class AgregarPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.productoService.getProductos().subscribe ( res => {
       this.listaProductos = res;
+    })
+    this.clienteService.getClientes().subscribe(res => {
+      this.listaClientes = res;
     })
   }
   
