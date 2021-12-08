@@ -4,5 +4,5 @@
  @import 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700';
  
  @import '../../DuctosOrtizSpaFrontend/src/assets/style/styles.css';
-
+ @import "../node_modules/angular-calendar/css/angular-calendar.css";
 

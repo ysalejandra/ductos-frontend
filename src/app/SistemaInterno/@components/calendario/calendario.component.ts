@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendario.component.css']
 })
 export class CalendarioComponent implements OnInit {
-
+  viewDate: Date = new Date();
+  events = [];
   constructor() { }
 
   ngOnInit(): void {

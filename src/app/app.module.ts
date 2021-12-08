@@ -41,6 +41,8 @@ import { InicioComponent } from './SistemaInterno/@components/dashboard/inicio/i
 import { CalendarioComponent } from './SistemaInterno/@components/calendario/calendario.component';
 import { DialogoConfirmacionComponent } from './SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 import { AgregarPedidoComponent } from './SistemaInterno/@components/pedido/agregar-pedido/agregar-pedido.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,11 @@ import { AgregarPedidoComponent } from './SistemaInterno/@components/pedido/agre
     FormsModule,
     NgxPaginationModule,
     SharedModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     RouterModule.forRoot([
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeComponent},
