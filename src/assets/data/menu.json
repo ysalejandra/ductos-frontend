@@ -33,6 +33,11 @@
         "nombre": "Calendario",
         "redirect": "/dashboard/calendario",
         "icono": "fas fa-ad"
+    },
+    {
+        "nombre": "Informe",
+        "redirect": "/dashboard/informe",
+        "icono": "fas fa-ad"
     }
 
 ]
