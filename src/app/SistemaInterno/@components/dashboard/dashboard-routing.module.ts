@@ -4,6 +4,7 @@ import { CalendarioComponent } from '../calendario/calendario.component';
 import { AgregarClienteComponent } from '../Cliente/agregar-cliente/agregar-cliente.component';
 import { EditarClienteComponent } from '../Cliente/editar-cliente/editar-cliente.component';
 import { ListarClientesComponent } from '../Cliente/listar-clientes/listar-clientes.component';
+import { InformeComponent } from '../informe/informe.component';
 import { AgregarObraComponent } from '../obra/agregar-obra/agregar-obra.component';
 import { EditarObraComponent } from '../obra/editar-obra/editar-obra.component';
 import { ListarObraComponent } from '../obra/listar-obra/listar-obra.component';
@@ -41,7 +42,8 @@ const routes: Routes = [
       { path: 'visitas/agregar', component: AgregarVisitaComponent},
       { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent},
       { path: 'calendario', component: CalendarioComponent },
-      { path: 'pedidos/agregar', component: AgregarPedidoComponent}
+      { path: 'pedidos/agregar', component: AgregarPedidoComponent},
+      { path: 'informe', component: InformeComponent}
     ]
   }
 ];

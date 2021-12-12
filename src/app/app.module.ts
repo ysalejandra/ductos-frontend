@@ -45,6 +45,10 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { ListarPedidoComponent } from './SistemaInterno/@components/pedido/listar-pedido/listar-pedido.component';
+import { InformeComponent } from './SistemaInterno/@components/informe/informe.component';
+import { ChartsModule } from 'ng2-charts';
+import { Chart, ChartData } from 'chart.js';
+
 
 @NgModule({
   declarations: [
@@ -71,9 +75,11 @@ import { ListarPedidoComponent } from './SistemaInterno/@components/pedido/lista
     InicioComponent,
     CalendarioComponent,
     AgregarPedidoComponent,
-    ListarPedidoComponent
+    ListarPedidoComponent,
+    InformeComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
