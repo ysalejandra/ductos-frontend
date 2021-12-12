@@ -11,6 +11,10 @@ import { MatOption } from '@angular/material/core';
 import { ProductoService } from 'src/app/SistemaInterno/@services/producto.service';
 import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
+import { Obra } from 'src/app/SistemaInterno/@models/obra.model';
+import { Trabajador } from 'src/app/SistemaInterno/@models/trabajador.model';
+import { ObraService } from 'src/app/SistemaInterno/@services/obra.service';
+import { TrabajadorService } from 'src/app/SistemaInterno/@services/trabajador.service';
 
 @Component({
   selector: 'app-agregar-pedido',
@@ -28,8 +32,11 @@ export class AgregarPedidoComponent implements OnInit {
   id = 0;
   listaProductos: Producto[] = [];
   listaClientes: Cliente[] = [];
+  listaObras: Obra[] = [];
+  listaTrabajadores: Trabajador[] = [];
   
-  constructor(private fb: FormBuilder, public pedidoService: PedidoService, public clienteService: ClienteService, public productoService: ProductoService, private router: Router,
+  constructor(private fb: FormBuilder, public pedidoService: PedidoService, public clienteService: ClienteService, 
+    public productoService: ProductoService, private router: Router, public obraService : ObraService, public trabajadorService: TrabajadorService,
     public dialogo: MatDialog) { 
     this.pedidoForm = this.fb.group({
       fechaIngreso: ["", Validators.required],
@@ -37,7 +44,9 @@ export class AgregarPedidoComponent implements OnInit {
       anotaciones: ["", Validators.required],
       estadoPedido: ["", Validators.required],
       cliente: [null, Validators.required],
-      productos: this.fb.array([])
+      obra: [null],
+      trabajador: [null],
+      detalleProductos: this.fb.array([])
     })
 
     this.pedido = new Pedido(0,new Date(),new Date(),0,'', '', '', []);
@@ -50,15 +59,21 @@ export class AgregarPedidoComponent implements OnInit {
     this.clienteService.getClientes().subscribe(res => {
       this.listaClientes = res;
     })
+    this.trabajadorService.getTrabajadores().subscribe(res => {
+      this.listaTrabajadores = res;
+    })
+    this.obraService.getObras().subscribe(res => {
+      this.listaObras = res;
+    })
   }
   
   get productos() {
-    return this.pedidoForm.controls["productos"] as FormArray;
+    return this.pedidoForm.controls["detalleProductos"] as FormArray;
   }
 
   addProducto() {
     const productos = this.fb.group({
-        idProducto: [0, Validators.required],
+        idProducto: [ 0, Validators.required],
         cantidad: [0, Validators.required]
     });
   
@@ -74,7 +89,9 @@ export class AgregarPedidoComponent implements OnInit {
       console.log("Invalid");
       return;
     }
+    
     this.pedido = Object.assign(this.pedido, this.pedidoForm.value);
+    console.log(this.pedido);
     this.pedidoService.addPedido(this.pedido).subscribe( (res:any) => {
     this.router.navigate(["/dashboard/pedidos/agregar"]);
       console.log(res);

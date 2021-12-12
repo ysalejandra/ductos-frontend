@@ -16,7 +16,7 @@ export class ProductoService {
     return this.http.get('http://localhost:8080/productos').pipe(map( (res : any) => {
       console.log(res);
       return res.map( (producto : Producto) => {
-        return <Producto>{ idDetalle:producto.idDetalle, nombre: producto.nombre, descripcion : producto.descripcion, categoria : producto.categoria, valor: producto.valor, cantidad: producto.cantidad}
+        return <Producto>{ idProducto:producto.idProducto, nombre: producto.nombre, descripcion : producto.descripcion, categoria : producto.categoria, valor: producto.valor, cantidad: producto.cantidad}
       })
   }));
   }
@@ -32,7 +32,7 @@ export class ProductoService {
 
   getProductoPorId(id : number): Observable<Producto> {
     return this.http.get('http://localhost:8080/productos/'+ id).pipe(map( (producto: any) => {
-      return <Producto>{ idDetalle:producto.idDetalle, nombre: producto.nombre, descripcion : producto.descripcion, categoria : producto.categoria, valor: producto.valor, cantidad: producto.cantidad};
+      return <Producto>{ idProducto:producto.idProducto, nombre: producto.nombre, descripcion : producto.descripcion, categoria : producto.categoria, valor: producto.valor, cantidad: producto.cantidad};
     })
     );
   }

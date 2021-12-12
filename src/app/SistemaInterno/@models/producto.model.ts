@@ -1,5 +1,5 @@
 export interface ProductoInterface {
-    idDetalle: number;
+    idProducto: number;
     nombre: string;
     descripcion: string;
     categoria: string;
@@ -10,8 +10,8 @@ export interface ProductoInterface {
 }
 
 export class Producto implements ProductoInterface {
-    constructor(public idDetalle: number, public nombre:string, public descripcion:string, public categoria:string, public valor:number, public cantidad:number, public vigente: boolean) {
-        this.idDetalle = idDetalle;
+    constructor(public idProducto: number, public nombre:string, public descripcion:string, public categoria:string, public valor:number, public cantidad:number, public vigente: boolean) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;

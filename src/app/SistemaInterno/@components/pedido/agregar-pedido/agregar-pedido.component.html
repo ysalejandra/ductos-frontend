@@ -38,6 +38,28 @@
         <br />
 
         <mat-form-field appearance="fill" class="ancho">
+          <mat-label>Cliente</mat-label>
+          <mat-select placeholder="" name="cliente" formControlName="cliente">
+            <mat-option *ngFor="let cliente of listaClientes" [value]="cliente">{{ cliente.nombre + ' ' + cliente.apellidoPaterno}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="ancho">
+          <mat-label>Obra</mat-label>
+          <mat-select placeholder="" name="obra" formControlName="obra">
+            <mat-option [value]="null">Sin obra</mat-option>
+            <mat-option *ngFor="let obra of listaObras" [value]="obra">{{ obra.nombreObra }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="ancho">
+          <mat-label>Trabajador</mat-label>
+          <mat-select placeholder="" name="trabajador" formControlName="trabajador">
+            <mat-option *ngFor="let trabajador of listaTrabajadores" [value]="trabajador">{{ trabajador.nombre + ' ' + trabajador.apellidoPaterno}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="ancho">
             <mat-label>Estado del pedido</mat-label>
             <mat-select formControlName="estadoPedido">
                 <mat-option value="RECIBIDO">
@@ -55,40 +77,59 @@
                 </mat-option>
             </mat-select>
           </mat-form-field>
-          <ng-container formArrayName="productos">
-            <ng-container *ngFor="let productoForm of productos.controls; let i = index">
-                <div class="lesson-form-row" [formGroupName]="i">
-                    
-                    <mat-form-field>
-                      <mat-select placeholder="" name="producto" formControlName="idProducto">
-                        <mat-option *ngFor="let producto of listaProductos" [value]="producto.idDetalle">{{ producto.nombre }}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  <br />
-
-                  <mat-form-field appearance="fill" class="ancho">
-                    <mat-label>Cantidad</mat-label>
-                    <input matInput type="number" autocomplete="off" formControlName="cantidad" />
-                  </mat-form-field>
-
-                    <mat-icon class="delete-btn" (click)="deleteProducto(i)">
-                        delete_forever</mat-icon>
-                </div>
-            </ng-container>
-        </ng-container>
-          <button mat-mini-fab (click)="addProducto()">
-            <mat-icon class="add-course-btn">add</mat-icon>
-          </button>
-        <br />
-        <br /><br />
-        <button class="button ancho button" mat-raised-button color="primary" (click)="confirmar()" type="submit">
-          Guardar
-        </button>
-        <div *ngIf="ocultar">
-          <div class="alert alert-sucess" role="alert">
-              ¡Se ha enviado la cotización correctamente!
+          
+          <h1 class="ancho">Productos</h1>
+          <div class="productos ancho">
+            <table class="ancho">
+              <ng-container formArrayName="detalleProductos" display="flex" appearance="fill" class="ancho">
+                <ng-container *ngFor="let productoForm of productos.controls; let i = index">
+                    <div class="lesson-form-row" [formGroupName]="i">
+                        
+                        
+                      <br />
+    
+                      
+    
+                       
+                   
+              <tr>
+               <td>
+                 <mat-form-field>
+                <mat-select placeholder="" name="producto" formControlName="idProducto">
+                  <mat-option *ngFor="let producto of listaProductos" [value]="producto.idProducto">{{ producto.nombre }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+               <td>
+                <mat-form-field >
+                  <mat-label>Cantidad</mat-label>
+                  <input matInput type="number" autocomplete="off" formControlName="cantidad" />
+                </mat-form-field>
+               </td>
+               <td>
+                <mat-icon class="delete-btn" (click)="deleteProducto(i)">delete</mat-icon>
+               </td>
+              </tr>
+                  </div>
+                </ng-container>
+              </ng-container>
+             </table>
+            
+            <button mat-mini-fab (click)="addProducto()">
+              <mat-icon class="add-course-btn">add</mat-icon>
+            </button>
+          <br />
+          <br /><br />
+          
           </div>
-      </div>
+          <button class="button ancho button" mat-raised-button color="primary" (click)="confirmar()" type="submit">
+            Guardar
+          </button>
+          <div *ngIf="ocultar">
+            <div class="alert alert-sucess" role="alert">
+                ¡Se ha enviado la cotización correctamente!
+            </div>
+        </div>
       </form>
     </div>
   </div>
