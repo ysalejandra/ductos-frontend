@@ -18,7 +18,7 @@ export class ListarObraComponent implements OnInit {
 
   listObra: Obra[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['idObra', 'nombreObra', 'direccion', 'ciudad','acciones'];
+  displayedColumns: string[] = ['idObra', 'nombre', 'direccion', 'ciudad','acciones'];
 
   obrasCargadas:boolean= false;
   obras: Obra[] = [];

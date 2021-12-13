@@ -38,17 +38,10 @@
         <br />
 
         <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Cliente</mat-label>
-          <mat-select placeholder="" name="cliente" formControlName="cliente">
-            <mat-option *ngFor="let cliente of listaClientes" [value]="cliente">{{ cliente.nombre + ' ' + cliente.apellidoPaterno}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="ancho">
           <mat-label>Obra</mat-label>
           <mat-select placeholder="" name="obra" formControlName="obra">
             <mat-option [value]="null">Sin obra</mat-option>
-            <mat-option *ngFor="let obra of listaObras" [value]="obra">{{ obra.nombreObra }}</mat-option>
+            <mat-option *ngFor="let obra of listaObras" [value]="obra">{{ obra.nombre }}</mat-option>
           </mat-select>
         </mat-form-field>
 

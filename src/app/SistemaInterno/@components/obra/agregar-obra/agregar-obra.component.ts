@@ -16,7 +16,7 @@ export class AgregarObraComponent implements OnInit {
   
   constructor(private fb: FormBuilder, public obraService: ObraService, private router: Router) { 
     this.obraForm = this.fb.group({
-      nombreObra: ["", Validators.required],
+      nombre: ["", Validators.required],
       direccion: ["", Validators.required],
       ciudad: ["", Validators.required],
     })

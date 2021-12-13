@@ -17,6 +17,7 @@ export class EditarObraComponent implements OnInit {
   
   constructor(fb: FormBuilder, public obraService: ObraService, private router : Router, private route: ActivatedRoute) { 
     this.obraForm = fb.group({
+      idObra: [0, Validators.required],
       nombre: ["", Validators.required],
       direccion: ["", Validators.required],
       ciudad: ["", Validators.required],

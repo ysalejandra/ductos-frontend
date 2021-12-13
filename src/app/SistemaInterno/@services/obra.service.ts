@@ -17,7 +17,7 @@ export class ObraService {
       return res.map( (obra: Obra) => {
         return <Obra>{ 
           idObra: obra.idObra,
-          nombreObra: obra.nombreObra,
+          nombre: obra.nombre,
           direccion: obra.direccion,
           ciudad: obra.ciudad
           }
@@ -29,7 +29,7 @@ export class ObraService {
     return this.http.get('http://localhost:8080/obras/'+ id).pipe(map( (obra: any) => {
       return <Obra>{ 
         idObra: obra.idObra,
-          nombreObra: obra.nombreObra,
+          nombre: obra.nombre,
           direccion: obra.direccion,
           ciudad: obra.ciudad
         };
