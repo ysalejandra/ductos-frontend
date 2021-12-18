@@ -22,7 +22,14 @@ export class ClienteService {
     return this.http.get('http://localhost:8080/clientes').pipe(map( (res : any) => {
       console.log(res);
       return res.map( (cliente : any) => {
-        return <Cliente>{ idCliente:cliente.idCliente, nombre: cliente.nombre, apellidoPaterno : cliente.apellidoPaterno, apellidoMaterno : cliente.apellidoMaterno, email: cliente.email, telefono: cliente.telefono}
+        return <Cliente>
+        { idCliente:cliente.idCliente, 
+          nombre: cliente.nombre,
+          apellidoPaterno : cliente.apellidoPaterno, 
+          apellidoMaterno : cliente.apellidoMaterno, 
+          email: cliente.email, 
+          telefono: cliente.telefono,
+          vigente: cliente.vigente}
       })
   }));
   }
