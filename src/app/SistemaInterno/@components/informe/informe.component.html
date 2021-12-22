@@ -11,8 +11,8 @@
                         <br>
                         <h3>Shufle Data</h3>
                         <br>
-                        <button class="btn btn-outline-primary" (click)="shuffeData()">Shuffle</button>
-
+                        <!--<button class="btn btn-outline-primary" (click)="shuffeData()">Shuffle</button>
+                        -->
                     </div>
 
                     <div class="col-7">
@@ -32,13 +32,8 @@
             </div>
         </div>
 
-
-        <button class="button" mat-raised-button color="primary" (click)="crearPdfClientes()" type="submit">
-            Crear PDF de con todos los clientes
-        </button>
-
-        <button class="button" mat-raised-button color="primary" (click)="consultarClientes()" type="submit">
-            Traer Clientes
+        <button class="button" mat-raised-button color="primary" (click)="obtenerClientesPDF()" type="submit">
+            Generar PDF
         </button>
 
     </div>

@@ -3,14 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Chart, ChartData } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-
 import { Cliente } from '../../@models/cliente.model';
 import { ClienteService } from '../../@services/cliente.service';
 
-(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
 
 @Component({
   selector: 'app-informe',
@@ -43,110 +40,64 @@ export class InformeComponent implements OnInit {
   lineChartType: 'line' = "line";
 
 
+
+
+
   constructor(public clienteService: ClienteService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   shuffeData() {
 
   }
 
-  crearPdfClientes() {
+  obtenerClientesPDF() {
+
+    //PDF
+    var header = [['Nombre', 'Correo', 'Teléfono']];
+    var tablaClientes: any[] = [];
+    var tablaElem: any[] = [];
 
     this.clienteService.getClientes().subscribe((res: Cliente[]) => {
       this.listCliente = res;
       console.log(this.listCliente);
-      console.log(this.listCliente.length);
-      var jsonCliente = [];
 
-      var externalDataRetrievedFromServer = [
-        { name: 'Bartek', age: 34 },
-        { name: 'John', age: 27 },
-        { name: 'Elizabeth', age: 30 },
-    ];
+      res.forEach( e => {
+        tablaElem.push(e.nombre+e.apellidoPaterno+e.apellidoMaterno);
+        tablaElem.push(e.email);
+        tablaElem.push(e.telefono);
 
-      for (var i = 0; i < this.listCliente.length; i++) {
-        /*jsonCliente.push(
-          {
-            'nombre': this.listCliente[i].nombre + " " + this.listCliente[i].apellidoPaterno + " " + this.listCliente[i].apellidoMaterno,
-            'correo': this.listCliente[i].email,
-            'telefono': this.listCliente[i].telefono
-          }
-        );*/
+        tablaClientes.push(tablaElem);
+        tablaElem = [];
+      });
+      this.generatePdf(header,tablaClientes);
+    });
+  }
 
-        var obClientes = [];
-        obClientes.push(this.listCliente[i].nombre);
-        obClientes.push(this.listCliente[i].apellidoPaterno);
-        obClientes.push(this.listCliente[i].apellidoMaterno);
-        obClientes.push(this.listCliente[i].email);
+  generatePdf(header: any , tableData: any) {
+    var pdf = new jsPDF();
 
-      }
+    //pdf.setFont(20%);
+    pdf.text('Ductos Ortiz Spa', 11, 8);
+    pdf.setFontSize(12);
+    pdf.setTextColor(99);
 
-      console.log(jsonCliente.length);
 
-      //var imagenBase64 = this.getBase64Image('../../../../assets/img/logo.jpg');
-
-      const pdfDefinition: any = {
-        content: [
-          {
-          
- 
-            margin: [0, 0, 0, 10],
-            layout: {
-              fillColor: function (rowIndex, node, columnIndex) {
-                return (rowIndex === 0) ? '#ebebeb' : '#f5f5f5';
-              }
-            },
-            table: obClientes
-                 
-          }]
-
-      };
-
-      const pdf = pdfMake.createPdf(pdfDefinition);
-      pdf.open();
+    (pdf as any).autoTable({
+    head: header,
+    body: tableData,
+    theme: 'plain',
+    didDrawCell: data => {
+        //console.log(data.column.index)
+    }
     })
 
+    // Open PDF document in browser's new tab
+    pdf.output('dataurlnewwindow')
 
-
-
-
-    /*
-    
-        const pdfDefinition: any = {
-          content: [
-            {
-              image: 'data:image/jpeg;base64,',
-              
-              table: {
-                widths: ['*', 200, 'auto'],
-                body: [
-                [
-                  'col 1',
-                  'col 2',
-                  'col 3'
-                ],
-                [
-                  'campo 1',
-                  'campo 2',
-                  'campo 3'
-                ],
-                [
-                  'campo 4',
-                  'campo 5',
-                  'campo 6'
-                ],
-                ]
-              }
-            }
-          ]
-    
-        };
-    
-        const pdf = pdfMake.createPdf(pdfDefinition);
-        pdf.open();*/
-  }
+    // Download PDF doc  
+    //pdf.save('table.pdf');
+}  
 
   consultarClientes() {
     this.clienteService.getClientes().subscribe((res: Cliente[]) => {
