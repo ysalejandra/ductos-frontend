@@ -8,9 +8,6 @@ import { Trabajador } from '../@models/trabajador.model';
   providedIn: 'root'
 })
 export class TrabajadorService {
-  getTrabajadorPorRut(arg0: number): any {
-    throw new Error('Method not implemented.');
-  }
 
   constructor(private http: HttpClient) { }
 
@@ -55,7 +52,8 @@ export class TrabajadorService {
           password: trabajador.password,
           telefono: trabajador.telefono,
           rol: trabajador.rol,
-          urlFoto: trabajador.urlFoto 
+          urlFoto: trabajador.urlFoto,
+          vigente: trabajador.vigente
       };
     })
     );

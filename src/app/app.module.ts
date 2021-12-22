@@ -48,6 +48,8 @@ import { ListarPedidoComponent } from './SistemaInterno/@components/pedido/lista
 import { InformeComponent } from './SistemaInterno/@components/informe/informe.component';
 import { ChartsModule } from 'ng2-charts';
 import { Chart, ChartData } from 'chart.js';
+import { SharedPublicoModule } from './SistemaPublico/@components/shared/shared-publico/shared-publico.module';
+
 
 
 @NgModule({
@@ -76,10 +78,11 @@ import { Chart, ChartData } from 'chart.js';
     CalendarioComponent,
     AgregarPedidoComponent,
     ListarPedidoComponent,
-    InformeComponent
+    InformeComponent,
   ],
   imports: [
     ChartsModule,
+    SharedPublicoModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
