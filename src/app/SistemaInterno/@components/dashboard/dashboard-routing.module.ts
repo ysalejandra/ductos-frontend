@@ -9,6 +9,8 @@ import { AgregarObraComponent } from '../obra/agregar-obra/agregar-obra.componen
 import { EditarObraComponent } from '../obra/editar-obra/editar-obra.component';
 import { ListarObraComponent } from '../obra/listar-obra/listar-obra.component';
 import { AgregarPedidoComponent } from '../pedido/agregar-pedido/agregar-pedido.component';
+import { ListarPedidoComponent } from '../pedido/listar-pedido/listar-pedido.component';
+import { VerPedidoComponent } from '../pedido/ver-pedido/ver-pedido.component';
 import { AgregarProductoComponent } from '../producto/agregar-producto/agregar-producto.component';
 import { EditarProductoComponent } from '../producto/editar-producto/editar-producto.component';
 import { ListarProductoComponent } from '../producto/listar-producto/listar-producto.component';
@@ -43,6 +45,8 @@ const routes: Routes = [
       { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent},
       { path: 'calendario', component: CalendarioComponent },
       { path: 'pedidos/agregar', component: AgregarPedidoComponent},
+      { path: 'pedidos', component: ListarPedidoComponent},
+      { path: 'pedidos/ver/:idPedido', component: VerPedidoComponent},
       { path: 'informe', component: InformeComponent}
     ]
   }

@@ -49,6 +49,7 @@ import { InformeComponent } from './SistemaInterno/@components/informe/informe.c
 import { ChartsModule } from 'ng2-charts';
 import { Chart, ChartData } from 'chart.js';
 import { SharedPublicoModule } from './SistemaPublico/@components/shared/shared-publico/shared-publico.module';
+import { VerPedidoComponent } from './SistemaInterno/@components/pedido/ver-pedido/ver-pedido.component';
 
 
 
@@ -79,6 +80,7 @@ import { SharedPublicoModule } from './SistemaPublico/@components/shared/shared-
     AgregarPedidoComponent,
     ListarPedidoComponent,
     InformeComponent,
+    VerPedidoComponent,
   ],
   imports: [
     ChartsModule,

@@ -48,6 +48,27 @@ export class PedidoService {
     );
   }
 
+  getPedidos(): Observable<Pedido[]>{
+    return this.http.get('http://localhost:8080/pedidos').pipe(map( (res : any) => {
+      console.log(res);
+      return res.map( (pedido : Pedido) => {
+        return <Pedido>{ 
+          idPedido: pedido.idPedido,
+          fechaIngreso: pedido.fechaIngreso,
+          fechaEntrega: pedido.fechaEntrega,
+          valorPedido: pedido.valorPedido,
+          codigoSeguimiento: pedido.codigoSeguimiento,
+          anotaciones: pedido.anotaciones,
+          estadoPedido: pedido.estadoPedido,
+          detalleProductos: pedido.detalleProductos
+      }
+      })
+  }));
+    
+  }
+
+
+
 
   rand_Code(chars: any, lon: any): String {
     let code = "";

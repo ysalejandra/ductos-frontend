@@ -4,11 +4,12 @@ import { ChartDataSets } from 'chart.js';
 import { Chart, ChartData } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 
-
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
 import { Cliente } from '../../@models/cliente.model';
 import { ClienteService } from '../../@services/cliente.service';
+
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -66,18 +67,25 @@ export class InformeComponent implements OnInit {
     ];
 
       for (var i = 0; i < this.listCliente.length; i++) {
-        jsonCliente.push(
+        /*jsonCliente.push(
           {
             'nombre': this.listCliente[i].nombre + " " + this.listCliente[i].apellidoPaterno + " " + this.listCliente[i].apellidoMaterno,
             'correo': this.listCliente[i].email,
             'telefono': this.listCliente[i].telefono
           }
-        );
+        );*/
+
+        var obClientes = [];
+        obClientes.push(this.listCliente[i].nombre);
+        obClientes.push(this.listCliente[i].apellidoPaterno);
+        obClientes.push(this.listCliente[i].apellidoMaterno);
+        obClientes.push(this.listCliente[i].email);
+
       }
 
       console.log(jsonCliente.length);
 
-
+      //var imagenBase64 = this.getBase64Image('../../../../assets/img/logo.jpg');
 
       const pdfDefinition: any = {
         content: [
@@ -90,12 +98,8 @@ export class InformeComponent implements OnInit {
                 return (rowIndex === 0) ? '#ebebeb' : '#f5f5f5';
               }
             },
-
-            image: 'data:image/jpeg;base64,',
-            table: this.table(externalDataRetrievedFromServer, ['name','age'])
-              
+            table: obClientes
                  
-
           }]
 
       };
@@ -150,6 +154,16 @@ export class InformeComponent implements OnInit {
       console.log(this.clientes);
     })
     return this.clientes;
+  }
+
+  getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
   }
 
   buildTableBody(data, columns) {

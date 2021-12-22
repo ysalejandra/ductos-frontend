@@ -1,0 +1,36 @@
+table {
+    width: 100%;
+    margin-top: 10px;
+    
+  }
+  
+  th, td{
+    font-size: medium;
+  }
+  
+  .pointer{
+      cursor: pointer
+  }
+  
+  .mat-form-field {
+    font-size: 16px;
+    width: 90%;
+  }
+  
+  .section, mat-form-field {
+  margin-right: 3%;
+  margin-left: 3%;
+  }
+  
+  .mat-button.mat-primary {
+  background: #cf0000;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 92%;
+  }
+  
+  .mat-toolbar.titulo{
+  justify-content: center;
+  font-size: x-large;
+  color: crimson;
+  }
