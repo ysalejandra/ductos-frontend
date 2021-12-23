@@ -1,40 +1,37 @@
+
 <div class="body">
     <div class="format">
-        <h1 class="ancho titulo">Agregar Cliente</h1>
-
-        <div class="container mt-5 pt-5">
-            <div class="col-12">
-                <div class="row">
-
-                    <div class="col-5 pl-5 mt-5">
-                        <h1>Line Chart</h1>
-                        <br>
-                        <h3>Shufle Data</h3>
-                        <br>
-                        <!--<button class="btn btn-outline-primary" (click)="shuffeData()">Shuffle</button>
-                        -->
-                    </div>
-
-                    <div class="col-7">
-
-                        <div class="chart-wrapper">
-                            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
-                                [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-                                [chartType]="lineChartType" [plugins]="lineChartPlugins">
-                            </canvas>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
+      <h1 class="ancho titulo">Generar informes</h1><br>
+      <form class="formulario">
+        <mat-form-field appearance="fill" class="ancho">
+          <mat-label>Fecha de entrega</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="fechaEntrega">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
         <button class="button" mat-raised-button color="primary" (click)="obtenerClientesPDF()" type="submit">
-            Generar PDF
-        </button>
+            Generar PDF de todos los clientes
+        </button><br><br>
+        <br />
+      </form>
 
+      <form class="formulario" [formGroup]="obraForm" (ngSubmit)="obtenerProductosDeObra()">
+        <mat-form-field appearance="fill" class="ancho">
+            <mat-label>Obra</mat-label>
+            <mat-select placeholder="" name="obra" formControlName="obra">
+              <mat-option [value]="null">Sin obra</mat-option>
+              <mat-option *ngFor="let obra of listObra" [value]="obra.idObra">{{ obra.nombre }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button class="button" mat-raised-button color="primary" type="submit">
+            Generar PDF de los productos de la obra
+        </button><br><br>
+        <br />
+      </form>
+
+      <button class="button" mat-raised-button color="primary" (click)="obtenerClientesPDF()" type="submit">
+        Generar PDF de todos los clientes
+    </button>
     </div>
-</div>
+  </div>
+

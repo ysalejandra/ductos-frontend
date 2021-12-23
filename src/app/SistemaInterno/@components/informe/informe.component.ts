@@ -8,6 +8,9 @@ import { ClienteService } from '../../@services/cliente.service';
 
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
+import { Obra } from '../../@models/obra.model';
+import { ObraService } from '../../@services/obra.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-informe',
@@ -19,6 +22,7 @@ export class InformeComponent implements OnInit {
   clientes: Cliente[] = [];
   listCliente: Cliente[] = [];
 
+  /*
   lineChartData: ChartDataSets[] = [
     { data: [12, 72, 12, 44, 89], label: "Valor1" },
     { data: [16, 54, 24, 11, 2], label: "Valor2" }
@@ -38,14 +42,36 @@ export class InformeComponent implements OnInit {
   lineChartLegend = true;
   lineChartPlugins = [];
   lineChartType: 'line' = "line";
+  */
 
 
+  listObra: Obra[];
+  obras: Obra[] = [];
+  obraForm : FormGroup;
+
+  constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService) { 
+    this.obraForm = this.fb.group({
+      obra: ["", Validators.required],
+    })
+  }
+
+  ngOnInit(): void {
+    this.getObras();
+  }
+
+  getObras() {
+    this.obraService.getObras().subscribe( (res : Obra[]) => {
+      this.obras = res;
+      this.listObra = res;
+      console.log(this.obras);
+    })
+  }
 
 
+  obtenerProductosDeObra(){
+    console.log(this.obraForm.controls['obra'].value);
+  }
 
-  constructor(public clienteService: ClienteService) { }
-
-  ngOnInit(): void {}
 
   shuffeData() {
 
