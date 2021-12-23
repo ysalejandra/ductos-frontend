@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/auth/auth.guard';
 import { CalendarioComponent } from '../calendario/calendario.component';
 import { AgregarClienteComponent } from '../Cliente/agregar-cliente/agregar-cliente.component';
 import { EditarClienteComponent } from '../Cliente/editar-cliente/editar-cliente.component';
@@ -27,27 +28,25 @@ import { InicioComponent } from './inicio/inicio.component';
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
-      { path: '', component: InicioComponent },
-      { path: 'productos', component: ListarProductoComponent },
-      { path: 'productos/agregar', component: AgregarProductoComponent },
-      { path: 'productos/editar/:idDetalle', component: EditarProductoComponent },
-      { path: 'clientes', component: ListarClientesComponent },
-      { path: 'clientes/agregar', component: AgregarClienteComponent },
-      { path: 'clientes/editar/:idCliente', component: EditarClienteComponent },
-      { path: 'trabajadores', component: ListarTrabajadorComponent },
-      { path: 'trabajadores/agregar', component: AgregarTrabajadorComponent },
-      { path: 'trabajadores/editar/:rut', component: EditarTrabajadorComponent },
-      { path: 'obras', component: ListarObraComponent },
-      { path: 'obras/agregar', component: AgregarObraComponent },
-      { path: 'obras/editar/:idObra', component: EditarObraComponent },
-      { path: 'visitas', component: ListarVisitaComponent },
-      { path: 'visitas/agregar', component: AgregarVisitaComponent},
-      { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent},
-      { path: 'calendario', component: CalendarioComponent },
-      { path: 'pedidos/agregar', component: AgregarPedidoComponent},
-      { path: 'pedidos', component: ListarPedidoComponent},
-      { path: 'pedidos/ver/:idPedido', component: VerPedidoComponent},
-      { path: 'informe', component: InformeComponent}
+      { path: '', component: InicioComponent, canActivate: [AuthGuard] },
+      { path: 'productos', component: ListarProductoComponent, canActivate: [AuthGuard] },
+      { path: 'productos/agregar', component: AgregarProductoComponent , canActivate: [AuthGuard] },
+      { path: 'productos/editar/:idDetalle', component: EditarProductoComponent , canActivate: [AuthGuard]},
+      { path: 'clientes', component: ListarClientesComponent, canActivate: [AuthGuard] },
+      { path: 'clientes/agregar', component: AgregarClienteComponent, canActivate: [AuthGuard] },
+      { path: 'clientes/editar/:idCliente', component: EditarClienteComponent, canActivate: [AuthGuard] },
+      { path: 'trabajadores', component: ListarTrabajadorComponent , canActivate: [AuthGuard]},
+      { path: 'trabajadores/agregar', component: AgregarTrabajadorComponent , canActivate: [AuthGuard]},
+      { path: 'trabajadores/editar/:rut', component: EditarTrabajadorComponent , canActivate: [AuthGuard]},
+      { path: 'obras', component: ListarObraComponent , canActivate: [AuthGuard]},
+      { path: 'obras/agregar', component: AgregarObraComponent, canActivate: [AuthGuard] },
+      { path: 'obras/editar/:idObra', component: EditarObraComponent, canActivate: [AuthGuard] },
+      { path: 'visitas', component: ListarVisitaComponent, canActivate: [AuthGuard] },
+      { path: 'visitas/agregar', component: AgregarVisitaComponent, canActivate: [AuthGuard]},
+      { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent, canActivate: [AuthGuard]},
+      { path: 'calendario', component: CalendarioComponent , canActivate: [AuthGuard]},
+      { path: 'pedidos/agregar', component: AgregarPedidoComponent, canActivate: [AuthGuard]},
+      { path: 'informe', component: InformeComponent, canActivate: [AuthGuard]}
     ]
   }
 ];

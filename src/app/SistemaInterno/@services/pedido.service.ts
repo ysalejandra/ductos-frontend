@@ -8,6 +8,7 @@ import { Pedido } from '../@models/pedido.model';
   providedIn: 'root'
 })
 export class PedidoService {
+ 
   constructor(private http : HttpClient) { }
 
   addPedido(pedido: Pedido){
