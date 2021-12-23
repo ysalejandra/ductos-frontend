@@ -11,6 +11,8 @@ import 'jspdf-autotable'
 import { Obra } from '../../@models/obra.model';
 import { ObraService } from '../../@services/obra.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductoService } from '../../@services/producto.service';
+import { ProductoInforme } from '../../@models/productoInforme.model';
 
 @Component({
   selector: 'app-informe',
@@ -21,6 +23,7 @@ export class InformeComponent implements OnInit {
 
   clientes: Cliente[] = [];
   listCliente: Cliente[] = [];
+  listProductosInforme: ProductoInforme[] = [];
 
   /*
   lineChartData: ChartDataSets[] = [
@@ -47,9 +50,9 @@ export class InformeComponent implements OnInit {
 
   listObra: Obra[];
   obras: Obra[] = [];
-  obraForm : FormGroup;
+  obraForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService) { 
+  constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService, public productoService: ProductoService) {
     this.obraForm = this.fb.group({
       obra: ["", Validators.required],
     })
@@ -60,7 +63,7 @@ export class InformeComponent implements OnInit {
   }
 
   getObras() {
-    this.obraService.getObras().subscribe( (res : Obra[]) => {
+    this.obraService.getObras().subscribe((res: Obra[]) => {
       this.obras = res;
       this.listObra = res;
       console.log(this.obras);
@@ -68,7 +71,7 @@ export class InformeComponent implements OnInit {
   }
 
 
-  obtenerProductosDeObra(){
+  obtenerProductosDeObra() {
     console.log(this.obraForm.controls['obra'].value);
   }
 
@@ -78,7 +81,6 @@ export class InformeComponent implements OnInit {
   }
 
   obtenerClientesPDF() {
-
     //PDF
     var header = [['Nombre', 'Correo', 'Teléfono']];
     var tablaClientes: any[] = [];
@@ -88,19 +90,19 @@ export class InformeComponent implements OnInit {
       this.listCliente = res;
       console.log(this.listCliente);
 
-      res.forEach( e => {
-        tablaElem.push(e.nombre+e.apellidoPaterno+e.apellidoMaterno);
+      res.forEach(e => {
+        tablaElem.push(e.nombre + e.apellidoPaterno + e.apellidoMaterno);
         tablaElem.push(e.email);
         tablaElem.push(e.telefono);
 
         tablaClientes.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header,tablaClientes);
+      this.generatePdf(header, tablaClientes);
     });
   }
 
-  generatePdf(header: any , tableData: any) {
+  generatePdf(header: any, tableData: any) {
     var pdf = new jsPDF();
 
     //pdf.setFont(20%);
@@ -110,12 +112,12 @@ export class InformeComponent implements OnInit {
 
 
     (pdf as any).autoTable({
-    head: header,
-    body: tableData,
-    theme: 'plain',
-    didDrawCell: data => {
+      head: header,
+      body: tableData,
+      theme: 'plain',
+      didDrawCell: data => {
         //console.log(data.column.index)
-    }
+      }
     })
 
     // Open PDF document in browser's new tab
@@ -123,6 +125,31 @@ export class InformeComponent implements OnInit {
 
     // Download PDF doc  
     //pdf.save('table.pdf');
-}  
+  }
+
+  obtenerProductosMasCompradosPDF() {
+    //PDF
+    var header = [['Nombre', 'Precio', 'Cantidad','TOTAL']];
+    var tablaProductos: any[] = [];
+    var tablaElem: any[] = [];
+
+    this.productoService.getDatosInformes().subscribe((res: ProductoInforme[]) => {
+
+      this.listProductosInforme = res;
+      console.log(this.listProductosInforme);
+
+      res.forEach(e => {
+        tablaElem.push(e.nombre);
+        tablaElem.push(e.precio);
+        tablaElem.push(e.cantidad);
+        tablaElem.push(e.precio*e.cantidad);
+
+        tablaProductos.push(tablaElem);
+        tablaElem = [];
+      });
+      this.generatePdf(header, tablaProductos);
+    });
+
+  }
 
 }
