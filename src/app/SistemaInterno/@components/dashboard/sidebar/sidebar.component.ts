@@ -9,7 +9,7 @@ import { MenuService } from 'src/app/services/menu.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+  nombre: string = "";
   menu: Menu[] = [];
   cargado : boolean = false;
 
@@ -17,6 +17,11 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarMenu();
+    if (localStorage.getItem('trabajador') !== null) {
+      var trabajador = JSON.parse(localStorage.getItem('trabajador') || '');
+      this.nombre = trabajador.nombre + ' ' + trabajador.apellidoPaterno + ' ' + trabajador.apellidoMaterno;
+    }
+    
   }
 
   cargarMenu() {

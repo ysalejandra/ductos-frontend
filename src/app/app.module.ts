@@ -48,8 +48,11 @@ import { ListarPedidoComponent } from './SistemaInterno/@components/pedido/lista
 import { InformeComponent } from './SistemaInterno/@components/informe/informe.component';
 import { ChartsModule } from 'ng2-charts';
 import { Chart, ChartData } from 'chart.js';
+import { JwtModule } from '@auth0/angular-jwt';
 
-
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,6 +100,14 @@ import { Chart, ChartData } from 'chart.js';
     NgxPaginationModule,
     SharedModule,
     BrowserAnimationsModule,
+    JwtModule.forRoot({
+      config: {
+          tokenGetter: tokenGetter,
+          allowedDomains: ['localhost:8080', 'example.com'],
+          disallowedRoutes: ["http://example.com/examplebadroute/"],
+          authScheme: "" // Default value
+      }
+    }),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,

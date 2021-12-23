@@ -1,7 +1,9 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/auth/login.service';
 import { Trabajador } from '../../@models/trabajador.model';
 import { TrabajadorService } from '../../@services/trabajador.service';
 
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, public trabajadorService: TrabajadorService) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private loginService: LoginService, private router: Router, public trabajadorService: TrabajadorService) {
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required]
@@ -30,18 +32,11 @@ export class LoginComponent implements OnInit {
     const usuario = this.form.value.usuario;
     const password = this.form.value.password;
 
-    this.trabajadorService.getTrabajador(usuario).subscribe((res: any) => {
-      console.log(res);
-
-      if (res.rut == usuario && res.password == password) {
-        //Redireccionamos
-        this.fakeloading();
-
-      } else {
-        //mostramos un mensaje de error
-        this.error();
-        this.form.reset;
-      }
+    this.loginService.login(usuario, password).subscribe((res: any) => {
+      this.fakeloading();
+    }, (err : HttpErrorResponse) => {
+      this.error();
+      this.form.reset;
     })
   }
 
