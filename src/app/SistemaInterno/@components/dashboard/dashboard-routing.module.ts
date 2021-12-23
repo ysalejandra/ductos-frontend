@@ -45,6 +45,7 @@ const routes: Routes = [
       { path: 'visitas/agregar', component: AgregarVisitaComponent, canActivate: [AuthGuard]},
       { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent, canActivate: [AuthGuard]},
       { path: 'calendario', component: CalendarioComponent , canActivate: [AuthGuard]},
+      { path: 'pedidos', component: ListarPedidoComponent, canActivate: [AuthGuard]},
       { path: 'pedidos/agregar', component: AgregarPedidoComponent, canActivate: [AuthGuard]},
       { path: 'informe', component: InformeComponent, canActivate: [AuthGuard]}
     ]
