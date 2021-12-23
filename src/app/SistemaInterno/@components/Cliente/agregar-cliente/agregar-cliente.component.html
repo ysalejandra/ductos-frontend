@@ -4,29 +4,29 @@
         <form [formGroup]="clienteForm" (ngSubmit)="saveData()">
             <mat-form-field appearance="fill" class="ancho">
                 <mat-label>Nombre</mat-label>
-                <input matInput class="form-control" #nombre type="text" autocomplete="off" formControlName="nombre" />
+                <input matInput #nombre type="text" autocomplete="off" formControlName="nombre" />
             </mat-form-field>
             <br />
             <mat-form-field appearance="fill" class="ancho">
                 <mat-label>Apellido Paterno</mat-label>
-                <input matInput class="form-control" #apellidoPaterno formControlName="apellidoPaterno" type="text"
+                <input matInput  #apellidoPaterno formControlName="apellidoPaterno" type="text"
                     autocomplete="off" />
             </mat-form-field>
             <br />
             <mat-form-field appearance="fill" class="ancho">
                 <mat-label>Apellido Materno</mat-label>
-                <input matInput class="form-control" #apellidoMaterno formControlName="apellidoMaterno" type="text"
+                <input matInput  #apellidoMaterno formControlName="apellidoMaterno" type="text"
                     autocomplete="off" />
             </mat-form-field>
             <br />
             <mat-form-field appearance="fill" class="ancho">
                 <mat-label>Email</mat-label>
-                <input matInput class="form-control" #email formControlName="email" type="email" autocomplete="off" />
+                <input matInput  #email formControlName="email" type="email" autocomplete="off" />
             </mat-form-field>
             <br />
             <mat-form-field appearance="fill" class="ancho">
                 <mat-label>Teléfono</mat-label>
-                <input matInput class="form-control" #telefono formControlName="telefono" type="text" autocomplete="off" />
+                <input matInput #telefono formControlName="telefono" type="text" autocomplete="off" />
             </mat-form-field>
             <br />
             <button class="ancho button" mat-raised-button color="primary" type="submit">

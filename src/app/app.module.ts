@@ -50,6 +50,10 @@ import { ChartsModule } from 'ng2-charts';
 import { Chart, ChartData } from 'chart.js';
 import { JwtModule } from '@auth0/angular-jwt';
 
+import { SharedPublicoModule } from './SistemaPublico/@components/shared/shared-publico/shared-publico.module';
+import { VerPedidoComponent } from './SistemaInterno/@components/pedido/ver-pedido/ver-pedido.component';
+
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -79,10 +83,12 @@ export function tokenGetter() {
     CalendarioComponent,
     AgregarPedidoComponent,
     ListarPedidoComponent,
-    InformeComponent
+    InformeComponent,
+    VerPedidoComponent,
   ],
   imports: [
     ChartsModule,
+    SharedPublicoModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

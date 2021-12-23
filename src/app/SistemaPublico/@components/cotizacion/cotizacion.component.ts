@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
+import { CotizacionInterface } from '../../@models/datosCotizacion.model';
 import { EnviarEmailService } from '../../@services/enviar-email.service';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 
@@ -13,38 +14,38 @@ import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-con
 })
 export class CotizacionComponent implements OnInit {
 
-  clienteForm : FormGroup;
-  cliente : Cliente;
+  cotizacionForm : FormGroup;
+  //cotizacion : CotizacionInterface;
   ocultar: boolean = false;
   
-  constructor(fb: FormBuilder, public clienteService: ClienteService, public dialogo: MatDialog, public enviarEmail: EnviarEmailService) { 
-    this.clienteForm = fb.group({
+  constructor(fb: FormBuilder, public dialogo: MatDialog, public enviarEmail: EnviarEmailService) { 
+    this.cotizacionForm = fb.group({
       nombre: ["", Validators.required],
       apellidoPaterno: ["", Validators.required],
       apellidoMaterno: ["", Validators.required],
       email: ["", Validators.required],
-      telefono: ["", Validators.required]
+      telefono: ["", Validators.required],
+      mensaje: ["", Validators.required]
     });
-    this.cliente = new Cliente(0, "", "", "", "", "",true);
   }
 
   ngOnInit(): void {
   }
 
-  saveData() {
-    this.cliente = Object.assign(this.cliente, this.clienteForm.value);
-    this.clienteService.addCliente(this.cliente).subscribe( (res:any) => {
+  enviarDatos() {
+    
+    this.enviarEmail.enviarCorreoAlCliente(this.cotizacionForm.value).subscribe( (res:any) => {
       console.log(res);
-      this.enviarEmail.enviarCorreo(this.cliente).subscribe( (res:any) => {
-        console.log(res);
-        
-      });
+    });
+
+    this.enviarEmail.enviarCorreoALaEmpresa(this.cotizacionForm.value).subscribe( (res:any) => {
+      console.log(res);
     });
     
   }
 
   mostrarDialogo(): void {
-    if (this.clienteForm.invalid) {
+    if (this.cotizacionForm.invalid) {
       console.log("Invalid");
       return;
     }else{
@@ -55,7 +56,7 @@ export class CotizacionComponent implements OnInit {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.saveData();
+          this.enviarDatos();
           this.ocultar = true;
 
         } else {
