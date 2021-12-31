@@ -49,7 +49,7 @@ export class AgregarPedidoComponent implements OnInit {
       detalleProductos: this.fb.array([])
     })
 
-    this.pedido = new Pedido(0,new Date(),new Date(),0,'', '', '', []);
+    this.pedido = new Pedido(0,new Date(),new Date(),0,'', '', '', [], {} as Trabajador, {} as Cliente, {} as Obra);
   }
 
   ngOnInit(): void {

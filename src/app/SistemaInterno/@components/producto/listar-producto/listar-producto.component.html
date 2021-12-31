@@ -53,7 +53,7 @@
               <th mat-header-cell *matHeaderCellDef> </th>
               <td mat-cell *matCellDef="let element" style="text-align: right;">
                 <a class="pointer" style="color: seagreen;" matTooltip="Editar producto"
-                  [routerLink]="['editar', element.idDetalle]">
+                  [routerLink]="['editar', element.idProducto]">
                   <i class="fas fa-edit" style="font-size:28px"></i>
                 </a>
                 <a class="pointer" style="color:#ED3A3A" (click)="eliminarProducto(element.idProducto)"

@@ -24,6 +24,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatNativeDateModule, MatOption, MatOptionModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatCardModule} from '@angular/material/card'; 
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 @NgModule({
   declarations: [],
@@ -50,6 +52,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
+    MatCardModule,
+    MatExpansionModule
   ],
   exports: [
     MatFormFieldModule,
@@ -73,7 +77,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatOptionModule,
     MatProgressBarModule,
     MatDatepickerModule,
-    MatNativeDateModule],
+    MatNativeDateModule,
+    MatCardModule,
+    MatExpansionModule],
     providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
    ],

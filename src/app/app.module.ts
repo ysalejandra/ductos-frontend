@@ -52,6 +52,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { SharedPublicoModule } from './SistemaPublico/@components/shared/shared-publico/shared-publico.module';
 import { VerPedidoComponent } from './SistemaInterno/@components/pedido/ver-pedido/ver-pedido.component';
+import { EditarPedidoComponent } from './SistemaInterno/@components/pedido/editar-pedido/editar-pedido.component';
 
 
 export function tokenGetter() {
@@ -85,6 +86,7 @@ export function tokenGetter() {
     ListarPedidoComponent,
     InformeComponent,
     VerPedidoComponent,
+    EditarPedidoComponent,
   ],
   imports: [
     ChartsModule,

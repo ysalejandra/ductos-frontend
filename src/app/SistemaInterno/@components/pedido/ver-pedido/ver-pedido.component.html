@@ -1,0 +1,119 @@
+<div *ngIf="isDataAvailable" class="body">
+  <div class="format">
+    <mat-card class="ancho">
+    <mat-card-title class="titulo">Detalle pedido</mat-card-title>
+    <div class="formulario">
+      <!--<div appearance="fill" class="ancho">
+        <mat-label>Cliente</mat-label>
+        {{ pedido.cliente.nombre + ' ' +
+            pedido.cliente.apellidoPaterno}}
+        </div>
+        -->
+
+        <div>
+            <mat-label><h2>Código</h2></mat-label><h1 class="badge badge-dark">{{pedido.codigoSeguimiento}}</h1>
+        </div>
+
+      <div>
+        <h2><mat-label>Fecha de ingreso:</mat-label>
+        {{pedido.fechaIngreso | date: 'dd/MM/yyyy'}}
+        </h2>
+      </div>
+
+      <div>
+        <h2>
+        <mat-label>Fecha de entrega:</mat-label>
+        {{pedido.fechaEntrega | date: 'dd/MM/yyyy'}}
+        </h2>
+      </div>
+      <div>
+        <p><mat-label><h2>Estado del pedido </h2></mat-label></p>
+        <span *ngIf="pedido.estadoPedido === 'RECIBIDO'" class="badge badge-primary"><h2>Recibido</h2></span>
+        <h1><span *ngIf="pedido.estadoPedido === 'ENPROCESO'" class="badge badge-info">En proceso</span></h1>
+        <span *ngIf="pedido.estadoPedido === 'FINALIZADO'" class="badge badge-success"><h3>Finalizado</h3></span>
+        <span *ngIf="pedido.estadoPedido === 'COTIZACION'" class="badge badge-warning"><h2>Cotización</h2></span>      </div>
+      <div>
+        <mat-label><h2>Anotaciones </h2></mat-label>  {{pedido.anotaciones}}
+      </div>
+      <br>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Cliente
+            </mat-panel-title>
+            <mat-panel-description>
+              {{pedido.cliente.nombre + ' ' + pedido.cliente.apellidoPaterno + ' ' + pedido.cliente.apellidoMaterno}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Teléfono: {{pedido.cliente.telefono}}</p>
+          <p>Email: {{pedido.cliente.email}}</p>
+
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br>
+
+      <mat-accordion *ngIf="pedido.obra !== null">
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Obra
+            </mat-panel-title>
+            <mat-panel-description>
+              {{pedido.obra.nombre}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Dirección: {{pedido.obra.direccion}}</p>
+
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br>
+
+      <br>
+      <mat-label><h2>Productos</h2></mat-label> 
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+          <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="producto">
+            <th mat-header-cell *matHeaderCellDef> Producto </th>
+            <td mat-cell *matCellDef="let element"> {{element.producto}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef> Categoria</th>
+            <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef> Valor </th>
+            <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+          </ng-container>
+
+
+          <!-- Symbol Column -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      
+
+
+      
+    </div>
+    </mat-card>
+  </div>
+</div>
