@@ -48,4 +48,8 @@ export class ClienteService {
   borrarCliente(id: number) {
     return this.http.delete('http://localhost:8080/clientes/'+id);
   }
+
+  agregarPedidoCotizacion(cliente: Cliente){
+    return this.http.post('http://localhost:8080/clientes/agregarCotizacion', cliente);
+  }
 }

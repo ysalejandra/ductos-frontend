@@ -5,6 +5,7 @@ import { CalendarioComponent } from '../calendario/calendario.component';
 import { AgregarClienteComponent } from '../Cliente/agregar-cliente/agregar-cliente.component';
 import { EditarClienteComponent } from '../Cliente/editar-cliente/editar-cliente.component';
 import { ListarClientesComponent } from '../Cliente/listar-clientes/listar-clientes.component';
+import { VerClienteComponent } from '../Cliente/ver-cliente/ver-cliente.component';
 import { InformeComponent } from '../informe/informe.component';
 import { AgregarObraComponent } from '../obra/agregar-obra/agregar-obra.component';
 import { EditarObraComponent } from '../obra/editar-obra/editar-obra.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'clientes', component: ListarClientesComponent, canActivate: [AuthGuard] },
       { path: 'clientes/agregar', component: AgregarClienteComponent, canActivate: [AuthGuard] },
       { path: 'clientes/editar/:idCliente', component: EditarClienteComponent, canActivate: [AuthGuard] },
+      { path: 'clientes/ver/:idCliente', component: VerClienteComponent, canActivate: [AuthGuard] },
       { path: 'trabajadores', component: ListarTrabajadorComponent , canActivate: [AuthGuard]},
       { path: 'trabajadores/agregar', component: AgregarTrabajadorComponent , canActivate: [AuthGuard]},
       { path: 'trabajadores/editar/:rut', component: EditarTrabajadorComponent , canActivate: [AuthGuard]},

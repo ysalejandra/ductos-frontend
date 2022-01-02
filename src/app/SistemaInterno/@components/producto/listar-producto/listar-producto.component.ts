@@ -6,6 +6,8 @@ import { Producto } from 'src/app/SistemaInterno/@models/producto.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 import { ProductoService } from 'src/app/SistemaInterno/@services/producto.service';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class ListarProductoComponent implements OnInit {
 
   listProducto: Producto[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['nombre', 'categoria', 'cantidad', 'valor', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'categoria', 'valor', 'descripcion', 'acciones'];
 
   productosCargados: boolean = false;
   productos: Producto[] = [];
@@ -29,7 +31,7 @@ export class ListarProductoComponent implements OnInit {
   dataSource: any;
 
   constructor(public productoService: ProductoService, public clienteService: ClienteService,
-    private router: Router) { }
+    private router: Router, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.getProductos();
@@ -62,6 +64,23 @@ export class ListarProductoComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  confirmar(id: number) {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Estas seguro que quieres eliminar el producto?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarProducto(id);
+          this.router.navigate(["/dashboard/productos"]);
+        } else {
+          this.router.navigate(["/dashboard/productos"]);
+        }
+      });
   }
 
 

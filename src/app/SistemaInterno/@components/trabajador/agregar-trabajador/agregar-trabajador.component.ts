@@ -51,19 +51,20 @@ export class AgregarTrabajadorComponent implements OnInit {
   confirmar() {
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Estas seguro que quieres enviar la cotización?`
+        data: `¿Estas seguro que quieres agregar al trabajador?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.guardar();
           this.ocultar = true;
-
+          this.router.navigate(["/dashboard/trabajadores"]);
         } else {
-          alert("No se ha enviado la cotización");
+          this.router.navigate(["/dashboard/trabajadores"]);
         }
       });
   }
+
   getErrorMessage() {
     if (this.trabajador.email.hasError('required')) {
       return 'You must enter a value';

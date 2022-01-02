@@ -5,7 +5,7 @@
   <div class="body">
     <div class="format">
         <h1 class="ancho">Editar Producto</h1>
-      <form [formGroup]="productoForm" (ngSubmit)="saveData()">
+      <form [formGroup]="productoForm" (ngSubmit)="confirmar()">
         <input type="hidden" formControlName="idDetalle">
         <mat-form-field appearance="fill" class="ancho">
           <mat-label>Nombre</mat-label>

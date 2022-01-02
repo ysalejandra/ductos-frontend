@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Obra } from 'src/app/SistemaInterno/@models/obra.model';
 import { ObraService } from 'src/app/SistemaInterno/@services/obra.service';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-listar-obra',
@@ -26,7 +28,7 @@ export class ListarObraComponent implements OnInit {
 
   dataSource: any;
 
-  constructor(public obraService: ObraService, private router: Router ) { }
+  constructor(public obraService: ObraService, private router: Router, public dialogo: MatDialog ) { }
 
   ngOnInit(): void {
     this.getObras();
@@ -59,6 +61,23 @@ export class ListarObraComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  confirmar(id: number) {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Estas seguro que quieres eliminar la obra?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarObra(id);
+          this.router.navigate(["/dashboard/clientes"]);
+        } else {
+          this.router.navigate(["/dashboard/obras"]);
+        }
+      });
   }
 
 

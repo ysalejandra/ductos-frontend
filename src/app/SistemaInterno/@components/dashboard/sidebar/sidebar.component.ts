@@ -32,6 +32,7 @@ export class SidebarComponent implements OnInit {
   }
 
   salir(){
+    localStorage.clear();
     this.router.navigate(["/entrar"]);
   }
 

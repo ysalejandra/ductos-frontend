@@ -5,7 +5,7 @@
 <div class="body">
   <div class="format">
       <h1 class="ancho">Editar Trabajador</h1>
-    <form [formGroup]="trabajadorForm" (ngSubmit)="saveData()">
+    <form [formGroup]="trabajadorForm" (ngSubmit)="confirmar()">
       <input type="hidden" formControlName="rut">
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Nombre</mat-label>

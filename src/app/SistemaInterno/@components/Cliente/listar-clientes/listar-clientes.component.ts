@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-listar-clientes',
@@ -27,7 +29,7 @@ export class ListarClientesComponent implements OnInit {
 
   dataSource : any;
 
-  constructor(public clienteService: ClienteService, private router: Router ) { }
+  constructor(public clienteService: ClienteService, private router: Router, public dialogo: MatDialog ) { }
 
   ngOnInit(): void {
     this.getClientes();
@@ -60,6 +62,22 @@ export class ListarClientesComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  confirmar(id: number) {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Estas seguro que quieres eliminar al cliente?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarCliente(id);
+          this.router.navigate(["/dashboard/clientes"]);
+        } else {
+          this.router.navigate(["/dashboard/clientes"]);
+        }
+      });
   }
 
 }

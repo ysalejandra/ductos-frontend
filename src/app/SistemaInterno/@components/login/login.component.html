@@ -3,7 +3,9 @@
     <div class="login">
         <mat-spinner *ngIf="loading"  class="spinner" diameter="50"></mat-spinner>
         <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="ingresar()"> 
+            <a href="home">
             <img src="../../assets/img/logo.jpg" style="width: 50%;" > <!--Ruta relativa-->
+            </a>
             <h1>Login</h1>
             <mat-form-field class ="ancho" appearance="fill">
                 <mat-label>Usuario</mat-label>
@@ -15,6 +17,8 @@
             </mat-form-field>
             <br>
             <button type= "submit" class ="ancho button"  mat-raised-button color="primary" [disabled]="form.invalid">Ingresar</button>
+            <br><br>
+            <a href="recuperarPassword" style="font-size:16px; color: black;">Olvide mi contraseña</a>
         </form>
     </div>
 </div>

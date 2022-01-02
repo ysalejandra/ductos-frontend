@@ -47,16 +47,17 @@ export class AgregarProductoComponent implements OnInit {
   confirmar(){
       this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Estas seguro que quieres enviar la cotización?`
+        data: `¿Estas seguro que quieres guardar el producto?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.guardar();
           this.ocultar = true;
+          this.router.navigate(["/dashboard/productos"]);
 
         } else {
-          alert("No se ha enviado la cotización");
+          this.router.navigate(["/dashboard/productos"]);
         }
       });
   }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Producto } from 'src/app/SistemaInterno/@models/producto.model';
 import { ProductoService } from 'src/app/SistemaInterno/@services/producto.service';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-editar-producto',
@@ -16,7 +18,7 @@ export class EditarProductoComponent implements OnInit {
   productoForm : FormGroup;
   producto: Producto | undefined;
   
-  constructor(fb: FormBuilder, public productoService: ProductoService, private router : Router, private route: ActivatedRoute) { 
+  constructor(fb: FormBuilder, public productoService: ProductoService, private router : Router, private route: ActivatedRoute, public dialogo: MatDialog) { 
     this.productoForm = fb.group({
       idDetalle: [0, Validators.required],
       nombre: ["", Validators.required],
@@ -35,7 +37,7 @@ export class EditarProductoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveData() {
+  guardar() {
     if (this.productoForm.invalid) {
       console.log("Invalid");
       return;
@@ -44,4 +46,22 @@ export class EditarProductoComponent implements OnInit {
     this.productoService.editProducto(this.productoForm.value).subscribe(res => console.log(res));
     this.router.navigate(["/dashboard/productos"]);
   }
+
+  confirmar(){
+    this.dialogo
+    .open(DialogoConfirmacionComponent, {
+      data: `¿Estas seguro que quieres editar el producto?`
+    })
+    .afterClosed()
+    .subscribe((confirmado: Boolean) => {
+      if (confirmado) {
+        this.guardar();
+        this.router.navigate(["/dashboard/productos"]);
+      } else {
+        this.router.navigate(["/dashboard/productos"]);
+      }
+    });
+}
+
+  
 }

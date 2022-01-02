@@ -48,10 +48,9 @@ export class AgregarClienteComponent implements OnInit {
 
   }
 
-  mostrarDialogo(): void {
+  confirmar(): void {
     if (this.clienteForm.invalid) {
       console.log("Invalid");
-      alert("¡Los campos están vacios!");
       return;
     }else{
       this.dialogo
@@ -62,9 +61,8 @@ export class AgregarClienteComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.saveData();
-          alert("Se ha agregado el cliente, con éxito.");
         } else {
-          alert("No se ha agregado el cliente");
+          this.router.navigate(["/dashboard/clientes"]);
         }
       });
     }

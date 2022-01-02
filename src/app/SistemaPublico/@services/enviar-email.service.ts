@@ -17,7 +17,7 @@ export class EnviarEmailService {
     console.log(cotizacion);
     
     this.emailBody = new EmailBody(cotizacion.email
-                          ,"¡Hola! "+ cotizacion.nombre +" Muchas gracias por contactarte con nosotros <br> Nuestros trabajadores se comunicaran contigo a la brevedad."
+                          ,"¡Hola! "+ cotizacion.nombre +" Muchas gracias por contactarte con nosotros <br> Nuestros trabajadores se comunicaran contigo en no más de una semana."
                           ,"Ductos Ortiz - Cotización");
 
     return this.http.post('http://localhost:8080/email/send', this.emailBody);
@@ -37,5 +37,9 @@ export class EnviarEmailService {
 
     return this.http.post('http://localhost:8080/email/send', this.emailBody);
   }
+
+  
+
+
 
 }

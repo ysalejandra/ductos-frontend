@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Trabajador } from 'src/app/SistemaInterno/@models/trabajador.model';
 import { TrabajadorService } from 'src/app/SistemaInterno/@services/trabajador.service';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-editar-trabajador',
@@ -15,7 +17,7 @@ export class EditarTrabajadorComponent implements OnInit {
   trabajadorForm : FormGroup;
   trabajador: Trabajador | undefined;
 
-  constructor(fb: FormBuilder, public trabajadorService: TrabajadorService, private router : Router, private route: ActivatedRoute) { 
+  constructor(fb: FormBuilder, public trabajadorService: TrabajadorService, private router : Router, private route: ActivatedRoute, public dialogo: MatDialog) { 
     
     this.trabajadorForm = fb.group({
       rut: ["", Validators.required],
@@ -37,7 +39,7 @@ export class EditarTrabajadorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveData() {
+  guardar() {
     if (this.trabajadorForm.invalid) {
       console.log("Invalid");
       return;
@@ -47,6 +49,21 @@ export class EditarTrabajadorComponent implements OnInit {
     this.router.navigate(["/dashboard/trabajadores"]);
   }
 
+  confirmar() {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Estas seguro que quieres editar al trabajador?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.guardar();
+          this.router.navigate(["/dashboard/trabajadores"]);
+        } else {
+          this.router.navigate(["/dashboard/trabajadores"]);
+        }
+      });
+  }
 
 
 }

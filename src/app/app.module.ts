@@ -52,6 +52,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { SharedPublicoModule } from './SistemaPublico/@components/shared/shared-publico/shared-publico.module';
 import { VerPedidoComponent } from './SistemaInterno/@components/pedido/ver-pedido/ver-pedido.component';
+import { RecuperarPasswordComponent } from './SistemaInterno/@components/login/recuperar-password/recuperar-password.component';
+import { IngresarPasswordComponent } from './SistemaInterno/@components/login/ingresar-password/ingresar-password.component';
+import { VerClienteComponent } from './SistemaInterno/@components/Cliente/ver-cliente/ver-cliente.component';
 
 
 export function tokenGetter() {
@@ -85,6 +88,9 @@ export function tokenGetter() {
     ListarPedidoComponent,
     InformeComponent,
     VerPedidoComponent,
+    RecuperarPasswordComponent,
+    IngresarPasswordComponent,
+    VerClienteComponent,
   ],
   imports: [
     ChartsModule,
@@ -124,6 +130,8 @@ export function tokenGetter() {
       {path: 'home', component: HomeComponent},
       {path: 'interno', component: HomeInternoComponent},
       {path: 'entrar', component: LoginComponent},
+      {path: 'recuperarPassword', component: RecuperarPasswordComponent},
+      {path: 'email/send/olvidePassword/:tokenPassword', component: IngresarPasswordComponent},
       {path: 'dashboard', loadChildren: () => import('./SistemaInterno/@components/dashboard/dashboard.module').then(x => x.DashboardModule)}
     ])
   ],

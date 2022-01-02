@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Obra } from 'src/app/SistemaInterno/@models/obra.model';
 import { ObraService } from 'src/app/SistemaInterno/@services/obra.service';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-agregar-obra',
@@ -14,7 +16,7 @@ export class AgregarObraComponent implements OnInit {
   obraForm : FormGroup;
   obra: Obra;
   
-  constructor(private fb: FormBuilder, public obraService: ObraService, private router: Router) { 
+  constructor(private fb: FormBuilder, public obraService: ObraService, private router: Router, public dialogo: MatDialog) { 
     this.obraForm = this.fb.group({
       nombre: ["", Validators.required],
       direccion: ["", Validators.required],
@@ -37,6 +39,27 @@ export class AgregarObraComponent implements OnInit {
       console.log(res);
     });
 
+  }
+
+  confirmar(): void {
+    if (this.obraForm.invalid) {
+      console.log("Invalid");
+      return;
+    }else{
+      this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Estas seguro que quieres agregar la obra?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.guardar();
+          this.router.navigate(["/dashboard/obras"]);
+        } else {
+          this.router.navigate(["/dashboard/obras"]);
+        }
+      });
+    }
   }
 
 }

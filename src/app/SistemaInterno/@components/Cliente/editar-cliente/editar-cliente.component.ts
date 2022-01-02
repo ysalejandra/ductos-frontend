@@ -53,12 +53,11 @@ export class EditarClienteComponent implements OnInit {
   confirmar(): void {
     if (this.clienteForm.invalid) {
       console.log("Invalid");
-      alert("¡Los campos están vacios!");
       return;
     }else{
       this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Estas seguro que quieres elitar el cliente?`
+        data: `¿Estas seguro que quieres editar el cliente?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
@@ -66,7 +65,7 @@ export class EditarClienteComponent implements OnInit {
           this.saveData();
           this.router.navigate(["/dashboard/clientes"]);
         } else {
-          alert("No se ha editado el cliente");
+          this.router.navigate(["/dashboard/clientes"]);
         }
       });
     }
