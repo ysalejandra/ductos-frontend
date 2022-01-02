@@ -28,7 +28,7 @@ import { PedidoService } from '../../@services/pedido.service';
 import { Pedido } from '../../@models/pedido.model';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Evento extends CalendarEvent {
   id: number;
@@ -58,21 +58,7 @@ export class CalendarioComponent {
   } | undefined;
 
   actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
+    
   ];
 
   refresh: Subject<any> = new Subject();
@@ -121,7 +107,7 @@ export class CalendarioComponent {
   */
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private pedidoService : PedidoService, private router: Router) {
+  constructor(private modal: NgbModal, private pedidoService : PedidoService, private router: Router, private r: ActivatedRoute) {
     
   }
 
@@ -130,7 +116,7 @@ export class CalendarioComponent {
       res.forEach(
         (pedido:Pedido) => this.events.push({
           start: startOfDay(new Date(pedido.fechaEntrega)),
-      title: pedido.idPedido.toString(),
+      title: 'Pedido: ' + pedido.cliente.nombre + ' ' + pedido.cliente.apellidoPaterno + ' ' + pedido.cliente.apellidoMaterno + ', ' + pedido.codigoSeguimiento,
       color: colors.yellow,
       id: pedido.idPedido,
       actions: this.actions,
@@ -185,7 +171,8 @@ export class CalendarioComponent {
   handleEvent(action: string, event: CalendarEvent): void {
     //this.modalData = { event, action };
     //this.modal.open(this.modalContent, { size: 'lg' });
-    this.router.navigate(['http://localhost:4200/dashboard/pedidos/' + event.id]);
+    console.log(this.r.parent);
+    this.router.navigate(['../pedidos/ver/' + event.id], {relativeTo: this.r});
   }
 
   addEvent(): void {

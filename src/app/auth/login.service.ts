@@ -11,6 +11,11 @@ export class LoginService {
 
   constructor(private http: HttpClient, private router : Router) { }
 
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+
   login(email: string, password: string) {
     let userLogin = {username: email, password: password};
     return this.http.post('http://localhost:8080/trabajadores/login', userLogin).pipe(map((res: any) => {
@@ -29,6 +34,9 @@ export class LoginService {
   }
 
   loggedIn() {
+    if (this.tokenExpired(localStorage.getItem('token'))) {
+      this.logout();
+    }
     return localStorage.getItem('token') !== null;
   }
 
