@@ -93,15 +93,15 @@ export class AgregarPedidoComponent implements OnInit {
     this.pedido = Object.assign(this.pedido, this.pedidoForm.value);
     console.log(this.pedido);
     this.pedidoService.addPedido(this.pedido).subscribe( (res:any) => {
-    this.router.navigate(["/dashboard/pedidos/agregar"]);
       console.log(res);
+      this.router.navigate(["/dashboard/pedidos"]);
     });
   }
 
   confirmar(){
       this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: `¿Estas seguro que quieres enviar la cotización?`
+        data: `¿Estas seguro que quieres guardar el pedido?`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
@@ -110,7 +110,7 @@ export class AgregarPedidoComponent implements OnInit {
           this.ocultar = true;
 
         } else {
-          alert("No se ha enviado la cotización");
+          alert("No se ha guardado el pedido");
         }
       });
   }

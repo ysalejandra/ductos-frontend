@@ -13,6 +13,10 @@ import { ObraService } from '../../@services/obra.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductoService } from '../../@services/producto.service';
 import { ProductoInforme } from '../../@models/productoInforme.model';
+import { ProductoObrasInforme } from '../../@models/ProductoObrasInforme.model';
+import { ProductoMayorGanancia } from '../../@models/productoMayorGanancia.model';
+import { ClienteMayorCompra } from '../../@models/clienteMayorCompra.model';
+import { ClienteMayorGanancia } from '../../@models/clienteMayorGanancia.model';
 
 @Component({
   selector: 'app-informe',
@@ -24,6 +28,8 @@ export class InformeComponent implements OnInit {
   clientes: Cliente[] = [];
   listCliente: Cliente[] = [];
   listProductosInforme: ProductoInforme[] = [];
+
+  listProductosPorObras:ProductoObrasInforme[] = [];
 
   /*
   lineChartData: ChartDataSets[] = [
@@ -73,10 +79,80 @@ export class InformeComponent implements OnInit {
 
   obtenerProductosDeObra() {
     console.log(this.obraForm.controls['obra'].value);
+    var header = [['idPedido', 'CodigoSeguimiento', 'estadoPedido','fechaIngreso', 'fechaEntrega']];
+    var tablaProductosObras: any[] = [];
+    var tablaElem: any[] = [];
+
+    this.obraService.getProductosPorObra(this.obraForm.controls['obra'].value).subscribe((res: ProductoObrasInforme[]) => {
+
+      res.forEach(e => {
+        tablaElem.push(e.idPedido);
+        tablaElem.push(e.codigoSeguimiento);
+        tablaElem.push(e.estadoPedido);
+        tablaElem.push(e.fechaIngreso);
+        tablaElem.push(e.fechaEntrega);
+        tablaProductosObras.push(tablaElem);
+        tablaElem = [];
+      });
+      this.generatePdf(header, tablaProductosObras);
+    });
+
   }
 
+  obtenerProductosConMayorGananciaPDF(){
+    var header = [['nombre', 'categoria', 'descripción','valor']];
+    var tablaProductosMayorGanancia: any[] = [];
+    var tablaElem: any[] = [];
 
-  shuffeData() {
+    this.productoService.getProductosMayorGanancia().subscribe((res: ProductoMayorGanancia[]) => {
+      res.forEach(e => {
+        tablaElem.push(e.nombre);
+        tablaElem.push(e.categoria);
+        tablaElem.push(e.descripcion);
+        tablaElem.push(e.valor);
+        tablaProductosMayorGanancia.push(tablaElem);
+        tablaElem = [];
+      });
+      this.generatePdf(header, tablaProductosMayorGanancia);
+    });
+  }
+
+  obtenerClientesConMasComprasPDF(){
+
+    var header = [['nombre', 'email', 'telefono','cantidad']];
+    var tablaClienteMayorCompra: any[] = [];
+    var tablaElem: any[] = [];
+
+    this.clienteService.getClienteMayorCompra().subscribe((res: ClienteMayorCompra[]) => {
+      res.forEach(e => {
+        tablaElem.push(e.nombre+e.apellidoPaterno+e.apellidoMaterno);
+        tablaElem.push(e.email);
+        tablaElem.push(e.telefono);
+        tablaElem.push(e.cantidad);
+        tablaClienteMayorCompra.push(tablaElem);
+        tablaElem = [];
+      });
+      this.generatePdf(header, tablaClienteMayorCompra);
+    });
+
+  }
+
+  obtenerClientesConMayorGananciaPDF(){
+    var header = [['nombre', 'email', 'telefono','Ganancia']];
+    var tablaClienteMayorGanancia: any[] = [];
+    var tablaElem: any[] = [];
+
+    this.clienteService.getClienteMayorGanancia().subscribe((res: ClienteMayorGanancia[]) => {
+      res.forEach(e => {
+        tablaElem.push(e.nombre+e.apellidoPaterno+e.apellidoMaterno);
+        tablaElem.push(e.email);
+        tablaElem.push(e.telefono);
+        tablaElem.push(e.ganancia);
+        tablaClienteMayorGanancia.push(tablaElem);
+        tablaElem = [];
+      });
+      this.generatePdf(header, tablaClienteMayorGanancia);
+    });
 
   }
 
@@ -102,31 +178,6 @@ export class InformeComponent implements OnInit {
     });
   }
 
-  generatePdf(header: any, tableData: any) {
-    var pdf = new jsPDF();
-
-    //pdf.setFont(20%);
-    pdf.text('Ductos Ortiz Spa', 11, 8);
-    pdf.setFontSize(12);
-    pdf.setTextColor(99);
-
-
-    (pdf as any).autoTable({
-      head: header,
-      body: tableData,
-      theme: 'plain',
-      didDrawCell: data => {
-        //console.log(data.column.index)
-      }
-    })
-
-    // Open PDF document in browser's new tab
-    pdf.output('dataurlnewwindow')
-
-    // Download PDF doc  
-    //pdf.save('table.pdf');
-  }
-
   obtenerProductosMasCompradosPDF() {
     //PDF
     var header = [['Nombre', 'Precio', 'Cantidad','TOTAL']];
@@ -150,6 +201,31 @@ export class InformeComponent implements OnInit {
       this.generatePdf(header, tablaProductos);
     });
 
+  }
+
+  generatePdf(header: any, tableData: any) {
+    var pdf = new jsPDF();
+
+    //pdf.setFont(20%);
+    pdf.text('Ductos Ortiz Spa', 11, 8);
+    pdf.setFontSize(12);
+    pdf.setTextColor(99);
+
+
+    (pdf as any).autoTable({
+      head: header,
+      body: tableData,
+      theme: 'plain',
+      didDrawCell: data => {
+        //console.log(data.column.index)
+      }
+    })
+
+    // Open PDF document in browser's new tab
+    pdf.output('dataurlnewwindow')
+
+    // Download PDF doc  
+    //pdf.save('table.pdf');
   }
 
 }

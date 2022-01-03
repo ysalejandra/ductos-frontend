@@ -1,1 +1,84 @@
-<p>editar-pedido works!</p>
+<div class="body">
+  <div class="format">
+    <h1 class="ancho titulo">Editar Pedido ID: {{pedido.idPedido}}</h1><br>
+    <form [formGroup]="pedidoForm" class="formulario">
+      <mat-label>
+        <h2>Código de seguimiento : {{pedido.codigoSeguimiento}}</h2>
+      </mat-label>
+      <button class="button button" mat-raised-button color="primary" (click)="agregarVisita(pedido.idPedido)" type="submit">
+        Agregar Visita
+      </button>
+      <br /><br>
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Fecha de entrega</mat-label>
+        <input matInput type="datetime" autocomplete="off" formControlName="fechaEntrega" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Anotaciones</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="anotaciones" />
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Estado del pedido</mat-label>
+        <mat-select formControlName="estadoPedido">
+          <mat-option value="RECIBIDO">
+            Recibido
+          </mat-option>
+          <mat-option value="ENPROCESO">
+            En proceso
+          </mat-option>
+
+          <mat-option value="COTIZACION">
+            Cotización
+          </mat-option>
+          <mat-option value="FINALIZADO">
+            Finalizado
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      
+
+      <h1 class="ancho">Productos</h1>
+      <div class="productos ancho">
+        <table class="ancho">
+          <ng-container formArrayName="detalleProductos" display="flex" appearance="fill" class="ancho">
+            <ng-container *ngFor="let productoForm of productos.controls; let i = index">
+              <div class="lesson-form-row" [formGroupName]="i">
+                <br />
+                <tr>
+                  <td>
+                    <mat-form-field>
+                      <mat-select placeholder="" name="producto" formControlName="idProducto">
+                        <mat-option *ngFor="let producto of listaProductos" [value]="producto.idProducto">{{
+                          producto.nombre }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field>
+                      <mat-label>Cantidad</mat-label>
+                      <input matInput type="number" autocomplete="off" formControlName="cantidad" />
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-icon class="delete-btn" (click)="deleteProducto(i)">delete</mat-icon>
+                  </td>
+                </tr>
+              </div>
+            </ng-container>
+          </ng-container>
+        </table>
+
+        <button mat-mini-fab (click)="addProducto()">
+          <mat-icon class="add-course-btn">add</mat-icon>
+        </button>
+        <br /><br />
+      </div>
+      <button class="button ancho button" mat-raised-button color="primary" (click)="confirmar()" type="submit">
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>

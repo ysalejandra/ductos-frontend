@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Visita } from '../@models/visita.model';
@@ -9,7 +10,7 @@ import { Visita } from '../@models/visita.model';
 })
 export class VisitaService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router : Router, private route: ActivatedRoute,) { }
 
   getVisitas(){
     return this.http.get('http://localhost:8080/visitas').pipe(map( (res : any) => {
@@ -20,7 +21,7 @@ export class VisitaService {
           fechaVisita: visita.fechaVisita,
           estadoVisita: visita.estadoVisita,
           observaciones: visita.observaciones,
-          direccionVisita: visita.direccionVisita
+          direccion: visita.direccion
           }
       })
   }));
@@ -34,7 +35,7 @@ export class VisitaService {
           fechaVisita: visita.fechaVisita,
           estadoVisita: visita.estadoVisita,
           observaciones: visita.observaciones,
-          direccionVisita: visita.direccionVisita
+          direccion: visita.direccion
         };
     })
     );
@@ -43,6 +44,16 @@ export class VisitaService {
   addVisita(visita: Visita){
     console.log(visita);
     return this.http.post('http://localhost:8080/visitas', visita);
+  }
+
+  enlazarPedidoVisita(idPedido: number){
+    console.log(idPedido);
+    this.router.navigate(["/dashboard/visitas/agregar/"+idPedido]);
+  }
+
+  addVisitaPedido(visita: Visita, idPedido:number){
+    console.log(visita);
+    return this.http.post('http://localhost:8080/visitas/pedido/'+idPedido, visita);
   }
 
   borrarVisita(id: number){

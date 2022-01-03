@@ -2,40 +2,37 @@
 <div class="body">
     <div class="format">
       <h1 class="ancho titulo">Generar informes</h1><br>
-      <form class="formulario">
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Fecha de entrega</mat-label>
-          <input matInput [matDatepicker]="picker2" formControlName="fechaEntrega">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-        <button class="button" mat-raised-button color="primary" (click)="obtenerClientesPDF()" type="submit">
-            Generar PDF de todos los clientes
-        </button><br><br>
-        <br />
-      </form>
-
       <form class="formulario" [formGroup]="obraForm" (ngSubmit)="obtenerProductosDeObra()">
         <mat-form-field appearance="fill" class="ancho">
             <mat-label>Obra</mat-label>
             <mat-select placeholder="" name="obra" formControlName="obra">
-              <mat-option [value]="null">Sin obra</mat-option>
               <mat-option *ngFor="let obra of listObra" [value]="obra.idObra">{{ obra.nombre }}</mat-option>
             </mat-select>
           </mat-form-field>
         <button class="button" mat-raised-button color="primary" type="submit">
             Generar PDF de los productos de la obra
         </button><br><br>
-        <br />
       </form>
 
-      <button class="button" mat-raised-button color="primary" (click)="obtenerClientesPDF()" type="submit">
+      <button class="button" mat-raised-button color="primary"  (click)="obtenerClientesPDF()" type="submit">
         Generar PDF de todos los clientes
-    </button><br><br>
+     </button><br><br>
 
-    <button class="button" mat-raised-button color="primary" (click)="obtenerProductosMasCompradosPDF()" type="submit">
-      Generar PDF de los productos más comprados
-  </button>
-    </div>
+      <button class="button" mat-raised-button color="primary" (click)="obtenerProductosMasCompradosPDF()" type="submit">
+         Generar PDF de los productos más comprados
+      </button><br><br>
+
+      <button class="button" mat-raised-button color="primary" (click)="obtenerProductosConMayorGananciaPDF()" type="submit">
+        Generar PDF de los productos que mayor ganancia generan
+      </button><br><br>
+
+      <button class="button" mat-raised-button color="primary" (click)="obtenerClientesConMasComprasPDF()" type="submit">
+        Generar PDF de los clientes con mayor cantidad de compras
+      </button> <br><br>
+
+      <button class="button" mat-raised-button color="primary" (click)="obtenerClientesConMayorGananciaPDF()" type="submit">
+        Generar PDF de los clientes que entregan mayor ganancia
+      </button> <br><br>
+    </div> 
   </div>
 

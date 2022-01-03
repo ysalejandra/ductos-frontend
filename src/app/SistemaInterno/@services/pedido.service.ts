@@ -17,6 +17,11 @@ export class PedidoService {
     return this.http.post('http://localhost:8080/pedidos', pedido);
   }
 
+  editPedido(pedido:Pedido){
+    console.log(pedido);
+    return this.http.put('http://localhost:8080/pedidos',pedido);
+  }
+
   getPedidoPorId(id : number): Observable<Pedido> {
     return this.http.get('http://localhost:8080/pedidos/'+ id).pipe(map( (pedido: any) => {
       console.log(pedido);

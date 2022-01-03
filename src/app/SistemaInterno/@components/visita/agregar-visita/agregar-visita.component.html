@@ -1,18 +1,32 @@
 <div class="body">
   <div class="format">
     <h1 class="ancho titulo">Agregar Visita</h1><br>
-    <form [formGroup]="visitaForm" (ngSubmit)="guardar()">
-      <mat-form-field appearance="fill" class="ancho">
-        <mat-label>Fecha de Visita</mat-label>
-        <input matInput type="text" autocomplete="off" formControlName="fechaVisita" />
-      </mat-form-field>
-      <br />
-      <mat-form-field appearance="fill" class="ancho">
-        <mat-label>Estado de visita</mat-label>
-        <input matInput type="text" autocomplete="off" formControlName="estadoVisita" />
-      </mat-form-field>
-      <br />
+
+      <mat-label><h1>Id Pedido: {{pedido.idPedido}}</h1></mat-label>
+    <form [formGroup]="visitaForm" (ngSubmit)="guardarVisitaPedido()">
       
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Fecha de la visita</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="fechaVisita">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Estado del pedido</mat-label>
+        <mat-select formControlName="estadoVisita">
+          <mat-option value="AGENDADA">
+            Agendada
+          </mat-option>
+          <mat-option value="ENCAMINO">
+            En camino
+          </mat-option>
+          <mat-option value="REALIZADA">
+            Realizada
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>  
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Observaciones</mat-label>
         <input matInput type="text" autocomplete="off" formControlName="observaciones" />
@@ -20,7 +34,7 @@
       <br />
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Dirección</mat-label>
-        <input matInput type="text" autocomplete="off" formControlName="direccionVisita" />
+        <input matInput type="text" autocomplete="off" formControlName="direccion" />
       </mat-form-field>
       <br />
       <button class="ancho button" mat-raised-button color="primary" type="submit">

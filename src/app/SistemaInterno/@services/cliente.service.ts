@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Cliente } from '../@models/cliente.model';
+import { ClienteMayorCompra } from '../@models/clienteMayorCompra.model';
+import { ClienteMayorGanancia } from '../@models/clienteMayorGanancia.model';
 
 
 @Injectable({
@@ -32,6 +34,38 @@ export class ClienteService {
           vigente: cliente.vigente}
       })
   }));
+  }
+
+  getClienteMayorCompra(): Observable<ClienteMayorCompra[]> {
+    return this.http.get('http://localhost:8080/clientes/mayorCompra').pipe(map( (res : any) => {
+      return res.map((clienteMayorCompra: ClienteMayorCompra) => {
+        console.log(clienteMayorCompra);
+        return <ClienteMayorCompra>{
+          nombre: clienteMayorCompra.nombre,
+          apellidoPaterno : clienteMayorCompra.apellidoPaterno, 
+          apellidoMaterno : clienteMayorCompra.apellidoMaterno, 
+          email: clienteMayorCompra.email, 
+          telefono: clienteMayorCompra.telefono,
+          cantidad: clienteMayorCompra.cantidad
+        }
+      })
+    }));
+  }
+
+  getClienteMayorGanancia(): Observable<ClienteMayorGanancia[]> {
+    return this.http.get('http://localhost:8080/clientes/mayorGanancia').pipe(map( (res : any) => {
+      return res.map((clienteMayorGanancia: ClienteMayorGanancia) => {
+        console.log(clienteMayorGanancia);
+        return <ClienteMayorGanancia>{
+          nombre: clienteMayorGanancia.nombre,
+          apellidoPaterno : clienteMayorGanancia.apellidoPaterno, 
+          apellidoMaterno : clienteMayorGanancia.apellidoMaterno, 
+          email: clienteMayorGanancia.email, 
+          telefono: clienteMayorGanancia.telefono,
+          ganancia: clienteMayorGanancia.ganancia
+        }
+      })
+    }));
   }
 
   getClientePorId(id : number): Observable<Cliente> {
