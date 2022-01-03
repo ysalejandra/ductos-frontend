@@ -84,6 +84,17 @@ export class InformeComponent implements OnInit {
     var header = [['idPedido', 'CodigoSeguimiento', 'estadoPedido','fechaIngreso', 'fechaEntrega']];
     var tablaProductosObras: any[] = [];
     var tablaElem: any[] = [];
+    var titulo;
+    var nombreObra;
+
+    this.obraService.getObraPorId(this.obraForm.controls['obra'].value).subscribe ((res: any) =>{
+      console.log(res);
+      nombreObra = res.nombre;
+    });
+
+    console.log(nombreObra);
+
+    titulo = "Todos los pedidos de la obra: ";
 
     this.obraService.getProductosPorObra(this.obraForm.controls['obra'].value).subscribe((res: ProductoObrasInforme[]) => {
 
@@ -96,7 +107,7 @@ export class InformeComponent implements OnInit {
         tablaProductosObras.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaProductosObras);
+      this.generatePdf(header, tablaProductosObras, titulo);
     });
 
   }
@@ -105,17 +116,18 @@ export class InformeComponent implements OnInit {
     var header = [['nombre', 'categoria', 'descripción','valor']];
     var tablaProductosMayorGanancia: any[] = [];
     var tablaElem: any[] = [];
+    var titulo = "Productos con mayor ganancia";
 
     this.productoService.getProductosMayorGanancia().subscribe((res: ProductoMayorGanancia[]) => {
       res.forEach(e => {
         tablaElem.push(e.nombre);
         tablaElem.push(e.categoria);
         tablaElem.push(e.descripcion);
-        tablaElem.push(e.valor);
+        tablaElem.push("$"+e.valor);
         tablaProductosMayorGanancia.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaProductosMayorGanancia);
+      this.generatePdf(header, tablaProductosMayorGanancia,titulo);
     });
   }
 
@@ -124,6 +136,7 @@ export class InformeComponent implements OnInit {
     var header = [['nombre', 'email', 'telefono','cantidad']];
     var tablaClienteMayorCompra: any[] = [];
     var tablaElem: any[] = [];
+    var titulo = "Clientes con más compras";
 
     this.clienteService.getClienteMayorCompra().subscribe((res: ClienteMayorCompra[]) => {
       res.forEach(e => {
@@ -134,7 +147,7 @@ export class InformeComponent implements OnInit {
         tablaClienteMayorCompra.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaClienteMayorCompra);
+      this.generatePdf(header, tablaClienteMayorCompra, titulo);
     });
 
   }
@@ -143,6 +156,7 @@ export class InformeComponent implements OnInit {
     var header = [['nombre', 'email', 'telefono','Ganancia']];
     var tablaClienteMayorGanancia: any[] = [];
     var tablaElem: any[] = [];
+    var titulo = "Clientes con mayores ganancias";
 
     this.clienteService.getClienteMayorGanancia().subscribe((res: ClienteMayorGanancia[]) => {
       res.forEach(e => {
@@ -153,7 +167,7 @@ export class InformeComponent implements OnInit {
         tablaClienteMayorGanancia.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaClienteMayorGanancia);
+      this.generatePdf(header, tablaClienteMayorGanancia, titulo);
     });
 
   }
@@ -163,6 +177,7 @@ export class InformeComponent implements OnInit {
     var header = [['Nombre', 'Correo', 'Teléfono']];
     var tablaClientes: any[] = [];
     var tablaElem: any[] = [];
+    var titulo = "Todos los clientes";
 
     this.clienteService.getClientes().subscribe((res: Cliente[]) => {
       this.listCliente = res;
@@ -176,7 +191,7 @@ export class InformeComponent implements OnInit {
         tablaClientes.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaClientes);
+      this.generatePdf(header, tablaClientes, titulo);
     });
   }
 
@@ -185,6 +200,7 @@ export class InformeComponent implements OnInit {
     var header = [['Nombre', 'Precio', 'Cantidad','TOTAL']];
     var tablaProductos: any[] = [];
     var tablaElem: any[] = [];
+    var titulo = "Productos más comprados";
 
     this.productoService.getDatosInformes().subscribe((res: ProductoInforme[]) => {
 
@@ -193,30 +209,32 @@ export class InformeComponent implements OnInit {
 
       res.forEach(e => {
         tablaElem.push(e.nombre);
-        tablaElem.push(e.precio);
+        tablaElem.push("$"+e.precio);
         tablaElem.push(e.cantidad);
-        tablaElem.push(e.precio*e.cantidad);
+        tablaElem.push("$"+e.precio*e.cantidad);
 
         tablaProductos.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaProductos);
+      this.generatePdf(header, tablaProductos, titulo);
     });
 
   }
 
-  generatePdf(header: any, tableData: any) {
+  generatePdf(header: any, tableData: any, titulo: string) {
     var img = new Image();
-    img.src = 'assets/img/logo.jpg'
+    img.src = 'assets/img/banner.jpg'
     var pdf = new jsPDF();
 
     //pdf.setFont(20%);
     //addImage(imageData, format, x, y, width, height, alias, compression, rotation)
-    //pdf.addImage(img,'jpg',78,5,25,30);
+    pdf.addImage(img,'jpg',78,5,58,14);
     
-    pdf.text('Ductos Ortiz Spa', 11, 8);
-    pdf.setFontSize(16);
+    //pdf.text('\nDuctos Ortiz Spa', 74, 8);
+    pdf.setFontSize(18);
     pdf.setTextColor(55);
+
+    pdf.text('Informe de: '+titulo, 14, 34);
 
   
 
@@ -225,6 +243,7 @@ export class InformeComponent implements OnInit {
       head: header,
       body: tableData,
       theme: 'striped',
+      margin: {top: 38},
       didDrawCell: data => {
         //console.log(data.column.index)
       }
