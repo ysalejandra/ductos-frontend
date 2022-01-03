@@ -1,82 +1,82 @@
- <!--Pedido-->
- <section class="page-section" id="pedido">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">Revisa tu pedido</h2>
-            <div class="form-group" #pedido id="pedido">
-                <label for="codigoPedido" class="text-muted">Ingresa el código de tu pedido</label>
-                <input type="text" class="form-control" id="codigoPedido"  #codigoPedido aria-describedby="emailHelp" placeholder="Ejemplo: DFTG2816">
-                <br><button (click)="mostrarInfo(codigoPedido.value)" type="submit" value="Abono" class="btn btn-primary">Revisar</button>
-            </div>
-        </div>
-
-        <div class="row" *ngIf="mostrarMensaje == true">
-          <h3> El código ingresado no es válido</h3>
-        </div>
-
-
-        <div class="row" *ngIf="mostrar == true">
-            <h2 class="section-subheading text-muted">El estado del pedido {{codigoPedido.value}} es: {{estadoDelPedido}}</h2> <br>
-            <div class="col-lg-4" [ngStyle]="{'color': colorRecibido}">
-                <div class="pedido-member" >
-                    <img class="mx-auto rounded-circle" src="assets/img/pedido/recibido.png"  [ngStyle]="{'border': borderRecibido, 'filter' : opacoRecibido ? 'grayscale(100%)' : 'grayscale(0%)'}" alt="..." />
-                    <h4 >Recibido</h4>
-                    <p>El pedido fue recepcionado.</p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="pedido-member">
-                    <img class="mx-auto rounded-circle" src="assets/img/pedido/2.jpg"  [ngStyle]="{'border': borderEnFabricacion, 'filter' : opacoEnFabricacion ? 'grayscale(100%)' : 'grayscale(0%)'}"  alt="..." />
-                    <h4>En fabricación</h4>
-                    <p class="text-muted">Nuestros trabajadores están fabricando tu pedido.</p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="pedido-member">
-                    <img class="mx-auto rounded-circle" [ngStyle]="{'border': borderFinalizado, 'filter' : opacoFinalizado ? 'grayscale(100%)' : 'grayscale(0%)'}"
-                    src="assets/img/pedido/3.jpg"  alt="..." />
-                    <h4>Finalizado</h4>
-                    <p class="text-muted">Tu pedido está listo para que lo retires.</p>
-                </div>
-            </div>
-            <h2 class="section-subheading text-muted">Datos del pedido: {{codigoPedido.value}}</h2> <br>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Fecha de ingreso</th>
-                  <th scope="col">Fecha de Entrega</th>
-                  <th scope="col">Total del pedido</th>
-                  <th scope="col">ESTADO DEL PEDIDO</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{{fechaDeIngreso}}</td>
-                  <td>{{fechaDeEntrega}}</td>
-                  <td>{{valorPedido}}</td>
-                  <td>{{estadoDelPedido}}</td>
-                </tr>
-              </tbody>
-            </table>
-
-        </div>
-<!-- 
-        <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
-
-            <div class="tracking-progress-bar">
-              <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active">1</div>
-          
-              <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-              <div class="tracking-progress-bar__item tracking-progress-bar__item--active">
-                  <span>Hola</span>
-                </div>
-          
-              <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-              <div class="tracking-progress-bar__item tracking-progress-bar__item--active">3</div>
-        
-            </div>
-          
-          </div>
-        -->
+<!--Pedido-->
+<section class="page-section" id="pedido">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">Revisa tu pedido</h2>
+      <div class="form-group" #pedido id="pedido">
+        <label for="codigoPedido" class="text-muted">Ingresa el código de tu pedido</label>
+        <input type="text" class="form-control" id="codigoPedido" #codigoPedido aria-describedby="emailHelp"
+          placeholder="Ejemplo: DFTG2816">
+        <br><button (click)="mostrarInfo(codigoPedido.value)" type="submit" value="Abono"
+          class="btn btn-primary">Revisar</button>
+      </div>
     </div>
+
+    <div class="row" *ngIf="mostrarMensaje == true">
+      <h3> El código ingresado no es válido</h3>
+    </div>
+
+
+    <div class="row" *ngIf="mostrar == true">
+      <h2 class="section-subheading text-muted">El estado del pedido {{codigoPedido.value}} es: 
+        <span *ngIf="estadoDelPedido === 'RECIBIDO'" class="badge badge-primary">Recibido</span>
+        <span *ngIf="estadoDelPedido === 'ENPROCESO'" class="badge badge-info">En proceso</span>
+        <span *ngIf="estadoDelPedido === 'FINALIZADO'" class="badge badge-success">Finalizado</span>
+        <span *ngIf="estadoDelPedido === 'COTIZACION'" class="badge badge-warning">Cotización</span>
+      </h2>    
+      <br>
+      <div class="col-lg-4" [ngStyle]="{'color': colorRecibido}">
+        <div class="pedido-member">
+          <img class="mx-auto rounded-circle" src="assets/img/pedido/recibido2.png"
+            [ngStyle]="{'border': borderRecibido, 'filter' : opacoRecibido ? 'grayscale(100%)' : 'grayscale(0%)'}"
+            alt="..." />
+          <h4>Recibido</h4>
+          <p>El pedido fue recepcionado.</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="pedido-member" style="padding-left: 2%;">
+          <img class="mx-auto rounded-circle" src="assets/img/pedido/enfabricacion.png"
+            [ngStyle]="{'border': borderEnFabricacion, 'filter' : opacoEnFabricacion ? 'grayscale(100%)' : 'grayscale(0%)'}"
+            alt="..." />
+          <h4>En Proceso</h4>
+          <p class="text-muted">Nuestros trabajadores están fabricando tu pedido.</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="pedido-member" style="padding-left: 2%;">
+          <img class="mx-auto rounded-circle"
+            [ngStyle]="{'border': borderFinalizado, 'filter' : opacoFinalizado ? 'grayscale(100%)' : 'grayscale(0%)'}"
+            src="assets/img/pedido/terminado.png" alt="..." />
+          <h4>Finalizado</h4>
+          <p class="text-muted">Tu pedido está listo para que lo retires.</p>
+        </div>
+      </div>
+      <h2 class="section-subheading text-muted">Datos del pedido: {{codigoPedido.value}}</h2> <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Fecha de ingreso</th>
+            <th scope="col">Fecha de Entrega</th>
+            <th scope="col">Total del pedido</th>
+            <th scope="col">ESTADO DEL PEDIDO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{fechaDeIngreso | date: 'dd-MM-yyyy'}}</td>
+            <td>{{fechaDeEntrega | date: 'dd-MM-yyyy'}}</td>
+            <td> ${{valorPedido}}</td>
+            <td>
+              <span *ngIf="estadoDelPedido === 'RECIBIDO'">Recibido</span>
+              <span *ngIf="estadoDelPedido === 'ENPROCESO'">En proceso</span>
+              <span *ngIf="estadoDelPedido === 'FINALIZADO'">Finalizado</span>
+              <span *ngIf="estadoDelPedido === 'COTIZACION'">Cotización</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 </section>

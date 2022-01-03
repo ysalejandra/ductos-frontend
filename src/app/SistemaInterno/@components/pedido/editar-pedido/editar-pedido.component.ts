@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -30,6 +30,8 @@ export class EditarPedidoComponent implements OnInit {
   pedidoForm : FormGroup;
   pedido: Pedido;
   ocultar: boolean = false;
+
+  fechaEntrega : any;
 
   value: any;
 
@@ -89,6 +91,7 @@ export class EditarPedidoComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.isDataAvailable = true;
+      this.fechaEntrega = new FormControl(this.pedido.fechaEntrega);
       this.pedidoForm = this.fb.group({
         fechaIngreso: [this.pedido.fechaIngreso],
         fechaEntrega: [this.pedido.fechaEntrega],
