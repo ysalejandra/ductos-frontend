@@ -26,15 +26,14 @@
         <mat-label>Descripción</mat-label>
         <textarea matInput type="text" autocomplete="off" formControlName="descripcion"></textarea>
       </mat-form-field>
-      <br /><br />
-      <button class="button ancho button" mat-raised-button color="primary" (click)="confirmar()" type="submit">
-        Guardar
-      </button>
-      <div *ngIf="ocultar">
-        <div class="alert alert-sucess" role="alert">
-            ¡Se ha enviado la cotización correctamente!
-        </div>
+      <br />
+        <button class="ancho button" mat-raised-button color="primary" type= "submit">
+          Guardar
+        </button>
+        <br><br>
+        <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/productos">
+          Cancelar
+        </button>
+      </form>
     </div>
-    </form>
   </div>
-</div>

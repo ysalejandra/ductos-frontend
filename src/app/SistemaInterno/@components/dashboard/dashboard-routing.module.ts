@@ -47,6 +47,7 @@ const routes: Routes = [
       { path: 'visitas', component: ListarVisitaComponent, canActivate: [AuthGuard] },
       { path: 'visitas/agregar/:idPedido', component: AgregarVisitaComponent, canActivate: [AuthGuard]},
       { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent, canActivate: [AuthGuard]},
+      { path: 'visitas/ver/:idVisita', component: VerPedidoComponent, canActivate: [AuthGuard]},
       { path: 'calendario', component: CalendarioComponent , canActivate: [AuthGuard]},
       { path: 'pedidos', component: ListarPedidoComponent, canActivate: [AuthGuard]},
       { path: 'pedidos/agregar', component: AgregarPedidoComponent, canActivate: [AuthGuard]},

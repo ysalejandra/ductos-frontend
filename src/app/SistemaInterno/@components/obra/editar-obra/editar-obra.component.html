@@ -1,8 +1,4 @@
-<mat-toolbar class = "titulo" color="secondary">
-    <span >Obras</span>
-  </mat-toolbar>
-  
-  <div class="body">
+<div class="body">
     <div class="format">
         <h1 class="ancho">Editar Obra</h1>
       <form [formGroup]="obraForm" (ngSubmit)="confirmar()">
@@ -25,7 +21,10 @@
         <button class="ancho button" mat-raised-button color="primary" type= "submit">
           Guardar
         </button>
-        <br>
+        <br><br>
+        <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/obras">
+          Cancelar
+        </button>
       </form>
     </div>
   </div>

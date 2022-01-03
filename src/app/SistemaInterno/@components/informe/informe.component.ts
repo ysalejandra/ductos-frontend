@@ -17,6 +17,8 @@ import { ProductoObrasInforme } from '../../@models/ProductoObrasInforme.model';
 import { ProductoMayorGanancia } from '../../@models/productoMayorGanancia.model';
 import { ClienteMayorCompra } from '../../@models/clienteMayorCompra.model';
 import { ClienteMayorGanancia } from '../../@models/clienteMayorGanancia.model';
+import { textSpanOverlap } from 'typescript';
+import { options } from 'preact';
 
 @Component({
   selector: 'app-informe',
@@ -204,18 +206,25 @@ export class InformeComponent implements OnInit {
   }
 
   generatePdf(header: any, tableData: any) {
+    var img = new Image();
+    img.src = 'assets/img/logo.jpg'
     var pdf = new jsPDF();
 
     //pdf.setFont(20%);
+    //addImage(imageData, format, x, y, width, height, alias, compression, rotation)
+    //pdf.addImage(img,'jpg',78,5,25,30);
+    
     pdf.text('Ductos Ortiz Spa', 11, 8);
-    pdf.setFontSize(12);
-    pdf.setTextColor(99);
+    pdf.setFontSize(16);
+    pdf.setTextColor(55);
+
+  
 
 
     (pdf as any).autoTable({
       head: header,
       body: tableData,
-      theme: 'plain',
+      theme: 'striped',
       didDrawCell: data => {
         //console.log(data.column.index)
       }
@@ -225,7 +234,7 @@ export class InformeComponent implements OnInit {
     pdf.output('dataurlnewwindow')
 
     // Download PDF doc  
-    //pdf.save('table.pdf');
+    pdf.save('table.pdf');
   }
 
 }

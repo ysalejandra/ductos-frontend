@@ -16,7 +16,7 @@ export class ListarVisitaComponent implements OnInit {
 
   listvisita: Visita[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['idVisita', 'fechaVisita', 'estadoVisita', 'observaciones','direccionVisita','acciones'];
+  displayedColumns: string[] = ['fechaVisita', 'estadoVisita', 'observaciones','direccionVisita','acciones'];
 
   visitasCargadas:boolean= false;
   visitas: Visita[] = [];

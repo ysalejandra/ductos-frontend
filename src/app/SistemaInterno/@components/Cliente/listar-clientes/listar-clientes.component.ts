@@ -21,7 +21,7 @@ export class ListarClientesComponent implements OnInit {
 
   listCliente: Cliente[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['idCliente', 'nombre', 'email', 'telefono', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'email', 'telefono', 'acciones'];
 
   clientesCargados:boolean= false;
   clientes: Cliente[] = [];

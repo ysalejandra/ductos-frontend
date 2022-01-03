@@ -28,7 +28,7 @@ export class AgregarVisitaComponent implements OnInit {
       observaciones: ["", Validators.required],
       direccion: ["", Validators.required],
     })
-    this.visita = new Visita(0,'','','','',true);
+    this.visita = new Visita(0,new Date(),'','','',true, null);
 
     this.route.params.pipe(switchMap((params : Params) => this.pedidoService.getPedidoPorId(params['idPedido']))).subscribe( (res : Pedido) => {
       this.pedido = res;

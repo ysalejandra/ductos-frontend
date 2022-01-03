@@ -21,7 +21,8 @@ export class VisitaService {
           fechaVisita: visita.fechaVisita,
           estadoVisita: visita.estadoVisita,
           observaciones: visita.observaciones,
-          direccion: visita.direccion
+          direccion: visita.direccion,
+          pedido: visita.pedido
           }
       })
   }));
@@ -35,7 +36,8 @@ export class VisitaService {
           fechaVisita: visita.fechaVisita,
           estadoVisita: visita.estadoVisita,
           observaciones: visita.observaciones,
-          direccion: visita.direccion
+          direccion: visita.direccion,
+          pedido: visita.pedido
         };
     })
     );

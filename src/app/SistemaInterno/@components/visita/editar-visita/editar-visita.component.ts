@@ -21,7 +21,7 @@ export class EditarVisitaComponent implements OnInit {
       fechaVisita: ["", Validators.required],
       estadoVisita: ["", Validators.required],
       observaciones: ["", Validators.required],
-      direccionVisita: ["", Validators.required]
+      direccion: ["", Validators.required]
     });
 
     this.route.params.pipe(switchMap((params : Params) => this.visitaService.getVisitaPorId(+params['idVisita']))).subscribe( (res : Visita) => {
