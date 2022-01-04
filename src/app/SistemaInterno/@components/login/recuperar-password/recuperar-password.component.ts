@@ -40,11 +40,13 @@ export class RecuperarPasswordComponent implements OnInit {
 
   enviarCorreo(){
     this.emailValuesDTO = Object.assign(this.emailValuesDTO, this.form.value);
-
+    this.loading = true;
     this.cambiarPasswordService.olvidePassword(this.emailValuesDTO).subscribe((res:EmailValuesDTO) =>{
+      this.loading = false;
       console.log("Se envio el correo con el token para cambiar contraseña");
       this.aviso();
     }, (err : HttpErrorResponse) => {
+      this.loading = false;
       this.error();
       console.log(err.message);
       this.form.reset;

@@ -19,6 +19,7 @@ import { ClienteMayorCompra } from '../../@models/clienteMayorCompra.model';
 import { ClienteMayorGanancia } from '../../@models/clienteMayorGanancia.model';
 import { textSpanOverlap } from 'typescript';
 import { options } from 'preact';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-informe',
@@ -55,12 +56,11 @@ export class InformeComponent implements OnInit {
   lineChartType: 'line' = "line";
   */
 
-
   listObra: Obra[];
   obras: Obra[] = [];
   obraForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService, public productoService: ProductoService) {
+  constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService, public productoService: ProductoService, private httpClient: HttpClient) {
     this.obraForm = this.fb.group({
       obra: ["", Validators.required],
     })
@@ -113,7 +113,7 @@ export class InformeComponent implements OnInit {
   }
 
   obtenerProductosConMayorGananciaPDF(){
-    var header = [['nombre', 'categoria', 'descripción','valor']];
+    var header = [['Nombre', 'Categoria', 'Descripción','Valor']];
     var tablaProductosMayorGanancia: any[] = [];
     var tablaElem: any[] = [];
     var titulo = "Productos con mayor ganancia";
@@ -133,14 +133,14 @@ export class InformeComponent implements OnInit {
 
   obtenerClientesConMasComprasPDF(){
 
-    var header = [['nombre', 'email', 'telefono','cantidad']];
+    var header = [['Nombre', 'Correo', 'Teléfono','Pedidos']];
     var tablaClienteMayorCompra: any[] = [];
     var tablaElem: any[] = [];
     var titulo = "Clientes con más compras";
 
     this.clienteService.getClienteMayorCompra().subscribe((res: ClienteMayorCompra[]) => {
       res.forEach(e => {
-        tablaElem.push(e.nombre+e.apellidoPaterno+e.apellidoMaterno);
+        tablaElem.push(e.nombre+" "+e.apellidoPaterno+" "+e.apellidoMaterno);
         tablaElem.push(e.email);
         tablaElem.push(e.telefono);
         tablaElem.push(e.cantidad);
@@ -153,17 +153,17 @@ export class InformeComponent implements OnInit {
   }
 
   obtenerClientesConMayorGananciaPDF(){
-    var header = [['nombre', 'email', 'telefono','Ganancia']];
+    var header = [['Nombre', 'Correo', 'Teléfono','Ganancia']];
     var tablaClienteMayorGanancia: any[] = [];
     var tablaElem: any[] = [];
     var titulo = "Clientes con mayores ganancias";
 
     this.clienteService.getClienteMayorGanancia().subscribe((res: ClienteMayorGanancia[]) => {
       res.forEach(e => {
-        tablaElem.push(e.nombre+e.apellidoPaterno+e.apellidoMaterno);
+        tablaElem.push(e.nombre+" "+e.apellidoPaterno+" "+e.apellidoMaterno);
         tablaElem.push(e.email);
         tablaElem.push(e.telefono);
-        tablaElem.push(e.ganancia);
+        tablaElem.push("$"+e.ganancia);
         tablaClienteMayorGanancia.push(tablaElem);
         tablaElem = [];
       });
@@ -255,5 +255,4 @@ export class InformeComponent implements OnInit {
     // Download PDF doc  
     pdf.save('table.pdf');
   }
-
 }

@@ -36,6 +36,7 @@ export class IngresarPasswordComponent {
 
     this.cambiarPasswordService.cambiarPassword(this.cambiarPasswordDTO).subscribe ((res:any) =>{
       console.log("Se cambio la contraseña correctamente");
+      this.aviso();
       this.router.navigate(['/entrar'])
     }, (err : HttpErrorResponse) => {
       this.error();
@@ -43,6 +44,14 @@ export class IngresarPasswordComponent {
       this.form.reset;
     });
    }
+
+   aviso() {
+    this._snackBar.open('Se cambio la contraseña exitosamente', '', {
+      duration: 4000, //milisegundos,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    })
+  }
 
 
    error() {

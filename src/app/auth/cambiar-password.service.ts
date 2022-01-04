@@ -13,11 +13,11 @@ export class CambiarPasswordService {
   constructor(private http: HttpClient) { }
 
 
-  olvidePassword(emailValuesDto: EmailValuesDTO) {
-    return this.http.post('http://localhost:8080/email/send/olvidePassword', emailValuesDto);
+  olvidePassword(emailValuesDto: EmailValuesDTO): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/email/send/olvidePassword', emailValuesDto);
   }
 
-  cambiarPassword(cambiarPasswordDTO: CambiarPasswordDTO){
-    return this.http.post('http://localhost:8080/email/send/cambiarPassword', cambiarPasswordDTO);
+  cambiarPassword(cambiarPasswordDTO: CambiarPasswordDTO): Observable<any>{
+    return this.http.post<any>('http://localhost:8080/email/send/cambiarPassword', cambiarPasswordDTO);
   }
 }
