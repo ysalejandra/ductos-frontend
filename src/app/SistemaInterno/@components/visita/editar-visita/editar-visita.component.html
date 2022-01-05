@@ -1,12 +1,8 @@
 <div class="body">
     <div class="format">
         <h1 class="ancho">Editar Visita</h1>
-      <form [formGroup]="visitaForm" (ngSubmit)="saveData()">
+      <form [formGroup]="visitaForm" (ngSubmit)="confirmar()">
         <input type="hidden" formControlName="idVisita">
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Fecha visita</mat-label>
-          <input matInput type="date" autocomplete="off" formControlName="fechaVisita"/>
-        </mat-form-field>
         <br />
         <mat-form-field appearance="fill" class="ancho">
           <mat-label>Estado del pedido</mat-label>
@@ -23,6 +19,14 @@
           </mat-select>
         </mat-form-field>
         <br />
+        <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Fecha de la visita</mat-label>
+        <input value="{{fechaDeLaVisita | date: 'yyyy-MM-dd' }}" matInput [matDatepicker]="picker2" formControlName="fechaVisita">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <br>
         <mat-form-field appearance="fill" class="ancho">
           <mat-label>Observaciones</mat-label>
           <input matInput type="text" autocomplete="off" formControlName="observaciones"/>

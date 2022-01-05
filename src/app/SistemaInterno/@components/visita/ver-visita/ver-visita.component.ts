@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Visita } from 'src/app/SistemaInterno/@models/visita.model';
@@ -12,8 +14,15 @@ import { VisitaService } from 'src/app/SistemaInterno/@services/visita.service';
 })
 export class VerVisitaComponent implements OnInit {
 
-  isDataAvailable : boolean = false;
   visita: Visita;
+
+  isDataAvailable : boolean = false;
+  panelOpenState = false;
+
+  dataSource: any;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(fb: FormBuilder, public visitaService: VisitaService, private router : Router, private route: ActivatedRoute) { 
   }

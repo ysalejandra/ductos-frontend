@@ -16,13 +16,13 @@ export class ListarVisitaComponent implements OnInit {
 
   listvisita: Visita[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['fechaVisita', 'estadoVisita', 'observaciones','direccionVisita','acciones'];
+  displayedColumns: string[] = ['fechaVisita', 'estadoVisita','direccionVisita','acciones'];
 
   visitasCargadas:boolean= false;
   visitas: Visita[] = [];
   p: number = 1;
 
-  dataSource: any;
+  dataSource : any;
 
   constructor(public visitaService: VisitaService, private router: Router ) { }
 
@@ -37,7 +37,7 @@ export class ListarVisitaComponent implements OnInit {
       console.log(this.visitas);
       this.visitasCargadas = true;
       this.dataSourse = this.listvisita;
-      const dataSource = new MatTableDataSource(this.listvisita);
+      this.dataSource = new MatTableDataSource(this.listvisita);
 
     })
   }
@@ -57,10 +57,6 @@ export class ListarVisitaComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
   }
 
 }

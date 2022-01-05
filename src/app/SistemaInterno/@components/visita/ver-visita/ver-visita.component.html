@@ -1,41 +1,59 @@
-<div class="body">
-    <div class="format">
-        <h1 class="ancho">Editar Visita</h1>
-        <input type="hidden" formControlName="idVisita">
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Fecha visita</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="fechaVisita"/>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Estado del pedido</mat-label>
-          <mat-select formControlName="estadoVisita">
-            <mat-option value="AGENDADA">
-              Agendada
-            </mat-option>
-            <mat-option value="ENCAMINO">
-              En camino
-            </mat-option>
-            <mat-option value="REALIZADA">
-              Realizada
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Observaciones</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="observaciones"/>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Dirección</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="direccion"/>
-        </mat-form-field>
-        <br />
-        <br><br>
-        <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/visitas">
-          Cancelar
-        </button>
+<div *ngIf="isDataAvailable" class="body">
+  <div class="format">
+    <mat-card class="ancho">
+      <mat-card-title class="titulo">Detalle de la visita</mat-card-title>
+      <br>
+      <div class="formulario">
 
-    </div>
+        <div>
+          <h2>
+            <mat-label><b>Fecha de la visita:</b></mat-label>
+            {{visita.fechaVisita | date: 'dd/MM/yyyy'}}
+          </h2>
+        </div>
+        <div>
+          <h2>
+            <mat-label><b>Dirección:</b></mat-label>
+            {{visita.direccion}}
+          </h2>
+        </div>
+        <div>
+          <p>
+            <mat-label>
+              <h2><b>Estado de la visita</b></h2>
+            </mat-label>
+          </p>
+          <span *ngIf="visita.estadoVisita === 'AGENDADA'" class="badge badge-primary">
+            <h2>Agendada</h2>
+          </span>
+          <h1><span *ngIf="visita.estadoVisita === 'ENCAMINO'" class="badge badge-info">En camino</span></h1>
+          <span *ngIf="visita.estadoVisita === 'REALIZADA'" class="badge badge-success">
+            <h3>Realizada</h3>
+          </span>
+          <div>
+            <mat-label>
+              <h2><b>Observaciones</b></h2>
+            </mat-label> {{visita.observaciones}}
+          </div>
+          <br>
+
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Código del pedido</b>
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{visita.pedido.codigoSeguimiento }}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>Estado del pedido: {{visita.pedido.estadoPedido}}</p>
+              <p>Anotaciones: {{visita.pedido.anotaciones}}</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <br>
+        </div>
+      </div>
+    </mat-card>
   </div>
+</div>

@@ -23,6 +23,7 @@ import { ListarTrabajadorComponent } from '../trabajador/listar-trabajador/lista
 import { AgregarVisitaComponent } from '../visita/agregar-visita/agregar-visita.component';
 import { EditarVisitaComponent } from '../visita/editar-visita/editar-visita.component';
 import { ListarVisitaComponent } from '../visita/listar-visita/listar-visita.component';
+import { VerVisitaComponent } from '../visita/ver-visita/ver-visita.component';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 
@@ -47,7 +48,7 @@ const routes: Routes = [
       { path: 'visitas', component: ListarVisitaComponent, canActivate: [AuthGuard] },
       { path: 'visitas/agregar/:idPedido', component: AgregarVisitaComponent, canActivate: [AuthGuard]},
       { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent, canActivate: [AuthGuard]},
-      { path: 'visitas/ver/:idVisita', component: VerPedidoComponent, canActivate: [AuthGuard]},
+      { path: 'visitas/ver/:idVisita', component: VerVisitaComponent, canActivate: [AuthGuard]},
       { path: 'calendario', component: CalendarioComponent , canActivate: [AuthGuard]},
       { path: 'pedidos', component: ListarPedidoComponent, canActivate: [AuthGuard]},
       { path: 'pedidos/agregar', component: AgregarPedidoComponent, canActivate: [AuthGuard]},
