@@ -21,8 +21,8 @@ export class EditarVisitaComponent implements OnInit {
   constructor(fb: FormBuilder, public visitaService: VisitaService, private router : Router, private route: ActivatedRoute, public dialogo: MatDialog) { 
     this.visitaForm = fb.group({
       idVisita: [0, Validators.required],
-      fechaVisita: ["", Validators.required],
       estadoVisita: ["", Validators.required],
+      fechaVisita: [0, Validators.required],
       observaciones: ["", Validators.required],
       direccion: ["", Validators.required]
     });
@@ -45,8 +45,8 @@ export class EditarVisitaComponent implements OnInit {
       return;
     }else{
       this.visita = Object.assign(this.visita, this.visitaForm.value);
-    this.visitaService.editVisita(this.visitaForm.value).subscribe((res: any) => console.log(res));
-    this.router.navigate(["/dashboard/visitas"]);
+      this.visitaService.editVisita(this.visitaForm.value).subscribe((res: any) => console.log(res));
+      this.router.navigate(["/dashboard/visitas"]);
     }
     
   }
