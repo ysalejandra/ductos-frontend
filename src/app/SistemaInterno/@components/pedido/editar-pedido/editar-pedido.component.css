@@ -26,3 +26,12 @@
 .titulo{
     -webkit-text-stroke-width:thin;
 }
+
+.tabla-exterior {
+    width: 150%;
+}
+
+table {
+    width: 100%;
+    align-items: center;
+  }

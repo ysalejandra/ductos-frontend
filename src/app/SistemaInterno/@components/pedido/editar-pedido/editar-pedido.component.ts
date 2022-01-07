@@ -45,16 +45,20 @@ export class EditarPedidoComponent implements OnInit {
   isDataAvailable : boolean = false;
   panelOpenState = false;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
   dataSource: any;
   tableProductos : ProductoTable[] = [];
+  displayedColumns: string[] = ['producto', 'categoria', 'cantidad', 'valor'];
+
+
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private fb: FormBuilder, public pedidoService: PedidoService, public clienteService: ClienteService, 
     public productoService: ProductoService, private router: Router, private route: ActivatedRoute, public obraService : ObraService, public trabajadorService: TrabajadorService,
     public dialogo: MatDialog, public visitaService: VisitaService) {
     this.pedidoForm = this.fb.group({
+      idPedido: [0, Validators.required],
       fechaIngreso: ["", Validators.required],
       fechaEntrega: ["", Validators.required],
       anotaciones: ["", Validators.required],
@@ -86,6 +90,9 @@ export class EditarPedidoComponent implements OnInit {
     this.route.params.pipe(switchMap((params : Params) => this.pedidoService.getPedidoPorId(+params['idPedido']))).subscribe( (res : Pedido) => {
       console.log(res);
       this.pedido = res;
+      this.pedido.detalleProductos.forEach(e => {
+        this.tableProductos.push(new ProductoTable(e.producto.nombre, e.producto.categoria, e.cantidad, e.producto.valor));
+      });
       this.obra = this.pedido.obra;
       this.dataSource = new MatTableDataSource(this.tableProductos);
       this.dataSource.paginator = this.paginator;
@@ -93,15 +100,17 @@ export class EditarPedidoComponent implements OnInit {
       this.isDataAvailable = true;
       this.fechaEntrega = new FormControl(this.pedido.fechaEntrega);
       this.pedidoForm = this.fb.group({
+        idPedido: [this.pedido.idPedido],
         fechaIngreso: [this.pedido.fechaIngreso],
         fechaEntrega: [this.pedido.fechaEntrega],
         anotaciones: [this.pedido.anotaciones],
         estadoPedido: [this.pedido.estadoPedido],
-        detalleProductos: this.pedido.detalleProductos
+        detalleProductos: this.fb.array([])
       })
       
     }); 
   }
+
 
   get productos() {
     return this.pedidoForm.controls["detalleProductos"] as FormArray;
@@ -119,6 +128,7 @@ export class EditarPedidoComponent implements OnInit {
   deleteProducto(productoIndex: number) {
     this.productos.removeAt(productoIndex);
 }
+
   
   agregarVisita(idPedido: number){
 
