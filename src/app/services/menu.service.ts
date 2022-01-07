@@ -15,4 +15,8 @@ export class MenuService {
     return this.http.get<Menu[]>('./assets/data/menu.json');
   }
 
+  getMenuAdmin(): Observable<Menu[]>{
+    return this.http.get<Menu[]>('./assets/data/menu-admin.json');
+  }
+
 }

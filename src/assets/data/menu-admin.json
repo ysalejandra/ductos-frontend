@@ -1,0 +1,43 @@
+[   
+    {
+        "nombre":  "Pedidos",
+        "redirect": "/dashboard/pedidos",
+        "icono": "fas fa-address-book"
+    },
+    {
+        "nombre":  "Productos",
+        "redirect": "/dashboard/productos",
+        "icono": "fas fa-address-book"
+    },
+    {
+        "nombre": "Clientes",
+        "redirect": "/dashboard/clientes",
+        "icono": "far fa-address-book"
+    },
+    {
+        "nombre": "Obras",
+        "redirect": "/dashboard/obras",
+        "icono": "fas fa-apple-alt"
+    },
+    {
+        "nombre": "Trabajadores",
+        "redirect": "/dashboard/trabajadores",
+        "icono": "fas fa-ad"
+    },
+    {
+        "nombre": "Visitas",
+        "redirect": "/dashboard/visitas",
+        "icono": "fas fa-ad"
+    },
+    {
+        "nombre": "Calendario",
+        "redirect": "/dashboard/calendario",
+        "icono": "fas fa-ad"
+    },
+    {
+        "nombre": "Informe",
+        "redirect": "/dashboard/informe",
+        "icono": "fas fa-ad"
+    }
+
+]

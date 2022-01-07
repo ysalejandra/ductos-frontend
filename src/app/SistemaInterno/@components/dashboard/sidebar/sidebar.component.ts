@@ -12,12 +12,14 @@ export class SidebarComponent implements OnInit {
   nombre: string = "";
   menu: Menu[] = [];
   cargado : boolean = false;
+  rol : string = "";
 
   constructor(private menuService : MenuService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarMenu();
     if (localStorage.getItem('trabajador') !== null) {
+      this.rol = localStorage.getItem('rol');
       var trabajador = JSON.parse(localStorage.getItem('trabajador') || '');
       this.nombre = trabajador.nombre + ' ' + trabajador.apellidoPaterno + ' ' + trabajador.apellidoMaterno;
     }
@@ -25,10 +27,18 @@ export class SidebarComponent implements OnInit {
   }
 
   cargarMenu() {
-    this.menuService.getMenu().subscribe(data => {
-      console.log(data);
-      this.menu = data;
-    })
+    if (localStorage.getItem('rol') === 'TRABAJADOR') {
+      this.menuService.getMenu().subscribe(data => {
+        console.log(data);
+        this.menu = data;
+      })
+    } else {
+      this.menuService.getMenuAdmin().subscribe(data => {
+        console.log(data);
+        this.menu = data;
+      })
+    }
+   
   }
 
   salir(){
