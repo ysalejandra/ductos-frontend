@@ -19,7 +19,6 @@
           </mat-select>
         </mat-form-field>
         <br />
-        <br />
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Fecha de la visita</mat-label>
         <input value="{{fechaDeLaVisita | date: 'yyyy-MM-dd' }}" matInput [matDatepicker]="picker2" formControlName="fechaVisita">
@@ -44,6 +43,6 @@
         <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/visitas">
           Cancelar
         </button>
-      </form>
+      </form><br>
     </div>
   </div>

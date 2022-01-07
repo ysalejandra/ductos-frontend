@@ -3,11 +3,12 @@ export interface ObraInterface {
     nombre: string;
     direccion: string;
     ciudad: string;
+    descripcion: string;
     vigente: boolean;
 }
 
 export class Obra implements ObraInterface {
-    constructor(public idObra: number, public nombre:string, public direccion:string, public ciudad:string, public vigente: boolean) {
+    constructor(public idObra: number, public nombre:string, public direccion:string, public ciudad:string, public descripcion:string, public vigente: boolean) {
         this.idObra = idObra;
         this.nombre = nombre;
         this.direccion = direccion;

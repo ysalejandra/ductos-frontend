@@ -3,7 +3,7 @@ export interface TrabajadorInterface {
     nombre: string;
     apellidoPaterno: string;
     apellidoMaterno: string;
-    fechaNacimiento: string;
+    fechaNacimiento: Date;
     email: any;
     password: string;
     telefono: string;
@@ -13,7 +13,7 @@ export interface TrabajadorInterface {
 }
 
 export class Trabajador implements TrabajadorInterface {
-    constructor(public rut: string, public nombre:string, public apellidoPaterno:string, public apellidoMaterno:string, public fechaNacimiento:string, public email:any, public password: string, public telefono:string, public rol: string, public urlFoto: string, public vigente: boolean) {
+    constructor(public rut: string, public nombre:string, public apellidoPaterno:string, public apellidoMaterno:string, public fechaNacimiento:Date, public email:any, public password: string, public telefono:string, public rol: string, public urlFoto: string, public vigente: boolean) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;

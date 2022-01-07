@@ -20,12 +20,11 @@ export class EditarProductoComponent implements OnInit {
   
   constructor(fb: FormBuilder, public productoService: ProductoService, private router : Router, private route: ActivatedRoute, public dialogo: MatDialog) { 
     this.productoForm = fb.group({
-      idDetalle: [0, Validators.required],
+      idProducto: [0, Validators.required],
       nombre: ["", Validators.required],
       descripcion: ["", Validators.required],
       categoria: ["", Validators.required],
-      cantidad: [0, Validators.required],
-      valor: [0, Validators.required]
+      valor: [0, Validators.required],
     });
 
     this.route.params.pipe(switchMap((params : Params) => this.productoService.getProductoPorId(+params['idDetalle']))).subscribe( (res : Producto) => {
@@ -56,7 +55,6 @@ export class EditarProductoComponent implements OnInit {
     .subscribe((confirmado: Boolean) => {
       if (confirmado) {
         this.guardar();
-        this.router.navigate(["/dashboard/productos"]);
       } else {
         this.router.navigate(["/dashboard/productos"]);
       }

@@ -16,6 +16,7 @@ export class EditarTrabajadorComponent implements OnInit {
 
   trabajadorForm : FormGroup;
   trabajador: Trabajador | undefined;
+  fechaDeNacimiento: Date;
 
   constructor(fb: FormBuilder, public trabajadorService: TrabajadorService, private router : Router, private route: ActivatedRoute, public dialogo: MatDialog) { 
     
@@ -32,6 +33,7 @@ export class EditarTrabajadorComponent implements OnInit {
 
     this.route.params.pipe(switchMap((params : Params) => this.trabajadorService.getTrabajador(params['rut']))).subscribe( (res : Trabajador) => {
       this.trabajador = res;
+      this.fechaDeNacimiento = this.trabajador.fechaNacimiento;
       this.trabajadorForm?.patchValue(this.trabajador);
     }); 
   }
@@ -58,7 +60,6 @@ export class EditarTrabajadorComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.guardar();
-          this.router.navigate(["/dashboard/trabajadores"]);
         } else {
           this.router.navigate(["/dashboard/trabajadores"]);
         }

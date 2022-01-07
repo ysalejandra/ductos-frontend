@@ -1,7 +1,3 @@
-<mat-toolbar class = "titulo" color="secondary">
-  <span >Productos</span>
-</mat-toolbar>
-
 <div class="body">
   <div class="format">
       <h1 class="ancho">Editar Trabajador</h1>
@@ -22,9 +18,11 @@
         <input matInput type="text" autocomplete="off" formControlName="apellidoMaterno"/>
       </mat-form-field>
       <br />
-      <mat-form-field appearance="fill" class="ancho invisible">
+      <mat-form-field appearance="fill" class="ancho">
         <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput type="text" autocomplete="off" formControlName="fechaDeNacimiento"/>
+        <input value="{{fechaDeNacimiento | date: 'yyyy-MM-dd' }}" matInput [matDatepicker]="picker2" formControlName="fechaNacimiento">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <br />
       <mat-form-field appearance="fill" class="ancho">
@@ -34,7 +32,7 @@
       <br />
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Teléfono</mat-label>
-        <textarea matInput type="text" autocomplete="off"formControlName="telefono"></textarea>
+        <input matInput type="text" autocomplete="off"formControlName="telefono">
       </mat-form-field>
       <br />
       <button class="ancho button" mat-raised-button color="primary" type= "submit">
@@ -44,6 +42,6 @@
       <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/trabajadores">
         Cancelar
       </button>
-    </form>
+    </form><br>
   </div>
 </div>
