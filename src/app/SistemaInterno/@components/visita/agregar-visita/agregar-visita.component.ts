@@ -8,6 +8,8 @@ import { PedidoService } from 'src/app/SistemaInterno/@services/pedido.service';
 import { TrabajadorService } from 'src/app/SistemaInterno/@services/trabajador.service';
 import { VisitaService } from 'src/app/SistemaInterno/@services/visita.service';
 import { Location } from '@angular/common';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-agregar-visita',
@@ -21,7 +23,7 @@ export class AgregarVisitaComponent implements OnInit {
   pedidoForm: FormGroup;
   pedido: Pedido;
   
-  constructor(private fb: FormBuilder, public visitaService: VisitaService, public pedidoService: PedidoService, private route: ActivatedRoute, private router: Router, private location: Location) { 
+  constructor(private fb: FormBuilder, public visitaService: VisitaService, public pedidoService: PedidoService, private route: ActivatedRoute, private router: Router, private location: Location, public dialogo: MatDialog) { 
     this.visitaForm = this.fb.group({
       fechaVisita: ["", Validators.required],
       estadoVisita: ["", Validators.required],
@@ -64,6 +66,32 @@ export class AgregarVisitaComponent implements OnInit {
       this.location.back();
       console.log( 'goBack()...' );
     });
+  }
+
+  volverAtras(){
+    this.location.back();
+      console.log( 'goBack()...' );
+  }
+
+  confirmar(): void {
+    if (this.visitaForm.invalid) {
+      console.log("Invalid");
+      return;
+    }else{
+      this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: "¿Estas seguro que quieres agregar la visita?"
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.guardarVisitaPedido();
+        } else {
+          this.location.back();
+          console.log( 'goBack()...' );
+        }
+      });
+    }
   }
 
 }

@@ -9,6 +9,7 @@ import { Pedido } from 'src/app/SistemaInterno/@models/pedido.model';
 import { Producto } from 'src/app/SistemaInterno/@models/producto.model';
 import { ProductoTable } from 'src/app/SistemaInterno/@models/productoTable.model';
 import { PedidoService } from 'src/app/SistemaInterno/@services/pedido.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ver-pedido',
@@ -30,7 +31,7 @@ export class VerPedidoComponent implements OnInit {
   tableProductos : ProductoTable[] = [];
   displayedColumns: string[] = ['producto', 'categoria', 'cantidad', 'valor'];
   
-  constructor(private fb: FormBuilder, private router : Router, private route: ActivatedRoute, private pedidoService: PedidoService) { }
+  constructor(private fb: FormBuilder, private router : Router, private route: ActivatedRoute, private pedidoService: PedidoService, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.pipe(switchMap((params : Params) => this.pedidoService.getPedidoPorId(+params['idPedido']))).subscribe( (res : Pedido) => {
@@ -52,6 +53,12 @@ export class VerPedidoComponent implements OnInit {
       })
       
     }); 
+  }
+
+  volverAtras(){
+    this.location.back();
+      console.log( 'goBack()...' );
+
   }
 
 
