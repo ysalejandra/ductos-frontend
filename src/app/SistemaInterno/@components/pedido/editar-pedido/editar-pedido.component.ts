@@ -111,7 +111,6 @@ export class EditarPedidoComponent implements OnInit {
     }); 
   }
 
-
   get productos() {
     return this.pedidoForm.controls["detalleProductos"] as FormArray;
   }
@@ -146,10 +145,8 @@ export class EditarPedidoComponent implements OnInit {
     .subscribe((confirmado: Boolean) => {
       if (confirmado) {
         this.editar();
-        this.ocultar = true;
-
       } else {
-        alert("No se ha actualizado el pedido");
+        
       }
     });
 }

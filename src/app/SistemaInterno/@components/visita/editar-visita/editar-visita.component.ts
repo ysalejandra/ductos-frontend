@@ -16,7 +16,7 @@ export class EditarVisitaComponent implements OnInit {
 
   visitaForm : FormGroup;
   visita: Visita | undefined;
-  fechaDeLaVisita: Date;
+  fechaDeVisita: Date;
   
   constructor(fb: FormBuilder, public visitaService: VisitaService, private router : Router, private route: ActivatedRoute, public dialogo: MatDialog) { 
     this.visitaForm = fb.group({
@@ -30,8 +30,8 @@ export class EditarVisitaComponent implements OnInit {
     this.route.params.pipe(switchMap((params : Params) => this.visitaService.getVisitaPorId(+params['idVisita']))).subscribe( (res : Visita) => {
       this.visita = res;
       console.log(this.visita);
-      this.fechaDeLaVisita = this.visita.fechaVisita;
-      console.log(this.fechaDeLaVisita);
+      this.fechaDeVisita = this.visita.fechaVisita;
+      console.log(this.fechaDeVisita);
       this.visitaForm?.patchValue(this.visita);
     }); 
   }

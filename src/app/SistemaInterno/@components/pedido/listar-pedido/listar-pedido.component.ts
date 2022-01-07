@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Pedido } from 'src/app/SistemaInterno/@models/pedido.model';
 import { PedidoService } from 'src/app/SistemaInterno/@services/pedido.service';
+import { DialogoConfirmacionComponent } from 'src/app/SistemaPublico/@components/cotizacion/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-listar-pedido',
@@ -20,10 +22,10 @@ export class ListarPedidoComponent implements OnInit {
   dataSource: any;
   pedidos: Pedido[] = [];
 
-  displayedColumns: string[] = ['idPedido', 'codigoSeguimiento', 'estadoPedido', 'fechaEntrega','acciones'];
+  displayedColumns: string[] = ['idPedido', 'codigoSeguimiento', 'estadoPedido', 'fechaIngreso', 'fechaEntrega','acciones'];
 
 
-  constructor(private router: Router, public pedidoService: PedidoService) { }
+  constructor(private router: Router, public pedidoService: PedidoService, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.getPedidos();
@@ -45,8 +47,27 @@ export class ListarPedidoComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  eliminarPedido(idPedido: number){
-
+  eliminarPedido(id: number){
+    console.log(id);
+    this.pedidoService.borrarPedido(id).subscribe((res: any) => {
+      this.ngOnInit();
+    });
   }
 
+
+  confirmar(id: number) {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Estas seguro que quieres eliminar el pedido?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.eliminarPedido(id);
+          this.router.navigate(["/dashboard/pedido"]);
+        } else {
+          this.router.navigate(["/dashboard/pedido"]);
+        }
+      });
+  }
 }

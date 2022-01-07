@@ -80,11 +80,11 @@ export class PedidoService {
       }
       })
   }));
-    
   }
 
-
-
+  borrarPedido(id: number){
+    return this.http.delete('http://localhost:8080/pedidos/'+id);
+  }
 
   rand_Code(chars: any, lon: any): String {
     let code = "";

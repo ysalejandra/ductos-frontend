@@ -102,18 +102,15 @@
             <th mat-header-cell *matHeaderCellDef> Valor </th>
             <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
           </ng-container>
-
-
           <!-- Symbol Column -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-      </div>
-      
-
-
-      
+      </div><br><br>
+      <button mat-raised-button color="primary" style="font-size: 20px" routerLink="/dashboard/pedidos">
+        Volver atrás
+      </button><br>
     </div>
-    </mat-card>
+    </mat-card><br>
   </div>
 </div>

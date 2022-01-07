@@ -6,9 +6,7 @@
       style="max-height: 32px;"><br>
   </a>
 
-  <!-- Sidebar -->
   <div class="sidebar">
-    <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <img src="../../../../../assets/img/user.png" class="img-circle elevation-2" alt="User Image">
@@ -16,23 +14,29 @@
       <div class="info">
         <a href="#" class="d-block" style="font-size:16px">{{nombre}}</a><br>
         <span style="color:aliceblue">{{rol}}</span><br>
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-          <li class="nav-item">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex" >   
+      <nav class="mt-2" >
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview">
+        
             <a (click)="salir()" class="nav-link" style="font-size:16px">
               <i class="fas fa-sign-out-alt"></i>
               Cerrar sesión
             </a>
-          </li>
+       
         </ul>
-      </div>
+      </nav>
     </div>
-
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
         <li class="nav-item" *ngFor="let item of menu">
           <a [routerLink]="[item.redirect]" class="nav-link" style="font-size:16px">
             <i class="{{item.icono}}"></i>
