@@ -15,6 +15,7 @@ import { Obra } from 'src/app/SistemaInterno/@models/obra.model';
 import { Trabajador } from 'src/app/SistemaInterno/@models/trabajador.model';
 import { ObraService } from 'src/app/SistemaInterno/@services/obra.service';
 import { TrabajadorService } from 'src/app/SistemaInterno/@services/trabajador.service';
+import { EnviarEmailService } from 'src/app/SistemaPublico/@services/enviar-email.service';
 
 @Component({
   selector: 'app-agregar-pedido',
@@ -36,8 +37,7 @@ export class AgregarPedidoComponent implements OnInit {
   listaTrabajadores: Trabajador[] = [];
   
   constructor(private fb: FormBuilder, public pedidoService: PedidoService, public clienteService: ClienteService, 
-    public productoService: ProductoService, private router: Router, public obraService : ObraService, public trabajadorService: TrabajadorService,
-    public dialogo: MatDialog) { 
+    public productoService: ProductoService, private router: Router, public obraService : ObraService, public trabajadorService: TrabajadorService, public enviarEmailService: EnviarEmailService,    public dialogo: MatDialog) { 
     this.pedidoForm = this.fb.group({
       fechaIngreso: ["", Validators.required],
       fechaEntrega: ["", Validators.required],
@@ -92,8 +92,17 @@ export class AgregarPedidoComponent implements OnInit {
     
     this.pedido = Object.assign(this.pedido, this.pedidoForm.value);
     console.log(this.pedido);
-    this.pedidoService.addPedido(this.pedido).subscribe( (res:any) => {
-      console.log(res);
+    this.pedidoService.addPedido(this.pedido).subscribe( (res: Pedido) => {
+      this.pedido = res;
+      console.log(this.pedido);
+      console.log("Codigo de seguimientooooo:" + this.pedido.codigoSeguimiento);
+
+      this.enviarEmailService.enviarCorreoAlCliente(this.pedido).subscribe( (res:any) => {
+        console.log(res);
+      });
+
+
+
       this.router.navigate(["/dashboard/pedidos"]);
     });
   }

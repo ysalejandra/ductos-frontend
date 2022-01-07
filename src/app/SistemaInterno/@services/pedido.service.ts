@@ -13,7 +13,7 @@ export class PedidoService {
 
   addPedido(pedido: Pedido){
     console.log(pedido);
-    pedido.codigoSeguimiento = this.generarCodigo();
+    //pedido.codigoSeguimiento = this.generarCodigo();
     return this.http.post('http://localhost:8080/pedidos', pedido);
   }
 

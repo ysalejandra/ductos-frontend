@@ -5,7 +5,7 @@ import { Cliente } from 'src/app/SistemaInterno/@models/cliente.model';
 import { Pedido } from 'src/app/SistemaInterno/@models/pedido.model';
 import { ClienteService } from 'src/app/SistemaInterno/@services/cliente.service';
 import { PedidoService } from 'src/app/SistemaInterno/@services/pedido.service';
-import { CotizacionInterface } from '../../@models/datosCotizacion.model';
+import { Cotizacion, CotizacionInterface } from '../../@models/cotizacion.model';
 import { EnviarEmailService } from '../../@services/enviar-email.service';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 
@@ -19,6 +19,7 @@ export class CotizacionComponent implements OnInit {
   cotizacionForm : FormGroup;
   cliente: Cliente;
   pedido: Pedido;
+  cotizacion: Cotizacion;
   
   ocultar: boolean = false;
   
@@ -32,6 +33,7 @@ export class CotizacionComponent implements OnInit {
       mensaje: ["", Validators.required]
     });
     this.cliente = new Cliente(0, "", "", "", "", "", true);
+    this.cotizacion = new Cotizacion("","","","","","","");
   }
 
   ngOnInit(): void {
@@ -45,19 +47,31 @@ export class CotizacionComponent implements OnInit {
     this.cliente.email = this.cotizacionForm.controls['email'].value;
     this.cliente.telefono = this.cotizacionForm.controls['telefono'].value;
     
+    
 
     //Creamos el pedido con estado COTIZACION y lo asociamos a cliente
-    this.clienteService.agregarPedidoCotizacion(this.cliente).subscribe ( (res: any ) =>{
+    this.clienteService.agregarPedidoCotizacion(this.cliente).subscribe ( (res: Pedido ) =>{
       console.log(res);
+      console.log("El codigo de seguimiento es: "+ res.codigoSeguimiento);
       console.log("Se creo el pedido COTIZACION con exito");
-    });
-   
-    this.enviarEmail.enviarCorreoAlCliente(this.cotizacionForm.value).subscribe( (res:any) => {
-      console.log(res);
-    });
 
-    this.enviarEmail.enviarCorreoALaEmpresa(this.cotizacionForm.value).subscribe( (res:any) => {
-      console.log(res);
+      this.cotizacion.nombre = this.cotizacionForm.controls['nombre'].value;
+      this.cotizacion.apellidoPaterno = this.cotizacionForm.controls['apellidoPaterno'].value;
+      this.cotizacion.apellidoMaterno = this.cotizacionForm.controls['apellidoMaterno'].value;
+      this.cotizacion.email = this.cotizacionForm.controls['email'].value;
+      this.cotizacion.telefono = this.cotizacionForm.controls['telefono'].value;
+      this.cotizacion.mensaje = this.cotizacionForm.controls['mensaje'].value;
+      this.cotizacion.codigoSeguimiento = res.codigoSeguimiento;
+
+      this.enviarEmail.enviarCorreoAlClienteCotizacion(this.cotizacion).subscribe( (res:any) => {
+        console.log(res);
+      });
+  
+      this.enviarEmail.enviarCorreoALaEmpresa(this.cotizacion).subscribe( (res:any) => {
+        console.log(res);
+      });
+
+
     });
       
   }
