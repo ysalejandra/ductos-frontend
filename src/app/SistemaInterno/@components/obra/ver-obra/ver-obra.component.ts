@@ -15,6 +15,8 @@ export class VerObraComponent implements OnInit {
   isDataAvailable : boolean = false;
   panelOpenState = false;
   obra: Obra;
+  dataSource: any;
+
 
   constructor(private obraService: ObraService,  private router: Router, private route: ActivatedRoute) { }
 
