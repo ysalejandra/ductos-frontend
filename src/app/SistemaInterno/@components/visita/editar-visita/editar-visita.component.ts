@@ -21,8 +21,8 @@ export class EditarVisitaComponent implements OnInit {
   constructor(fb: FormBuilder, public visitaService: VisitaService, private router : Router, private route: ActivatedRoute, public dialogo: MatDialog) { 
     this.visitaForm = fb.group({
       idVisita: [0, Validators.required],
-      estadoVisita: ["", Validators.required],
       fechaVisita: [0, Validators.required],
+      estadoVisita: ["", Validators.required],
       observaciones: ["", Validators.required],
       direccion: ["", Validators.required]
     });
