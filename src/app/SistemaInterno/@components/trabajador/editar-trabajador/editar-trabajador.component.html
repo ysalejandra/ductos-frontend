@@ -20,7 +20,7 @@
       <br />
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Fecha de Nacimiento</mat-label>
-        <input value="{{fechaDeNacimiento | date: 'yyyy-MM-dd' }}" matInput [matDatepicker]="picker2" formControlName="fechaNacimiento">
+        <input value="{{fechaDeNacimiento | date: 'yyyy-MM-dd' : '+2400'}}" matInput [matDatepicker]="picker2" formControlName="fechaNacimiento">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>

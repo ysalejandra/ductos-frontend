@@ -17,6 +17,9 @@ export class LoginService {
   }
 
   login(email: string, password: string) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('rol');
     let userLogin = {username: email, password: password};
     return this.http.post('http://localhost:8080/trabajadores/login', userLogin).pipe(map((res: any) => {
       console.log(res);

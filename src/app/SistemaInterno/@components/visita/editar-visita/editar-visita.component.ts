@@ -32,7 +32,11 @@ export class EditarVisitaComponent implements OnInit {
       console.log(this.visita);
       this.fechaDeVisita = this.visita.fechaVisita;
       console.log(this.fechaDeVisita);
+      let date : Date = new Date(this.fechaDeVisita);
+      this.visita.fechaVisita = date;
       this.visitaForm?.patchValue(this.visita);
+      
+      console.log(this.visitaForm.value);
     }); 
   }
 

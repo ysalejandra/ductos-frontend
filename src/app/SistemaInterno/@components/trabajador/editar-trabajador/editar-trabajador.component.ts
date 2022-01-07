@@ -25,7 +25,7 @@ export class EditarTrabajadorComponent implements OnInit {
       nombre: ["", Validators.required],
       apellidoPaterno: ["", Validators.required],
       apellidoMaterno: ["", Validators.required],
-      fechaDeNacimiento: [0, Validators.required],
+      fechaNacimiento: [0, Validators.required],
       email: ["", Validators.required],
       telefono: ["", Validators.required],
 
@@ -34,11 +34,15 @@ export class EditarTrabajadorComponent implements OnInit {
     this.route.params.pipe(switchMap((params : Params) => this.trabajadorService.getTrabajador(params['rut']))).subscribe( (res : Trabajador) => {
       this.trabajador = res;
       this.fechaDeNacimiento = this.trabajador.fechaNacimiento;
+      console.log(this.fechaDeNacimiento);
+      let date : Date = new Date(this.fechaDeNacimiento);
+      this.trabajador.fechaNacimiento = date;
       this.trabajadorForm?.patchValue(this.trabajador);
     }); 
   }
 
   ngOnInit(): void {
+
   }
 
   guardar() {
@@ -46,6 +50,7 @@ export class EditarTrabajadorComponent implements OnInit {
       console.log("Invalid");
       return;
     }
+    console.log(this.trabajadorForm.value);
     this.trabajador = Object.assign(this.trabajador, this.trabajadorForm.value);
     this.trabajadorService.editTrabajador(this.trabajadorForm.value).subscribe(res => console.log(res));
     this.router.navigate(["/dashboard/trabajadores"]);

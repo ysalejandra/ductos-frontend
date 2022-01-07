@@ -57,7 +57,11 @@ import { IngresarPasswordComponent } from './SistemaInterno/@components/login/in
 import { VerClienteComponent } from './SistemaInterno/@components/Cliente/ver-cliente/ver-cliente.component';
 import { EditarPedidoComponent } from './SistemaInterno/@components/pedido/editar-pedido/editar-pedido.component';
 import { VerVisitaComponent } from './SistemaInterno/@components/visita/ver-visita/ver-visita.component';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es-CL';
+import localeEsExtra from '@angular/common/locales/extra/es-CL';
 
+registerLocaleData(localeEs, 'es-CL', localeEsExtra)
 
 export function tokenGetter() {
   return localStorage.getItem('token');
