@@ -1,0 +1,40 @@
+<div *ngIf="isDataAvailable" class="body">
+    <div class="format">
+      <mat-card class="ancho">
+        <mat-card-title class="titulo">Detalle de la obra</mat-card-title>
+        <br>
+        <div class="formulario">
+  
+          <div>
+            <h2>
+              <mat-label><b>Nombre:</b></mat-label>
+              {{obra.nombre}}
+            </h2>
+          </div>
+          <div>
+            <h2>
+              <mat-label><b>Dirección:</b></mat-label>
+              {{obra.direccion}}
+            </h2>
+          </div>
+          <div>
+            <h2>
+              <mat-label><b>Ciudad:</b></mat-label>
+              {{obra.ciudad}}
+            </h2>
+          </div>
+          <div>
+            <h2>
+              <mat-label><b>Descripcion:</b></mat-label>
+              {{obra.descripcion}}
+            </h2>
+          </div>
+        </div>
+        <br>
+          <button mat-raised-button color="primary" style="font-size: 18px" routerLink="/dashboard/obras">
+            Volver atrás
+          </button>
+      </mat-card>
+    </div>
+  </div>
+  

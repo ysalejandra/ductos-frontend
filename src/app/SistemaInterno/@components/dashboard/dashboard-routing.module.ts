@@ -10,6 +10,7 @@ import { InformeComponent } from '../informe/informe.component';
 import { AgregarObraComponent } from '../obra/agregar-obra/agregar-obra.component';
 import { EditarObraComponent } from '../obra/editar-obra/editar-obra.component';
 import { ListarObraComponent } from '../obra/listar-obra/listar-obra.component';
+import { VerObraComponent } from '../obra/ver-obra/ver-obra.component';
 import { AgregarPedidoComponent } from '../pedido/agregar-pedido/agregar-pedido.component';
 import { EditarPedidoComponent } from '../pedido/editar-pedido/editar-pedido.component';
 import { ListarPedidoComponent } from '../pedido/listar-pedido/listar-pedido.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
       { path: 'obras', component: ListarObraComponent , canActivate: [AuthGuard]},
       { path: 'obras/agregar', component: AgregarObraComponent, canActivate: [AuthGuard] },
       { path: 'obras/editar/:idObra', component: EditarObraComponent, canActivate: [AuthGuard] },
+      { path: 'obras/ver/:idObra', component: VerObraComponent, canActivate: [AuthGuard] },
       { path: 'visitas', component: ListarVisitaComponent, canActivate: [AuthGuard] },
       { path: 'visitas/agregar/:idPedido', component: AgregarVisitaComponent, canActivate: [AuthGuard]},
       { path: 'visitas/editar/:idVisita', component: EditarVisitaComponent, canActivate: [AuthGuard]},

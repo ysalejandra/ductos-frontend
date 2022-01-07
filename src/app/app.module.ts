@@ -60,6 +60,7 @@ import { VerVisitaComponent } from './SistemaInterno/@components/visita/ver-visi
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-CL';
 import localeEsExtra from '@angular/common/locales/extra/es-CL';
+import { VerObraComponent } from './SistemaInterno/@components/obra/ver-obra/ver-obra.component';
 
 registerLocaleData(localeEs, 'es-CL', localeEsExtra)
 
@@ -99,6 +100,7 @@ export function tokenGetter() {
     IngresarPasswordComponent,
     VerClienteComponent,
     VerVisitaComponent,
+    VerObraComponent,
   ],
   imports: [
     ChartsModule,
