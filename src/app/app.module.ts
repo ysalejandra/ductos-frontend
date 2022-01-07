@@ -57,6 +57,7 @@ import { IngresarPasswordComponent } from './SistemaInterno/@components/login/in
 import { VerClienteComponent } from './SistemaInterno/@components/Cliente/ver-cliente/ver-cliente.component';
 import { EditarPedidoComponent } from './SistemaInterno/@components/pedido/editar-pedido/editar-pedido.component';
 import { VerVisitaComponent } from './SistemaInterno/@components/visita/ver-visita/ver-visita.component';
+import { VerObraComponent } from './SistemaInterno/@components/obra/ver-obra/ver-obra.component';
 
 
 export function tokenGetter() {
@@ -95,6 +96,7 @@ export function tokenGetter() {
     IngresarPasswordComponent,
     VerClienteComponent,
     VerVisitaComponent,
+    VerObraComponent,
   ],
   imports: [
     ChartsModule,
