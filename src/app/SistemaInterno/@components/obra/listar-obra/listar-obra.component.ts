@@ -20,7 +20,7 @@ export class ListarObraComponent implements OnInit {
 
   listObra: Obra[] | undefined;
   dataSourse: any;
-  displayedColumns: string[] = ['nombre', 'direccion', 'ciudad','acciones'];
+  displayedColumns: string[] = ['nombre', 'direccion', 'ciudad','descripcion','acciones'];
 
   obrasCargadas:boolean= false;
   obras: Obra[] = [];
@@ -73,7 +73,7 @@ export class ListarObraComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarObra(id);
-          this.router.navigate(["/dashboard/clientes"]);
+          this.router.navigate(["/dashboard/obras"]);
         } else {
           this.router.navigate(["/dashboard/obras"]);
         }

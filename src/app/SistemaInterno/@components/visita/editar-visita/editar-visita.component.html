@@ -1,49 +1,49 @@
 <div class="body">
-    <div class="format">
-        <h1 class="ancho">Editar Visita</h1>
-      <form [formGroup]="visitaForm" (ngSubmit)="confirmar()">
-        <input type="hidden" formControlName="idVisita">
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Estado del pedido</mat-label>
-          <mat-select formControlName="estadoVisita">
-            <mat-option value="AGENDADA">
-              Agendada
-            </mat-option>
-            <mat-option value="ENCAMINO">
-              En camino
-            </mat-option>
-            <mat-option value="REALIZADA">
-              Realizada
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br />
-        <br />
+  <div class="format">
+    <h1 class="ancho">Editar Visita</h1>
+    <form [formGroup]="visitaForm" (ngSubmit)="confirmar()">
+      <input type="hidden" formControlName="idVisita">
+      
       <mat-form-field appearance="fill" class="ancho">
-        <mat-label>Fecha de la visita</mat-label>
-        <input value="{{fechaDeLaVisita | date: 'yyyy-MM-dd' }}" matInput [matDatepicker]="picker2" formControlName="fechaVisita">
+        <mat-label>Fecha de Visita</mat-label>
+        <input value="{{fechaDeLaVisita | date: 'yyyy-MM-dd' }}" matInput [matDatepicker]="picker2"
+          formControlName="fechaVisita">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <br>
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Observaciones</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="observaciones"/>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="ancho">
-          <mat-label>Dirección</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="direccion"/>
-        </mat-form-field>
-        <br />
-        <button class="ancho button" mat-raised-button color="primary" type= "submit">
-          Guardar
-        </button>
-        <br><br>
-        <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/visitas">
-          Cancelar
-        </button>
-      </form>
-    </div>
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Estado del pedido</mat-label>
+        <mat-select formControlName="estadoVisita">
+          <mat-option value="AGENDADA">
+            Agendada
+          </mat-option>
+          <mat-option value="ENCAMINO">
+            En camino
+          </mat-option>
+          <mat-option value="REALIZADA">
+            Realizada
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Observaciones</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="observaciones" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="ancho">
+        <mat-label>Dirección</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="direccion" />
+      </mat-form-field>
+      <br />
+      <button class="ancho button" mat-raised-button color="primary" type="submit">
+        Guardar
+      </button>
+      <br><br>
+      <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/visitas">
+        Cancelar
+      </button>
+    </form><br>
   </div>
+</div>

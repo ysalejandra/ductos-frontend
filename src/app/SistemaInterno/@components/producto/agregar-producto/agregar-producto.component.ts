@@ -15,7 +15,6 @@ export class AgregarProductoComponent implements OnInit {
 
   productoForm : FormGroup;
   producto: Producto;
-  ocultar: boolean = false;
   
   constructor(private fb: FormBuilder, public productoService: ProductoService, private router: Router,
     public dialogo: MatDialog) { 
@@ -53,8 +52,6 @@ export class AgregarProductoComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.guardar();
-          this.ocultar = true;
-          this.router.navigate(["/dashboard/productos"]);
 
         } else {
           this.router.navigate(["/dashboard/productos"]);

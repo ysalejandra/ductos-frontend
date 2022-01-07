@@ -20,7 +20,8 @@ export class ObraService {
           idObra: obra.idObra,
           nombre: obra.nombre,
           direccion: obra.direccion,
-          ciudad: obra.ciudad
+          ciudad: obra.ciudad,
+          descripcion: obra.descripcion
           }
       })
   }));
@@ -49,7 +50,8 @@ export class ObraService {
         idObra: obra.idObra,
           nombre: obra.nombre,
           direccion: obra.direccion,
-          ciudad: obra.ciudad
+          ciudad: obra.ciudad,
+          descripcion: obra.descripcion
         };
     })
     );

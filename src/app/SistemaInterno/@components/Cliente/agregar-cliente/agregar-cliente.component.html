@@ -25,8 +25,10 @@
             </mat-form-field>
             <br />
             <mat-form-field appearance="fill" class="ancho">
-                <mat-label>Teléfono</mat-label>
-                <input matInput #telefono formControlName="telefono" type="text" autocomplete="off" />
+              <mat-label>Teléfono</mat-label>
+              <span matPrefix>+56 &nbsp;</span>
+              <input matInput #telefono  placeholder="" formControlName="telefono" type="number" autocomplete="off" />
+                <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
             <br />
         <button class="ancho button" mat-raised-button color="primary" type= "submit">
@@ -36,7 +38,7 @@
         <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/clientes">
           Cancelar
         </button>
-      </form>
+      </form><br>
     </div>
   </div>
 

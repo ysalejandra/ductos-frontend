@@ -1,7 +1,7 @@
 <div class="body">
   <div class="format">
     <h1 class="ancho titulo">Agregar Trabajador</h1><br>
-    <form [formGroup]="trabajadorForm">
+    <form [formGroup]="trabajadorForm" (ngSubmit)="confirmar()">
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Rut</mat-label>
         <input matInput type="text" autocomplete="off" formControlName="rut" />
@@ -24,13 +24,15 @@
       <br />
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput type="text" autocomplete="off" formControlName="fechaNacimiento" />
+        <input matInput [matDatepicker]="picker2" formControlName="fechaNacimiento">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <br />
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Correo</mat-label>
         <input matInput  placeholder="trabajador@gmail.com" autocomplete="off" formControlName="email" required/>
-        <mat-error *ngIf="trabajador.email.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="trabajador.email.invalid">El correo es invalido</mat-error>
       </mat-form-field>
       <br />
       <mat-form-field appearance="fill" class="ancho">
@@ -43,18 +45,18 @@
       <br />
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Teléfono</mat-label>
-        <input matInput type="text" autocomplete="off" formControlName="telefono" />
+        <span matPrefix>+56 &nbsp;</span>
+        <input matInput #telefono  placeholder="" formControlName="telefono" type="number" autocomplete="off" />
+          <mat-icon matSuffix>phone</mat-icon>
       </mat-form-field>
       <br />
-      <button class="ancho button" mat-raised-button color="primary" type="submit" (click)="confirmar()">
+      <button class="ancho button" mat-raised-button color="primary" type= "submit">
         Guardar
       </button>
-      <div *ngIf="ocultar">
-        <div class="alert alert-sucess" role="alert">
-          ¡Se ha enviado la cotización correctamente!
-        </div>
-      </div>
-    </form>
-    <br>
+      <br><br>
+      <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/trabajadores">
+        Cancelar
+      </button>
+    </form><br>
   </div>
 </div>

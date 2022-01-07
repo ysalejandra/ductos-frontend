@@ -15,7 +15,6 @@ export class AgregarTrabajadorComponent implements OnInit {
 
   trabajadorForm: FormGroup;
   trabajador: Trabajador;
-  ocultar: boolean = false;
   hide = true;
 
   constructor(private fb: FormBuilder, public trabajadorService: TrabajadorService, private router: Router,
@@ -30,7 +29,7 @@ export class AgregarTrabajadorComponent implements OnInit {
       password: ["", Validators.required],
       telefono: ["", Validators.required],
     })
-    this.trabajador = new Trabajador('', '', '', '', '', '', '', '', 'TRABAJADOR', '',true);
+    this.trabajador = new Trabajador('', '', '', '', new Date(), '', '', '', 'TRABAJADOR', '',true);
   }
 
   ngOnInit(): void {
@@ -57,8 +56,6 @@ export class AgregarTrabajadorComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.guardar();
-          this.ocultar = true;
-          this.router.navigate(["/dashboard/trabajadores"]);
         } else {
           this.router.navigate(["/dashboard/trabajadores"]);
         }

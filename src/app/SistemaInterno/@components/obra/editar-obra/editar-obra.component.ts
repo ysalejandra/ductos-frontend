@@ -23,6 +23,7 @@ export class EditarObraComponent implements OnInit {
       nombre: ["", Validators.required],
       direccion: ["", Validators.required],
       ciudad: ["", Validators.required],
+      descripcion: ["", Validators.required]
     });
 
     this.route.params.pipe(switchMap((params : Params) => this.obraService.getObraPorId(+params['idObra']))).subscribe( (res : Obra) => {
@@ -57,7 +58,6 @@ export class EditarObraComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.guardar();
-          this.router.navigate(["/dashboard/obras"]);
         } else {
           this.router.navigate(["/dashboard/obras"]);
         }

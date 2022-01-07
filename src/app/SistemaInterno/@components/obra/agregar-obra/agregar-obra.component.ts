@@ -21,8 +21,9 @@ export class AgregarObraComponent implements OnInit {
       nombre: ["", Validators.required],
       direccion: ["", Validators.required],
       ciudad: ["", Validators.required],
+      descripcion: ["", Validators.required],
     })
-    this.obra = new Obra(0,'','','',true);
+    this.obra = new Obra(0,'','','','',true);
   }
 
   ngOnInit(): void {
