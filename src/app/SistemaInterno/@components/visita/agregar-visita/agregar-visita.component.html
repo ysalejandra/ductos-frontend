@@ -2,7 +2,7 @@
   <div class="format">
     <h1 class="ancho titulo">Agregar Visita</h1><br>
 
-      <mat-label><h1>Id Pedido: {{pedido.idPedido}}</h1></mat-label>
+     <!-- <mat-label><h1>Id Pedido: {{pedido.idPedido}}</h1></mat-label>-->
     <form [formGroup]="visitaForm" (ngSubmit)="guardarVisitaPedido()">
       
       <mat-form-field appearance="fill" class="ancho">
@@ -39,6 +39,10 @@
       <br />
       <button class="ancho button" mat-raised-button color="primary" type="submit">
         Guardar
+      </button>
+      <br><br>
+      <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/visitas">
+        Cancelar
       </button>
     </form><br>
   </div>
