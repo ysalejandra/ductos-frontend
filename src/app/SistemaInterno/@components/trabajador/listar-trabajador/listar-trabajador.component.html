@@ -12,7 +12,7 @@
     <div class="container-fluid">
       <div class="section">
         <br>
-        <button mat-button color="primary" routerLink="agregar">Agregar</button>
+        <button *ngIf="admin" mat-button color="primary" routerLink="agregar">Agregar</button>
         <br>
         <mat-form-field appearance="standard">
           <mat-label>Buscar</mat-label>

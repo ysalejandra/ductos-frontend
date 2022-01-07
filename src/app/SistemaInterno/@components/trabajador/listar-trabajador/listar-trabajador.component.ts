@@ -27,10 +27,16 @@ export class ListarTrabajadorComponent implements OnInit {
   p: number = 1;
 
   dataSource: any;
+  admin : boolean = false;
 
-  constructor(public trabajadorService: TrabajadorService, private router: Router,public dialogo: MatDialog ) { }
+  constructor(public trabajadorService: TrabajadorService, private router: Router,public dialogo: MatDialog ) {
+
+   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('rol') === 'ADMINISTRADOR') {
+      this.admin = true;
+    }
     this.getProductos();
   }
 
