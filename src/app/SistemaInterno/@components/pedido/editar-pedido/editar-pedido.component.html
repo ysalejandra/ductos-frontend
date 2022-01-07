@@ -11,8 +11,12 @@
       <br /><br>
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Fecha de entrega</mat-label>
-        <input matInput type="datetime" autocomplete="off" formControlName="fechaEntrega" />
+        <input value="{{fechaDeEntrega | date: 'yyyy-MM-dd' : '+2400'}}" matInput [matDatepicker]="picker2"
+          formControlName="fechaEntrega">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
+      
       <br>
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Anotaciones</mat-label>

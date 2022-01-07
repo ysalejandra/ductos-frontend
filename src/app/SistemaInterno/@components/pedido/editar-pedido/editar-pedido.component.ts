@@ -49,6 +49,8 @@ export class EditarPedidoComponent implements OnInit {
   tableProductos : ProductoTable[] = [];
   displayedColumns: string[] = ['producto', 'categoria', 'cantidad', 'valor'];
 
+  fechaDeEntrega : Date;
+
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -93,6 +95,7 @@ export class EditarPedidoComponent implements OnInit {
       this.pedido.detalleProductos.forEach(e => {
         this.tableProductos.push(new ProductoTable(e.producto.nombre, e.producto.categoria, e.cantidad, e.producto.valor));
       });
+      this.fechaDeEntrega = this.pedido.fechaEntrega;
       this.obra = this.pedido.obra;
       this.dataSource = new MatTableDataSource(this.tableProductos);
       this.dataSource.paginator = this.paginator;
@@ -101,8 +104,8 @@ export class EditarPedidoComponent implements OnInit {
       this.fechaEntrega = new FormControl(this.pedido.fechaEntrega);
       this.pedidoForm = this.fb.group({
         idPedido: [this.pedido.idPedido],
-        fechaIngreso: [this.pedido.fechaIngreso],
-        fechaEntrega: [this.pedido.fechaEntrega],
+        fechaIngreso: [new Date(this.pedido.fechaIngreso)],
+        fechaEntrega: [new Date(this.pedido.fechaEntrega)],
         anotaciones: [this.pedido.anotaciones],
         estadoPedido: [this.pedido.estadoPedido],
         detalleProductos: this.fb.array([])
