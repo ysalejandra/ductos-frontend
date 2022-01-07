@@ -81,7 +81,7 @@ export class InformeComponent implements OnInit {
 
   obtenerProductosDeObra() {
     console.log(this.obraForm.controls['obra'].value);
-    var header = [['idPedido', 'CodigoSeguimiento', 'estadoPedido','fechaIngreso', 'fechaEntrega']];
+    var header = [['Id del Pedido', 'Codigo de Seguimiento', 'Estado del pedido','Fecha de Ingreso', 'Fecha de Entrega']];
     var tablaProductosObras: any[] = [];
     var tablaElem: any[] = [];
     var titulo;
@@ -101,9 +101,23 @@ export class InformeComponent implements OnInit {
       res.forEach(e => {
         tablaElem.push(e.idPedido);
         tablaElem.push(e.codigoSeguimiento);
-        tablaElem.push(e.estadoPedido);
-        tablaElem.push(e.fechaIngreso);
-        tablaElem.push(e.fechaEntrega);
+
+        if(e.estadoPedido == "1"){
+          tablaElem.push("Recibido");
+        }else{
+          if(e.estadoPedido == "2"){
+            tablaElem.push("En Proceso");
+          }else{
+            if(e.estadoPedido == "3"){
+              tablaElem.push("Finalizado");
+
+            }
+          }
+        }
+
+        //tablaElem.push(e.estadoPedido);
+        tablaElem.push(e.fechaIngreso[2]+"-"+e.fechaIngreso[1]+"-"+e.fechaIngreso[0]);
+        tablaElem.push(e.fechaEntrega[2]+"-"+e.fechaEntrega[1]+"-"+e.fechaEntrega[0]);
         tablaProductosObras.push(tablaElem);
         tablaElem = [];
       });
