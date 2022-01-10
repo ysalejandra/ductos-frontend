@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/auth/login.service';
 import { Menu } from 'src/app/interfaces/menu';
 import { MenuService } from 'src/app/services/menu.service';
 
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit {
   cargado : boolean = false;
   rol : string = "";
 
-  constructor(private menuService : MenuService, private router: Router) { }
+  constructor(private menuService : MenuService, private router: Router, public loginService: LoginService) { }
 
   ngOnInit(): void {
     this.cargarMenu();
@@ -43,6 +44,7 @@ export class SidebarComponent implements OnInit {
 
   salir(){
     localStorage.clear();
+    this.loginService.logout();
     this.router.navigate(["/entrar"]);
   }
 

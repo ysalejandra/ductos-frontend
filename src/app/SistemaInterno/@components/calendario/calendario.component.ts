@@ -112,7 +112,7 @@ export class CalendarioComponent {
   }
 
   ngOnInit() {
-    this.pedidoService.getPedidos().subscribe(res => {
+    this.pedidoService.getPedidosNoFinalizados().subscribe(res => {
       res.forEach(
         (pedido:Pedido) => this.events.push({
           start: startOfDay(new Date(pedido.fechaEntrega)),

@@ -82,6 +82,28 @@ export class PedidoService {
   }));
   }
 
+  getPedidosNoFinalizados(): Observable<Pedido[]>{
+    return this.http.get('http://localhost:8080/pedidos/noFinalizados').pipe(map( (res : any) => {
+      console.log(res);
+      return res.map( (pedido : Pedido) => {
+        return <Pedido>{ 
+          idPedido: pedido.idPedido,
+          fechaIngreso: pedido.fechaIngreso,
+          fechaEntrega: pedido.fechaEntrega,
+          valorPedido: pedido.valorPedido,
+          codigoSeguimiento: pedido.codigoSeguimiento,
+          anotaciones: pedido.anotaciones,
+          estadoPedido: pedido.estadoPedido,
+          detalleProductos: pedido.detalleProductos,
+          cliente: pedido.cliente,
+          trabajador: pedido.trabajador,
+          obra: pedido.obra
+      }
+      })
+  }));
+  }
+
+
   borrarPedido(id: number){
     return this.http.delete('http://localhost:8080/pedidos/'+id);
   }
