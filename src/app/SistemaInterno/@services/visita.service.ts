@@ -28,6 +28,22 @@ export class VisitaService {
   }));
   }
 
+  getVisitasNoRealizadas(){
+    return this.http.get('http://localhost:8080/visitas/noRealizadas').pipe(map( (res : any) => {
+      console.log(res);
+      return res.map( (visita: Visita) => {
+        return <Visita>{ 
+          idVisita: visita.idVisita,
+          fechaVisita: visita.fechaVisita,
+          estadoVisita: visita.estadoVisita,
+          observaciones: visita.observaciones,
+          direccion: visita.direccion,
+          pedido: visita.pedido
+          }
+      })
+  }));
+  }
+
 
   getVisitaPorId(id : number): Observable<Visita> {
     return this.http.get('http://localhost:8080/visitas/'+ id).pipe(map( (visita: any) => {

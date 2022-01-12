@@ -29,6 +29,8 @@ import { Pedido } from '../../@models/pedido.model';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { ActivatedRoute, Router } from '@angular/router';
+import { VisitaService } from '../../@services/visita.service';
+import { Visita } from '../../@models/visita.model';
 
 interface Evento extends CalendarEvent {
   id: number;
@@ -107,7 +109,7 @@ export class CalendarioComponent {
   */
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private pedidoService : PedidoService, private router: Router, private r: ActivatedRoute) {
+  constructor(private modal: NgbModal, private pedidoService : PedidoService, private router: Router, private r: ActivatedRoute, public visitaService: VisitaService) {
     
   }
 
@@ -119,6 +121,25 @@ export class CalendarioComponent {
       title: 'Pedido: ' + pedido.cliente.nombre + ' ' + pedido.cliente.apellidoPaterno + ' ' + pedido.cliente.apellidoMaterno + ', ' + pedido.codigoSeguimiento,
       color: colors.yellow,
       id: pedido.idPedido,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+        })
+      )
+      console.log(this.events);
+      this.refresh.next();
+    });
+
+    this.visitaService.getVisitasNoRealizadas().subscribe( res =>{
+      res.forEach(
+        (visita:Visita) => this.events.push({
+          start: startOfDay(new Date(visita.fechaVisita)),
+      title: 'Visita: ' + visita.pedido.cliente.nombre + ' ' + visita.pedido.cliente.apellidoPaterno + ' ' + visita.pedido.cliente.apellidoMaterno + ', ' + visita.pedido.codigoSeguimiento,
+      color: colors.blue,
+      id: visita.pedido.idPedido,
       actions: this.actions,
       resizable: {
         beforeStart: true,
