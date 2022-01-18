@@ -74,15 +74,15 @@
                 <br />
                 <tr>
                   <td>
-                    <mat-form-field>
+                    <mat-form-field style="width: 300px;">
                       <mat-select placeholder="" name="producto" formControlName="idProducto">
                         <mat-option *ngFor="let producto of listaProductos" [value]="producto.idProducto">{{
-                          producto.nombre }} - {{producto.valor}}</mat-option>
+                          producto.nombre }} - ${{producto.valor}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </td>
                   <td>
-                    <mat-form-field>
+                    <mat-form-field style="width: 100px;">
                       <mat-label>Cantidad</mat-label>
                       <input matInput type="number" autocomplete="off" formControlName="cantidad" />
                     </mat-form-field>
@@ -103,16 +103,12 @@
         <br />
       </div>
 
+      <!-- 
       <br /><br />
       <h2>
         <mat-icon class="delete-btn" (click)="actualizarValorTotal()">update</mat-icon> Total: ${{totalActualizado}}
-      </h2>
+      </h2>-->
       <br><br>
-
-      <br>
-
-
-
 
       <h1 class="ancho">Pago</h1>
       <div>
