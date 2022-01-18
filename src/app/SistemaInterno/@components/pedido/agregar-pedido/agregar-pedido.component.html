@@ -77,7 +77,7 @@
                     <mat-form-field>
                       <mat-select placeholder="" name="producto" formControlName="idProducto">
                         <mat-option *ngFor="let producto of listaProductos" [value]="producto.idProducto">{{
-                          producto.nombre }}</mat-option>
+                          producto.nombre }} - {{producto.valor}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </td>
@@ -102,6 +102,50 @@
         <br />
         <br />
       </div>
+
+      <br /><br />
+      <h2>
+        <mat-icon class="delete-btn" (click)="actualizarValorTotal()">update</mat-icon> Total: ${{totalActualizado}}
+      </h2>
+      <br><br>
+
+      <br>
+
+
+
+
+      <h1 class="ancho">Pago</h1>
+      <div>
+        <table class="ancho">
+          <button mat-mini-fab (click)="addPago()">
+            <mat-icon class="add-course-btn">add</mat-icon>
+          </button>
+          <br><br>
+          <div formArrayName="pagos">
+          <ng-container *ngIf="mostrarPago" [formGroupName]= 0  display="flex" appearance="fill" class="ancho">
+                <mat-form-field appearance="fill" class="anchoPago">
+                  <mat-label>Tipo de pago</mat-label>
+                  <mat-select formControlName="tipoPago" #pago>
+                    <mat-option value="ABONO">Abono</mat-option>
+                    <mat-option value="TOTAL">Total</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field *ngIf="pago.value== 'ABONO'" appearance="fill" class="anchoPago">
+                  <mat-label>Cantidad abonada</mat-label>
+                  <input matInput type="number" autocomplete="off" formControlName="monto" />
+                </mat-form-field>
+                <br>
+          </ng-container>
+        </div>
+        </table>
+      </div>
+
+
+
+
+
       <!--<button class="button ancho button" mat-raised-button color="warn"  type="submit">
         Agregar Pago
       </button><br><br>-->
@@ -109,7 +153,7 @@
         Guardar
       </button>
       <br><br>
-      <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/trabajadores">
+      <button class="ancho button cancel" mat-raised-button color="secondary" routerLink="/dashboard/pedidos">
         Cancelar
       </button>
     </form><br>

@@ -10,6 +10,8 @@ import { Producto } from 'src/app/SistemaInterno/@models/producto.model';
 import { ProductoTable } from 'src/app/SistemaInterno/@models/productoTable.model';
 import { PedidoService } from 'src/app/SistemaInterno/@services/pedido.service';
 import { Location } from '@angular/common';
+import { VisitaTable } from 'src/app/SistemaInterno/@models/visitaTable.model';
+import { PagoTable } from 'src/app/SistemaInterno/@models/pagoTable.model';
 
 @Component({
   selector: 'app-ver-pedido',
@@ -28,6 +30,15 @@ export class VerPedidoComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: any;
+  dataSource2: any;
+  dataSource3: any;
+
+  tableVisitas : VisitaTable[] = [];
+  displayedColumns2: string[] = ['fechaVisita', 'estadoVisita', 'direccion'];
+
+  tablePago: PagoTable[] = [];
+  displayedColumns3: string[] = ['tipoPago', 'monto'];
+
   tableProductos : ProductoTable[] = [];
   displayedColumns: string[] = ['producto', 'categoria', 'cantidad', 'valor'];
   
@@ -39,8 +50,19 @@ export class VerPedidoComponent implements OnInit {
       this.pedido = res;
       this.pedido.detalleProductos.forEach(e => {
         this.tableProductos.push(new ProductoTable(e.producto.nombre, e.producto.categoria, e.cantidad, e.producto.valor));
-      });
       this.dataSource = new MatTableDataSource(this.tableProductos);
+      });
+      this.pedido.visitas.forEach ( e =>{
+        this.tableVisitas.push(new VisitaTable(e.idVisita,e.fechaVisita, e.estadoVisita ,e.direccion)); 
+        this.dataSource2 = new MatTableDataSource(this.tableVisitas); 
+      })
+
+      this.pedido.pagos.forEach ( e =>{
+        this.tablePago.push(new PagoTable(e.idPago,e.tipoPago, e.monto)); 
+        this.dataSource3 = new MatTableDataSource(this.tablePago); 
+      })
+
+
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.isDataAvailable = true;
@@ -58,7 +80,6 @@ export class VerPedidoComponent implements OnInit {
   volverAtras(){
     this.location.back();
       console.log( 'goBack()...' );
-
   }
 
 

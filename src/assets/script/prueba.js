@@ -159,7 +159,6 @@
         'border-color'    : currColor,
         'color'           : '#fff'
       }).addClass('external-event')
-      event.text('hola'+val)
       $('#external-events').prepend(event)
 
       // Add draggable funtionality
@@ -169,3 +168,5 @@
       $('#new-event').val('')
     })
   })
+
+

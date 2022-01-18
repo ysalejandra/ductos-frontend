@@ -23,7 +23,7 @@ export class PedidoService {
   }
 
   getPedidoPorId(id : number): Observable<Pedido> {
-    return this.http.get('http://localhost:8080/pedidos/'+ id).pipe(map( (pedido: any) => {
+    return this.http.get('http://localhost:8080/pedidos/'+ id).pipe(map( (pedido: Pedido) => {
       console.log(pedido);
       return <Pedido>{ 
         idPedido: pedido.idPedido,
@@ -36,7 +36,9 @@ export class PedidoService {
         detalleProductos: pedido.detalleProductos,
         cliente: pedido.cliente,
         trabajador: pedido.trabajador,
-        obra: pedido.obra
+        obra: pedido.obra,
+        visitas: pedido.visitas,
+        pagos: pedido.pagos
         };
     })
     );
@@ -55,7 +57,9 @@ export class PedidoService {
         detalleProductos: pedido.detalleProductos,
         cliente: pedido.cliente,
         trabajador: pedido.trabajador,
-        obra: pedido.obra
+        obra: pedido.obra,
+        visitas: pedido.visita,
+        pagos: pedido.pagos
         };
     })
     );
@@ -76,7 +80,9 @@ export class PedidoService {
           detalleProductos: pedido.detalleProductos,
           cliente: pedido.cliente,
           trabajador: pedido.trabajador,
-          obra: pedido.obra
+          obra: pedido.obra,
+          visitas: pedido.visitas,
+          pagos: pedido.pagos
       }
       })
   }));
@@ -97,7 +103,9 @@ export class PedidoService {
           detalleProductos: pedido.detalleProductos,
           cliente: pedido.cliente,
           trabajador: pedido.trabajador,
-          obra: pedido.obra
+          obra: pedido.obra,
+          visitas: pedido.visitas,
+          pagos: pedido.pagos
       }
       })
   }));

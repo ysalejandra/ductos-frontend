@@ -48,8 +48,6 @@
           </mat-expansion-panel-header>
           <p>Teléfono: {{pedido.cliente.telefono}}</p>
           <p>Email: {{pedido.cliente.email}}</p>
-
-
         </mat-expansion-panel>
       </mat-accordion>
       <br>
@@ -65,8 +63,6 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <p>Dirección: {{pedido.obra.direccion}}</p>
-
-
         </mat-expansion-panel>
       </mat-accordion>
       <br>
@@ -108,6 +104,70 @@
         </table>
       </div><br>
       <mat-label><h2>Total:    ${{pedido.valorPedido}}</h2></mat-label> 
+
+
+      <div *ngIf="pedido.visitas.length > 0">
+      <br>
+      <mat-label><h2>Visitas</h2></mat-label> 
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource2">
+          <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="fechaVisita">
+            <th mat-header-cell *matHeaderCellDef> Fecha De visita </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaVisita}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="estadoVisita">
+            <th mat-header-cell *matHeaderCellDef> Estado</th>
+            <td mat-cell *matCellDef="let element"> {{element.estadoVisita}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="direccion">
+            <th mat-header-cell *matHeaderCellDef> Dirección </th>
+            <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+          </ng-container>
+          <!-- Symbol Column -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+        </table>
+      </div><br>
+    </div>
+
+    <br><br>
+
+    <div *ngIf="pedido.pagos.length > 0">
+      <br>
+      <mat-label><h2>Pagos</h2></mat-label> 
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource3">
+          <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="tipoPago">
+            <th mat-header-cell *matHeaderCellDef> Tipo de Pago </th>
+            <td mat-cell *matCellDef="let element"> {{element.tipoPago}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef> Monto </th>
+            <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+        </table>
+      </div><br>
+    </div>
       <button mat-raised-button color="primary" style="font-size: 20px" (click)="volverAtras()">
         Volver atrás
       </button><br>

@@ -1,8 +1,10 @@
 import { Cliente } from "./cliente.model";
 import { DetalleProducto } from "./detalleProducto.model";
 import { Obra } from "./obra.model";
+import { Pago } from "./pago.model";
 import { Producto } from "./producto.model";
 import { Trabajador } from "./trabajador.model";
+import { Visita } from "./visita.model";
 
 export interface PedidoInterface {
     idPedido: number;
@@ -16,11 +18,13 @@ export interface PedidoInterface {
     cliente: Cliente;
     trabajador: Trabajador;
     obra: Obra;
+    visitas: Visita[];
+    pagos: Pago[];
 }
 
 export class Pedido implements PedidoInterface {
     constructor(public idPedido: number, public fechaIngreso: Date, public fechaEntrega: Date, public valorPedido: number,
-        public codigoSeguimiento: string, public anotaciones: string, public estadoPedido: string, public detalleProductos: DetalleProducto[], public trabajador: Trabajador, public cliente : Cliente, public obra : Obra) {
+        public codigoSeguimiento: string, public anotaciones: string, public estadoPedido: string, public detalleProductos: DetalleProducto[], public trabajador: Trabajador, public cliente : Cliente, public obra : Obra, public visitas: Visita[],public pagos: Pago[]) {
         this.idPedido = idPedido;
         this.fechaIngreso = fechaIngreso;
         this.fechaEntrega = fechaEntrega;
@@ -32,6 +36,8 @@ export class Pedido implements PedidoInterface {
         this.trabajador = trabajador;
         this.obra = obra;
         this.cliente = cliente;
+        this.visitas = visitas;
+        this.pagos = pagos;
     }
     
 }

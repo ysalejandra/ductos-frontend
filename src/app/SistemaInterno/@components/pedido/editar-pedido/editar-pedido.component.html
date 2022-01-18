@@ -42,7 +42,6 @@
         </mat-select>
       </mat-form-field>
       <br>
-      
 
       <h1 class="ancho">Productos</h1>
 
@@ -72,7 +71,7 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="valor">
             <th mat-header-cell *matHeaderCellDef> Valor </th>
-            <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+            <td mat-cell *matCellDef="let element"> ${{element.valor}} </td>
           </ng-container>
 
 
@@ -82,6 +81,8 @@
         </table>
       </div>
       <br>
+
+
       <div class="productos ancho">
         <table class="ancho">
           <ng-container formArrayName="detalleProductos" display="flex" appearance="fill" class="ancho">
@@ -111,12 +112,82 @@
             </ng-container>
           </ng-container>
         </table>
-
-        <button mat-mini-fab (click)="addProducto()">
-          <mat-icon class="add-course-btn">add</mat-icon>
-        </button>
-        <br /><br />
       </div>
+
+      <div class="ancho">
+          <button mat-mini-fab (click)="addProducto()">
+            <mat-icon class="add-course-btn">add</mat-icon>
+          </button>
+          <br /><br />
+
+        <mat-label><h2>Total:    ${{pedido.valorPedido}}</h2></mat-label> 
+        <br><br>
+      </div>
+
+
+      <h1 class="ancho">Pagos</h1>
+
+      <div class="mat-elevation-z8 tabla-exterior">
+        <table mat-table [dataSource]="dataSource2">
+          <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="idPago">
+            <th mat-header-cell *matHeaderCellDef> idPago</th>
+            <td mat-cell *matCellDef="let element"> {{element.idPago}} </td>
+          </ng-container>
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="tipoPago">
+            <th mat-header-cell *matHeaderCellDef> Tipo de pago</th>
+            <td mat-cell *matCellDef="let element"> {{element.tipoPago}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef> Monto</th>
+            <td mat-cell *matCellDef="let element"> ${{element.monto}} </td>
+          </ng-container>
+
+        <!-- Symbol Column -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+      </table>
+        
+      </div>
+      <br><br>
+
+      <h1 class="ancho">Agregar Pago</h1>
+      <div>
+        <table class="ancho">
+          <button mat-mini-fab (click)="addPago()">
+            <mat-icon class="add-course-btn">add</mat-icon>
+          </button>
+          <br><br>
+          <div formArrayName="pagos">
+          <ng-container *ngIf="mostrarPago" [formGroupName]= 0  display="flex" appearance="fill" class="ancho">
+                <mat-form-field appearance="fill" class="anchoPago">
+                  <mat-label>Tipo de pago</mat-label>
+                  <mat-select formControlName="tipoPago" #pago>
+                    <mat-option value="ABONO">Abono</mat-option>
+                    <mat-option value="TOTAL">Total</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field *ngIf="pago.value== 'ABONO'" appearance="fill" class="anchoPago">
+                  <mat-label>Cantidad abonada</mat-label>
+                  <input matInput type="number" autocomplete="off" formControlName="monto" />
+                </mat-form-field>
+                <br>
+          </ng-container>
+        </div>
+        </table>
+      </div>
+      
+
+
       <button class="button ancho button" mat-raised-button color="primary" (click)="confirmar()" type="submit">
         Guardar
       </button>
