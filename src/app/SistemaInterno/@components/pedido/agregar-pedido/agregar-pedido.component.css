@@ -30,3 +30,6 @@
 .titulo{
     -webkit-text-stroke-width:thin;
 }
+.table .ancho{
+    max-width: 400px;
+}

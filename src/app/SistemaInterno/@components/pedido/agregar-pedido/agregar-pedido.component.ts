@@ -39,6 +39,9 @@ export class AgregarPedidoComponent implements OnInit{
   pro: string = "producto"
 
   value: any;
+
+  listProd: Producto[] = [];
+
   mostrarPago: boolean = false;
   
   id = 0;
@@ -60,7 +63,7 @@ export class AgregarPedidoComponent implements OnInit{
       obra: [null],
       trabajador: [null],
       detalleProductos: this.fb.array([]),
-      pagos: this.fb.array([]),
+      pagos: [null],
       visitas: [null]
     })
 
@@ -91,37 +94,40 @@ export class AgregarPedidoComponent implements OnInit{
       this.listaObras = res;
     })
   }
-  
 
   actualizarValorTotal(){
+  
+    this.totalActualizado = 0;
 
+    var cantidad = new Array();
+    var idProducto = new Array();
+
+    //Calcular la cantidad
     for(var i=0; i<this.productos.length; i++){
-
-      var idProducto = this.pedidoForm.controls["detalleProductos"].value[i].idProducto;
-      
-      console.log("idProducto :"+idProducto);
-      var cantidad = this.pedidoForm.controls["detalleProductos"].value[i].cantidad;
-        console.log("Cantidad: "+cantidad);
-
-
-      this.productoService.getProductoPorId(idProducto).subscribe( (res: Producto) => {
-        
-
-          var precio = res.valor;
-          console.log("precio: "+precio);
-          console.log("Cantidad: "+cantidad);
-
-          var total = (precio * cantidad);
-          console.log("total: "+total);
-          this.totalActualizado += total;
-          console.log("Total actualizado: "+this.totalActualizado);
-          total = 0;
-      })
-      
+      cantidad.push(this.pedidoForm.controls["detalleProductos"].value[i].cantidad);
+      idProducto.push(this.pedidoForm.controls["detalleProductos"].value[i].idProducto);
+      //console.log("cantidad: "+cantidad.length);
     }
 
-    console.log("Actualizar el valor total ");
+    //cantidad.reverse();
+    //idProducto.reverse();
 
+    for(var i=0; i<this.productos.length; i++){
+      //var idProducto = this.pedidoForm.controls["detalleProductos"].value[i].idProducto;
+      //console.log("idProducto :"+idProducto);
+      
+      this.productoService.getProductoPorId(idProducto.pop()).subscribe( (res: Producto) => {
+
+        console.log("Id producto: "+ res.idProducto +" nombre: "+ res.nombre);
+        var cant = cantidad.pop();
+        console.log("cantidad: "+ cant);
+        //cantidad.push(cant);
+
+        var total = cant * res.valor;
+        this.totalActualizado += total;
+        total = 0;
+      })
+    }
   }
 
   
