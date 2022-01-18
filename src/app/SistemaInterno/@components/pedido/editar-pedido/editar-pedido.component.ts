@@ -204,7 +204,7 @@ export class EditarPedidoComponent implements OnInit {
       if (confirmado) {
         this.eliminarPago(idPago);
       } else {
-        
+        this.router.navigate(["/dashboard/pedidos"]);
       }
     });
 }
@@ -226,7 +226,7 @@ eliminarPago(idPago: number){
       if (confirmado) {
         this.editar();
       } else {
-        
+        this.router.navigate(["/dashboard/pedidos"]);
       }
     });
 }

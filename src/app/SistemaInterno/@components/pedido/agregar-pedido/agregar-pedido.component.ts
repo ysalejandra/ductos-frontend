@@ -192,6 +192,7 @@ export class AgregarPedidoComponent implements OnInit{
 
         } else {
           alert("No se ha guardado el pedido");
+          this.router.navigate(["/dashboard/pedidos"]);
         }
       });
   }
