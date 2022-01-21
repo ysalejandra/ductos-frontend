@@ -1,4 +1,4 @@
-export interface ProductoObrasInformeInterface {
+export interface PedidoObrasInformeInterface {
     idPedido: number,
     codigoSeguimiento: String,
     estadoPedido: String,
@@ -7,7 +7,7 @@ export interface ProductoObrasInformeInterface {
 
 }
 
-export class ProductoObrasInforme implements ProductoObrasInformeInterface {
+export class PedidoObrasInforme implements PedidoObrasInformeInterface {
     constructor(public idPedido:number, public codigoSeguimiento:String, public estadoPedido:String, public fechaIngreso: Date, public fechaEntrega: Date) {
         this.idPedido = idPedido;
         this.codigoSeguimiento = codigoSeguimiento;

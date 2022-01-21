@@ -5,7 +5,6 @@ import { Chart, ChartData } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Cliente } from '../../@models/cliente.model';
 import { ClienteService } from '../../@services/cliente.service';
-
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
 import { Obra } from '../../@models/obra.model';
@@ -13,13 +12,13 @@ import { ObraService } from '../../@services/obra.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductoService } from '../../@services/producto.service';
 import { ProductoInforme } from '../../@models/productoInforme.model';
-import { ProductoObrasInforme } from '../../@models/ProductoObrasInforme.model';
 import { ProductoMayorGanancia } from '../../@models/productoMayorGanancia.model';
 import { ClienteMayorCompra } from '../../@models/clienteMayorCompra.model';
 import { ClienteMayorGanancia } from '../../@models/clienteMayorGanancia.model';
 import { textSpanOverlap } from 'typescript';
 import { options } from 'preact';
 import { HttpClient } from '@angular/common/http';
+import { PedidoObrasInforme } from '../../@models/PedidoObrasInforme.model';
 
 @Component({
   selector: 'app-informe',
@@ -32,37 +31,26 @@ export class InformeComponent implements OnInit {
   listCliente: Cliente[] = [];
   listProductosInforme: ProductoInforme[] = [];
 
-  listProductosPorObras:ProductoObrasInforme[] = [];
-
-  /*
-  lineChartData: ChartDataSets[] = [
-    { data: [12, 72, 12, 44, 89], label: "Valor1" },
-    { data: [16, 54, 24, 11, 2], label: "Valor2" }
-  ];
-
-  lineChartLabels: Label[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
-
-  lineChartOptions = { responsive: true };
-
-  lineChartColors: Color[] = [
-    {
-      borderColor: 'red',
-      backgroundColor: 'pink',
-    },
-  ];
-
-  lineChartLegend = true;
-  lineChartPlugins = [];
-  lineChartType: 'line' = "line";
-  */
-
+  listProductosPorObras:PedidoObrasInforme[] = [];
   listObra: Obra[];
   obras: Obra[] = [];
   obraForm: FormGroup;
 
+  fechaForm: FormGroup;
+  
+  fechaIn: Date; 
+  fechaFi: Date;
+
+  fechaInFormat: string; 
+  fechaFiFormat: string;
+
   constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService, public productoService: ProductoService, private httpClient: HttpClient) {
     this.obraForm = this.fb.group({
       obra: ["", Validators.required],
+    })
+    this.fechaForm = this.fb.group({
+      fechaInicio: ["", Validators.required],
+      fechaFin: ["", Validators.required],
     })
   }
 
@@ -96,7 +84,7 @@ export class InformeComponent implements OnInit {
 
     titulo = "Todos los pedidos de la obra: ";
 
-    this.obraService.getProductosPorObra(this.obraForm.controls['obra'].value).subscribe((res: ProductoObrasInforme[]) => {
+    this.obraService.getPedidosPorObra(this.obraForm.controls['obra'].value).subscribe((res: PedidoObrasInforme[]) => {
 
       res.forEach(e => {
         tablaElem.push(e.idPedido);
@@ -132,7 +120,16 @@ export class InformeComponent implements OnInit {
     var tablaElem: any[] = [];
     var titulo = "Productos con mayor ganancia";
 
-    this.productoService.getProductosMayorGanancia().subscribe((res: ProductoMayorGanancia[]) => {
+
+    //Formatear fecha
+    this.fechaIn = this.fechaForm.controls['fechaInicio'].value;
+    this.fechaFi = this.fechaForm.controls['fechaFin'].value
+
+    this.fechaInFormat = this.fechaIn.toJSON().split('T')[0];
+    this.fechaFiFormat = this.fechaFi.toJSON().split('T')[0];
+
+
+    this.productoService.getProductosMayorGanancia(this.fechaInFormat, this.fechaFiFormat).subscribe((res: ProductoMayorGanancia[]) => {
       res.forEach(e => {
         tablaElem.push(e.nombre);
         tablaElem.push(e.categoria);
