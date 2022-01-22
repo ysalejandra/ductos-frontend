@@ -36,8 +36,8 @@ export class ClienteService {
   }));
   }
 
-  getClienteMayorCompra(): Observable<ClienteMayorCompra[]> {
-    return this.http.get('http://localhost:8080/clientes/mayorCompra').pipe(map( (res : any) => {
+  getClienteMayorCompra(fechaInicio: string, fechaFin: string): Observable<ClienteMayorCompra[]> {
+    return this.http.get('http://localhost:8080/clientes/mayorCompra?fechaInicio='+fechaInicio+'&fechaFin='+fechaFin).pipe(map( (res : any) => {
       return res.map((clienteMayorCompra: ClienteMayorCompra) => {
         console.log(clienteMayorCompra);
         return <ClienteMayorCompra>{
@@ -52,8 +52,8 @@ export class ClienteService {
     }));
   }
 
-  getClienteMayorGanancia(): Observable<ClienteMayorGanancia[]> {
-    return this.http.get('http://localhost:8080/clientes/mayorGanancia').pipe(map( (res : any) => {
+  getClienteMayorGanancia(fechaInicio: string, fechaFin: string): Observable<ClienteMayorGanancia[]> {
+    return this.http.get('http://localhost:8080/clientes/mayorGanancia?fechaInicio='+fechaInicio+'&fechaFin='+fechaFin).pipe(map( (res : any) => {
       return res.map((clienteMayorGanancia: ClienteMayorGanancia) => {
         console.log(clienteMayorGanancia);
         return <ClienteMayorGanancia>{

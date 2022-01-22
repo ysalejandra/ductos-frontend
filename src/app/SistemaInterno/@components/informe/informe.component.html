@@ -5,7 +5,9 @@
       <form class="formulario" [formGroup]="fechaForm">
       <div class="table"> 
         <tr>
-          <td><h2 class="ancho">Seleccionar rango de fechas</h2></td>
+          <td style="text-decoration: underline;">
+            <h2 class="ancho"><b>Seleccionar rango de fechas</b></h2>
+          </td>
         </tr>
         <tr>
           <td> 
@@ -28,7 +30,7 @@
         <!-- Opciones de informes-->
         <tr>
           <td>
-            <h2 class="tituloTable">Los productos más comprados</h2>
+            <h2 class="tituloTable">Los productos más vendidos</h2>
           </td>
           <td>
             <button class="button" mat-raised-button color="primary" (click)="obtenerProductosMasCompradosPDF()" type="submit">
@@ -75,6 +77,11 @@
 
     <div class="table">
       <tr>
+        <td style="text-decoration: underline;">
+          <h2><b>Estos informes no se filtran por fechas</b></h2>
+        </td>
+      </tr>
+      <tr>
         <td>
           <form class="formulario" [formGroup]="obraForm" (ngSubmit)="obtenerProductosDeObra()">
             <h2 class="ancho">Todos los pedidos de una obra</h2>
@@ -90,10 +97,12 @@
           </form>
         </td>
       </tr>
-
       <tr>
         <td>
-          <h2 class="ancho">Todos los clientes</h2>
+          <h2 class="tituloTable">Todos los clientes</h2>
+        
+        </td>
+        <td>
           <button class="button" mat-raised-button color="primary"  (click)="obtenerClientesPDF()" type="submit">
             Generar PDF
          </button>

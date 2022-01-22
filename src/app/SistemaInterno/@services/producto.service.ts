@@ -23,9 +23,9 @@ export class ProductoService {
     }));
   }
 
-  getDatosInformes(): Observable<ProductoInforme[]> {
+  getProductosMasCompradosInformes(fechaInicio: string, fechaFin: string): Observable<ProductoInforme[]> {
 
-    return this.http.get('http://localhost:8080/productos/informe').pipe(map((res: any) => {
+    return this.http.get('http://localhost:8080/productos/masComprados?fechaInicio='+fechaInicio+'&fechaFin='+fechaFin).pipe(map((res: any) => {
       return res.map((productoInforme: ProductoInforme) => {
         return <ProductoInforme>{
           nombre: productoInforme.nombre,

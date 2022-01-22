@@ -109,7 +109,7 @@ export class InformeComponent implements OnInit {
         tablaProductosObras.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaProductosObras, titulo);
+      this.generatePdfSinFechas(header, tablaProductosObras, titulo);
     });
 
   }
@@ -129,8 +129,6 @@ export class InformeComponent implements OnInit {
     this.fechaInFormat = this.fechaIn.toJSON().split('T')[0];
     this.fechaFiFormat = this.fechaFi.toJSON().split('T')[0];
 
-
-
     this.productoService.getProductosMayorGanancia(this.fechaInFormat, this.fechaFiFormat).subscribe((res: ProductoMayorGanancia[]) => {
       res.forEach(e => {
         tablaElem.push(e.nombre);
@@ -146,7 +144,7 @@ export class InformeComponent implements OnInit {
         tablaElem.push('TOTAL:');
         tablaElem.push("$"+ this.numberWithCommas(total));
         tablaProductosMayorGanancia.push(tablaElem);
-      this.generatePdf(header, tablaProductosMayorGanancia,titulo);
+        this.generatePdf(header, tablaProductosMayorGanancia,titulo);
     });
   }
 
@@ -157,7 +155,14 @@ export class InformeComponent implements OnInit {
     var tablaElem: any[] = [];
     var titulo = "Clientes con más compras";
 
-    this.clienteService.getClienteMayorCompra().subscribe((res: ClienteMayorCompra[]) => {
+    //Formatear fecha
+    this.fechaIn = this.fechaForm.controls['fechaInicio'].value;
+    this.fechaFi = this.fechaForm.controls['fechaFin'].value
+
+    this.fechaInFormat = this.fechaIn.toJSON().split('T')[0];
+    this.fechaFiFormat = this.fechaFi.toJSON().split('T')[0];
+
+    this.clienteService.getClienteMayorCompra(this.fechaInFormat, this.fechaFiFormat).subscribe((res: ClienteMayorCompra[]) => {
       res.forEach(e => {
         tablaElem.push(e.nombre+" "+e.apellidoPaterno+" "+e.apellidoMaterno);
         tablaElem.push(e.email);
@@ -176,17 +181,31 @@ export class InformeComponent implements OnInit {
     var tablaClienteMayorGanancia: any[] = [];
     var tablaElem: any[] = [];
     var titulo = "Clientes con mayores ganancias";
+    var total = 0;
 
-    this.clienteService.getClienteMayorGanancia().subscribe((res: ClienteMayorGanancia[]) => {
+    //Formatear fecha
+    this.fechaIn = this.fechaForm.controls['fechaInicio'].value;
+    this.fechaFi = this.fechaForm.controls['fechaFin'].value
+
+    this.fechaInFormat = this.fechaIn.toJSON().split('T')[0];
+    this.fechaFiFormat = this.fechaFi.toJSON().split('T')[0];
+
+    this.clienteService.getClienteMayorGanancia(this.fechaInFormat, this.fechaFiFormat).subscribe((res: ClienteMayorGanancia[]) => {
       res.forEach(e => {
         tablaElem.push(e.nombre+" "+e.apellidoPaterno+" "+e.apellidoMaterno);
         tablaElem.push(e.email);
         tablaElem.push(e.telefono);
-        tablaElem.push("$"+e.ganancia);
+        tablaElem.push("$"+this.numberWithCommas(e.ganancia));
+        total += e.ganancia;
         tablaClienteMayorGanancia.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaClienteMayorGanancia, titulo);
+        tablaElem.push('');
+        tablaElem.push('');
+        tablaElem.push('TOTAL:');
+        tablaElem.push("$"+ this.numberWithCommas(total));
+        tablaClienteMayorGanancia.push(tablaElem);
+        this.generatePdf(header, tablaClienteMayorGanancia, titulo);
     });
 
   }
@@ -210,18 +229,27 @@ export class InformeComponent implements OnInit {
         tablaClientes.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaClientes, titulo);
+      this.generatePdfSinFechas(header, tablaClientes, titulo);
     });
   }
 
   obtenerProductosMasCompradosPDF() {
     //PDF
-    var header = [['Nombre', 'Precio', 'Cantidad','TOTAL']];
+    var header = [['Nombre', 'Precio', 'Cantidad','Ingreso']];
     var tablaProductos: any[] = [];
     var tablaElem: any[] = [];
-    var titulo = "Productos más comprados";
+    var titulo = "Productos más vendidos";
+    var total = 0;
+    var multi = 0; 
 
-    this.productoService.getDatosInformes().subscribe((res: ProductoInforme[]) => {
+    //Formatear fecha
+    this.fechaIn = this.fechaForm.controls['fechaInicio'].value;
+    this.fechaFi = this.fechaForm.controls['fechaFin'].value
+
+    this.fechaInFormat = this.fechaIn.toJSON().split('T')[0];
+    this.fechaFiFormat = this.fechaFi.toJSON().split('T')[0];
+
+    this.productoService.getProductosMasCompradosInformes(this.fechaInFormat, this.fechaFiFormat).subscribe((res: ProductoInforme[]) => {
 
       this.listProductosInforme = res;
       console.log(this.listProductosInforme);
@@ -230,11 +258,18 @@ export class InformeComponent implements OnInit {
         tablaElem.push(e.nombre);
         tablaElem.push("$"+this.numberWithCommas(e.precio));
         tablaElem.push(e.cantidad);
-        tablaElem.push("$"+this.numberWithCommas(e.precio*e.cantidad));
+        multi = e.precio*e.cantidad;
+        total += multi;
+        tablaElem.push("$"+this.numberWithCommas(multi));
         tablaProductos.push(tablaElem);
         tablaElem = [];
       });
-      this.generatePdf(header, tablaProductos, titulo);
+      tablaElem.push('');
+        tablaElem.push('');
+        tablaElem.push('TOTAL:');
+        tablaElem.push("$"+ this.numberWithCommas(total));
+        tablaProductos.push(tablaElem);
+        this.generatePdf(header, tablaProductos,titulo);
     });
 
   }
@@ -304,8 +339,47 @@ export class InformeComponent implements OnInit {
     pdf.setFontSize(10);
     pdf.text("Generado el " + hoy.getDate() + " de " + this.obtenerMes(hoy.getMonth()) + " del " + hoy.getFullYear(), 14, 50);
 
-  
+    (pdf as any).autoTable({
+      head: header,
+      body: tableData,
+      columnStyles: {
+        3 : {
+          halign: 'right'
+        }
+      },
+      theme: 'striped',
+      margin: {top: 55},
+      didDrawCell: data => {
+        //console.log(data.column.index)
+      }
+    })
 
+    // Open PDF document in browser's new tab
+    pdf.output('dataurlnewwindow')
+
+    // Download PDF doc  
+    pdf.save('table.pdf');
+  }
+
+
+  generatePdfSinFechas(header: any, tableData: any, titulo: string) {
+    var img = new Image();
+    img.src = 'assets/img/banner.jpg'
+    var pdf = new jsPDF();
+
+    //pdf.setFont(20%);
+    //addImage(imageData, format, x, y, width, height, alias, compression, rotation)
+    pdf.addImage(img,'jpg',78,5,58,14);
+    
+    //pdf.text('\nDuctos Ortiz Spa', 74, 8);
+    pdf.setFontSize(18);
+    pdf.setTextColor(55);
+    
+    var hoy = new Date();
+
+    pdf.text(titulo, 14, 34);
+    pdf.setFontSize(10);
+    pdf.text("Generado el " + hoy.getDate() + " de " + this.obtenerMes(hoy.getMonth()) + " del " + hoy.getFullYear(), 14, 50);
 
     (pdf as any).autoTable({
       head: header,
