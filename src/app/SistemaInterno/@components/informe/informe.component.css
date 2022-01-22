@@ -17,6 +17,15 @@
    width: 180%;
 }
 
+.fecha{
+   width: 60%;
+}
+
+.tituloTable{
+   font-size: 18px;
+}
+
+
 .button{
    height: 50px;
 }
@@ -24,4 +33,9 @@
 .titulo{
    -webkit-text-stroke-width:thin;
    text-align: center;
+}
+
+.table{
+   font-size: 18px;
+   align-items: center;
 }

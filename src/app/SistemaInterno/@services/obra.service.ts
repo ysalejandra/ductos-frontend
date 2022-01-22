@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Obra } from '../@models/obra.model';
-import { ProductoObrasInforme } from '../@models/ProductoObrasInforme.model';
+import { PedidoObrasInforme } from '../@models/PedidoObrasInforme.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +27,17 @@ export class ObraService {
   }));
   }
 
-  getProductosPorObra(idObra: number): Observable<ProductoObrasInforme[]>{
+  getPedidosPorObra(idObra: number): Observable<PedidoObrasInforme[]>{
     console.log("OBRA SERVICE")
-    return this.http.get('http://localhost:8080/obras/productosObra/'+idObra).pipe(map( (res : any) => {
-      return res.map( (productoObras: ProductoObrasInforme) => {
-        console.log(productoObras);
-        return <ProductoObrasInforme>{ 
-          idPedido: productoObras.idPedido,
-          codigoSeguimiento: productoObras.codigoSeguimiento,
-          estadoPedido: productoObras.estadoPedido,
-          fechaIngreso: productoObras.fechaIngreso,
-          fechaEntrega: productoObras.fechaEntrega
+    return this.http.get('http://localhost:8080/obras/pedidosObra/'+idObra).pipe(map( (res : any) => {
+      return res.map( (pedidoObras: PedidoObrasInforme) => {
+        console.log(pedidoObras);
+        return <PedidoObrasInforme>{ 
+          idPedido: pedidoObras.idPedido,
+          codigoSeguimiento: pedidoObras.codigoSeguimiento,
+          estadoPedido: pedidoObras.estadoPedido,
+          fechaIngreso: pedidoObras.fechaIngreso,
+          fechaEntrega: pedidoObras.fechaEntrega
           }
       })
   }));

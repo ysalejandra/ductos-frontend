@@ -38,9 +38,9 @@ export class ProductoService {
   }
 
 
-  getProductosMayorGanancia(): Observable<ProductoMayorGanancia[]> {
+  getProductosMayorGanancia(fechaInicio: string, fechaFin: string): Observable<ProductoMayorGanancia[]> {
 
-    return this.http.get('http://localhost:8080/productos/mayorGanancia').pipe(map((res: any) => {
+    return this.http.get('http://localhost:8080/productos/mayorGanancia?fechaInicio='+fechaInicio+'&fechaFin='+fechaFin).pipe(map((res: any) => {
       return res.map((productoMayorGanancia: ProductoMayorGanancia) => {
         console.log(productoMayorGanancia);
         return <ProductoMayorGanancia>{

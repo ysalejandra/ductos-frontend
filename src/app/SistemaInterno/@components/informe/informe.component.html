@@ -1,42 +1,105 @@
 
 <div class="body">
     <div class="format">
-      <h1 class="ancho titulo">Generar informes de...</h1><br>
-      <form class="formulario" [formGroup]="obraForm" (ngSubmit)="obtenerProductosDeObra()">
-        <h2 class="ancho">Todos los pedidos de una obra</h2>
-        <mat-form-field appearance="fill" class="ancho">
-            <mat-label>Obra</mat-label>
-            <mat-select placeholder="" name="obra" formControlName="obra">
-              <mat-option *ngFor="let obra of listObra" [value]="obra.idObra">{{ obra.nombre }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        <button class="button" mat-raised-button color="primary" type="submit">
+      <h1 class="ancho titulo">Generar informes de...</h1>
+      <form class="formulario" [formGroup]="fechaForm">
+      <div class="table"> 
+        <tr>
+          <td><h2 class="ancho">Seleccionar rango de fechas</h2></td>
+        </tr>
+        <tr>
+          <td> 
+            <mat-form-field appearance="fill" >
+              <mat-label>Fecha de Inicio</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="fechaInicio">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha de Termino</mat-label>
+              <input matInput [matDatepicker]="picker3" formControlName="fechaFin">
+              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+          </td>
+        </tr>
+        <!-- Opciones de informes-->
+        <tr>
+          <td>
+            <h2 class="tituloTable">Los productos más comprados</h2>
+          </td>
+          <td>
+            <button class="button" mat-raised-button color="primary" (click)="obtenerProductosMasCompradosPDF()" type="submit">
+              Generar PDF
+           </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <h2 class="tituloTable">Los productos que mayor ganancia generan</h2>
+          </td>
+          <td>
+            <button class="button" mat-raised-button color="primary" (click)="obtenerProductosConMayorGananciaPDF()" type="submit">
+              Generar PDF
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <h2 class="tituloTable">Los clientes con mayor cantidad de compras</h2>
+          </td>
+          <td>
+            <button class="button" mat-raised-button color="primary" (click)="obtenerClientesConMasComprasPDF()" type="submit">
+              Generar PDF
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <h2 class="tituloTable">Los clientes que entregan mayor ganancia</h2>
+          </td>
+          <td>
+            <button class="button" mat-raised-button color="primary" (click)="obtenerClientesConMayorGananciaPDF()" type="submit">
+              Generar PDF
+            </button>
+          </td>
+        </tr>
+
+      </div>
+    </form>
+
+    <div class="table">
+      <tr>
+        <td>
+          <form class="formulario" [formGroup]="obraForm" (ngSubmit)="obtenerProductosDeObra()">
+            <h2 class="ancho">Todos los pedidos de una obra</h2>
+            <mat-form-field appearance="fill" class="ancho">
+                <mat-label>Obra</mat-label>
+                <mat-select placeholder="" name="obra" formControlName="obra">
+                  <mat-option *ngFor="let obra of listObra" [value]="obra.idObra">{{ obra.nombre }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            <button class="button" mat-raised-button color="primary" type="submit">
+                Generar PDF
+            </button>
+          </form>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h2 class="ancho">Todos los clientes</h2>
+          <button class="button" mat-raised-button color="primary"  (click)="obtenerClientesPDF()" type="submit">
             Generar PDF
-        </button><br><br>
-      </form>
-
-      <h2 class="ancho">Todos los clientes</h2>
-      <button class="button" mat-raised-button color="primary"  (click)="obtenerClientesPDF()" type="submit">
-        Generar PDF
-     </button><br><br>
-     <h2 class="ancho">Los productos más comprados</h2>
-      <button class="button" mat-raised-button color="primary" (click)="obtenerProductosMasCompradosPDF()" type="submit">
-         Generar PDF
-      </button><br><br>
-
-      <h2 class="ancho">Los productos que mayor ganancia generan</h2>
-      <button class="button" mat-raised-button color="primary" (click)="obtenerProductosConMayorGananciaPDF()" type="submit">
-        Generar PDF
-      </button><br><br>
-
-      <h2 class="ancho">Los clientes con mayor cantidad de compras</h2>
-      <button class="button" mat-raised-button color="primary" (click)="obtenerClientesConMasComprasPDF()" type="submit">
-        Generar PDF
-      </button> <br><br>
-
-      <h2 class="ancho">Los clientes que entregan mayor ganancia</h2>
-      <button class="button" mat-raised-button color="primary" (click)="obtenerClientesConMayorGananciaPDF()" type="submit">
-        Generar PDF
-      </button> <br><br>
+         </button>
+        </td>
+      </tr>
+    </div>
+    <br>
     </div> 
   </div>
