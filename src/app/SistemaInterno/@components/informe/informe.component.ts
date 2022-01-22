@@ -17,8 +17,9 @@ import { ClienteMayorCompra } from '../../@models/clienteMayorCompra.model';
 import { ClienteMayorGanancia } from '../../@models/clienteMayorGanancia.model';
 import { textSpanOverlap } from 'typescript';
 import { options } from 'preact';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PedidoObrasInforme } from '../../@models/PedidoObrasInforme.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-informe',
@@ -44,7 +45,7 @@ export class InformeComponent implements OnInit {
   fechaInFormat: string; 
   fechaFiFormat: string;
 
-  constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService, public productoService: ProductoService, private httpClient: HttpClient) {
+  constructor(private fb: FormBuilder, public clienteService: ClienteService, public obraService: ObraService, public productoService: ProductoService, private httpClient: HttpClient, private _snackBar: MatSnackBar) {
     this.obraForm = this.fb.group({
       obra: ["", Validators.required],
     })
@@ -57,6 +58,16 @@ export class InformeComponent implements OnInit {
   ngOnInit(): void {
     this.getObras();
   }
+
+  error() {
+    this._snackBar.open('No existen registros en este rango de fechas', '', {
+      duration: 5000, //milisegundos,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    })
+  }
+
+
 
   getObras() {
     this.obraService.getObras().subscribe((res: Obra[]) => {
@@ -145,6 +156,9 @@ export class InformeComponent implements OnInit {
         tablaElem.push("$"+ this.numberWithCommas(total));
         tablaProductosMayorGanancia.push(tablaElem);
         this.generatePdf(header, tablaProductosMayorGanancia,titulo);
+    }, (err : HttpErrorResponse) => {
+      this.error();
+      this.fechaForm.reset;
     });
   }
 
@@ -172,6 +186,9 @@ export class InformeComponent implements OnInit {
         tablaElem = [];
       });
       this.generatePdf(header, tablaClienteMayorCompra, titulo);
+    }, (err : HttpErrorResponse) => {
+      this.error();
+      this.fechaForm.reset;
     });
 
   }
@@ -206,6 +223,9 @@ export class InformeComponent implements OnInit {
         tablaElem.push("$"+ this.numberWithCommas(total));
         tablaClienteMayorGanancia.push(tablaElem);
         this.generatePdf(header, tablaClienteMayorGanancia, titulo);
+    }, (err : HttpErrorResponse) => {
+      this.error();
+      this.fechaForm.reset;
     });
 
   }
@@ -270,6 +290,9 @@ export class InformeComponent implements OnInit {
         tablaElem.push("$"+ this.numberWithCommas(total));
         tablaProductos.push(tablaElem);
         this.generatePdf(header, tablaProductos,titulo);
+    }, (err : HttpErrorResponse) => {
+      this.error();
+      this.fechaForm.reset;
     });
 
   }
