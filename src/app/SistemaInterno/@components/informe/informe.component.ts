@@ -119,6 +119,7 @@ export class InformeComponent implements OnInit {
     var tablaProductosMayorGanancia: any[] = [];
     var tablaElem: any[] = [];
     var titulo = "Productos con mayor ganancia";
+    var total = 0;
 
 
     //Formatear fecha
@@ -129,15 +130,22 @@ export class InformeComponent implements OnInit {
     this.fechaFiFormat = this.fechaFi.toJSON().split('T')[0];
 
 
+
     this.productoService.getProductosMayorGanancia(this.fechaInFormat, this.fechaFiFormat).subscribe((res: ProductoMayorGanancia[]) => {
       res.forEach(e => {
         tablaElem.push(e.nombre);
         tablaElem.push(e.categoria);
         tablaElem.push(e.descripcion);
-        tablaElem.push("$"+e.valor);
+        tablaElem.push("$"+ this.numberWithCommas(e.valor));
+        total += +e.valor;
         tablaProductosMayorGanancia.push(tablaElem);
         tablaElem = [];
       });
+        tablaElem.push('');
+        tablaElem.push('');
+        tablaElem.push('TOTAL:');
+        tablaElem.push("$"+ this.numberWithCommas(total));
+        tablaProductosMayorGanancia.push(tablaElem);
       this.generatePdf(header, tablaProductosMayorGanancia,titulo);
     });
   }
@@ -220,16 +228,47 @@ export class InformeComponent implements OnInit {
 
       res.forEach(e => {
         tablaElem.push(e.nombre);
-        tablaElem.push("$"+e.precio);
+        tablaElem.push("$"+this.numberWithCommas(e.precio));
         tablaElem.push(e.cantidad);
-        tablaElem.push("$"+e.precio*e.cantidad);
-
+        tablaElem.push("$"+this.numberWithCommas(e.precio*e.cantidad));
         tablaProductos.push(tablaElem);
         tablaElem = [];
       });
       this.generatePdf(header, tablaProductos, titulo);
     });
 
+  }
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  obtenerMes(mes : number) {
+    if (mes == 0) {
+      return 'Enero';
+    } else if (mes === 1) {
+      return 'Febrero';
+    } else if (mes === 2) {
+      return 'Marzo';
+    } else if (mes === 3) {
+      return 'Abril';
+    } else if (mes === 4) {
+      return 'Mayo';
+    } else if (mes === 5) {
+      return 'Junio';
+    } else if (mes === 6) {
+      return 'Julio';
+    } else if (mes === 7) {
+      return 'Agosto';
+    } else if (mes === 8) {
+      return 'Septiembre';
+    } else if (mes === 9) {
+      return 'Octubre';
+    } else if (mes === 10) {
+      return 'Noviembre';
+    } else {
+      return 'Diciembre'
+    }
   }
 
   generatePdf(header: any, tableData: any, titulo: string) {
@@ -245,7 +284,25 @@ export class InformeComponent implements OnInit {
     pdf.setFontSize(18);
     pdf.setTextColor(55);
 
-    pdf.text('Informe de: '+titulo, 14, 34);
+    var anioIn = this.fechaIn.getFullYear();
+    var mesIn = this.fechaIn.getMonth();
+    var diaIn = this.fechaIn.getDate();
+
+    var anioFi = this.fechaFi.getFullYear();
+    var mesFi = this.fechaFi.getMonth();
+    var diaFi = this.fechaFi.getDate();
+
+    var inicio = diaIn + " de " + this.obtenerMes(mesIn) + " del " + anioIn;
+    var fin = diaFi + " de " + this.obtenerMes(mesFi) + " del " + anioFi;
+    
+    var hoy = new Date();
+
+
+    pdf.text(titulo, 14, 34);
+    pdf.setFontSize(12);
+    pdf.text("Desde el " + inicio + " hasta el " + fin, 14, 42);
+    pdf.setFontSize(10);
+    pdf.text("Generado el " + hoy.getDate() + " de " + this.obtenerMes(hoy.getMonth()) + " del " + hoy.getFullYear(), 14, 50);
 
   
 
@@ -253,8 +310,13 @@ export class InformeComponent implements OnInit {
     (pdf as any).autoTable({
       head: header,
       body: tableData,
+      columnStyles: {
+        3 : {
+          halign: 'right'
+        }
+      },
       theme: 'striped',
-      margin: {top: 38},
+      margin: {top: 55},
       didDrawCell: data => {
         //console.log(data.column.index)
       }

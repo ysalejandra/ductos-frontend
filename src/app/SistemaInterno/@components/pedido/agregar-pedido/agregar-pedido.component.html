@@ -24,11 +24,7 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <br />
-      <mat-form-field appearance="fill" class="ancho">
-        <mat-label>Anotaciones</mat-label>
-        <input matInput type="text" autocomplete="off" formControlName="anotaciones" />
-      </mat-form-field>
-      <br />
+      
 
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Obra</mat-label>
@@ -52,17 +48,15 @@
           <mat-option value="RECIBIDO">
             Recibido
           </mat-option>
-          <mat-option value="ENPROCESO">
-            En proceso
-          </mat-option>
-
           <mat-option value="COTIZACION">
             Cotización
           </mat-option>
-          <mat-option value="FINALIZADO">
-            Finalizado
-          </mat-option>
         </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Anotaciones</mat-label>
+        <textarea matInput placeholder="" formControlName="anotaciones"></textarea>
       </mat-form-field>
 
       <h1 class="ancho">Productos</h1>
