@@ -1,0 +1,26 @@
+.portfolio-modal .modal-dialog {
+  width: calc(100% - 2rem);
+  max-width: 48rem;
+  margin: 1rem auto;
+}
+
+.portfolio-modal .modal-content {
+  padding: 3rem 0 1rem;
+}
+
+.portfolio-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  background-size: 1rem;
+}
+
+.portfolio-modal .modal-content h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
